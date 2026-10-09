@@ -1,0 +1,921 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ελληνικά λέξεις</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap">
+<style>
+/* Layout: одна колонка до 640px; сверху выбор наборов, ниже три режима (диктовка, карточки, тест). Греческое слово крупно, по центру карточки. */
+:root{
+  --bg:#f1f5f8; --surface:#ffffff; --fg:#0f2230; --muted:#5b7080; --line:#d6e0e7;
+  --accent:#0d5ea6; --accent-fg:#ffffff; --accent-soft:#dcebf7;
+  --good:#1e7a4d; --good-soft:#dff2e8; --bad:#b3372c; --bad-soft:#f8e1de;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b1822; --surface:#12232f; --fg:#e8f0f5; --muted:#92a8b7; --line:#243a49;
+    --accent:#5aa8ec; --accent-fg:#06121b; --accent-soft:#17344a;
+    --good:#5cc690; --good-soft:#15382a; --bad:#f08a7e; --bad-soft:#41211d;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b1822; --surface:#12232f; --fg:#e8f0f5; --muted:#92a8b7; --line:#243a49;
+  --accent:#5aa8ec; --accent-fg:#06121b; --accent-soft:#17344a;
+  --good:#5cc690; --good-soft:#15382a; --bad:#f08a7e; --bad-soft:#41211d;
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.45;padding-inline:16px;padding-block:20px 48px}
+.wrap{max-width:640px;margin-inline:auto;display:flex;flex-direction:column;gap:20px}
+h1{font-family:var(--serif);font-size:1.6rem;line-height:1.15;margin:0;font-weight:700;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0;font-size:.92rem}
+h2{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0;font-weight:800}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.linkbtn{background:none;border:0;color:var(--accent);font-weight:600;padding:4px 2px;font-size:.88rem}
+
+.sets{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:6px}
+.set{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:7px 10px;display:flex;gap:8px;align-items:baseline;text-align:left;min-width:0}
+.set .n{font-weight:800;font-size:.86rem;font-variant-numeric:tabular-nums;flex:none}
+.set .t{font-size:.76rem;color:var(--muted);line-height:1.25;min-width:0;overflow-wrap:anywhere}
+.set[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.set[aria-pressed="true"] .t{color:inherit;opacity:.88}
+.setbox summary{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.setbox .sel{color:var(--muted);font-weight:600;font-size:.86rem;font-variant-numeric:tabular-nums;text-align:right;min-width:0;overflow-wrap:anywhere}
+.setbody{display:flex;flex-direction:column;gap:12px;padding-block:4px 14px}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(0,0,0,.08);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.dock-in{max-width:640px;margin-inline:auto;display:flex;flex-direction:column;gap:8px;align-items:center}
+.dock .bar{max-width:none}
+.dock .ib{width:46px;height:46px}
+.dock .ib.main{width:60px;height:60px}
+.dock .ib svg{width:20px;height:20px}
+.dock .ib.main svg{width:26px;height:26px}
+body.has-dock{padding-block-end:calc(150px + env(safe-area-inset-bottom,0px))}
+.count{color:var(--muted);font-size:.88rem;font-variant-numeric:tabular-nums}
+
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px}
+.tab{background:none;border:0;border-radius:9px;padding:10px 6px;font-weight:700;font-size:.92rem;color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--accent-soft);color:var(--accent)}
+
+.panel{display:flex;flex-direction:column;gap:16px}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 18px;min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+.gr{font-family:var(--serif);font-size:clamp(2rem,9vw,2.9rem);font-weight:700;line-height:1.15;overflow-wrap:anywhere}
+.ru{font-size:1.25rem;color:var(--accent);font-weight:600;min-height:1.7em;overflow-wrap:anywhere}
+.ru.hide{visibility:hidden}
+.meta{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{height:4px;background:var(--line);border-radius:2px;overflow:hidden;width:100%;max-width:320px}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+
+.ctrls{display:flex;justify-content:center;align-items:center;gap:12px}
+.ib{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center}
+.ib svg{width:22px;height:22px;fill:currentColor}
+.ib.main{width:68px;height:68px;background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.ib.main svg{width:28px;height:28px}
+.btn{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-weight:600}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+
+.opts{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:14px}
+.opt{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.opt label{font-size:.92rem}
+.opt output{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.88rem;min-width:3.2em;text-align:right}
+.opt input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--accent)}
+.chk{display:flex;gap:10px;align-items:center;font-size:.92rem}
+.chk input{width:20px;height:20px;accent-color:var(--accent);flex:none}
+
+.notice{background:var(--bad-soft);color:var(--bad);border-radius:10px;padding:10px 12px;font-size:.88rem}
+.voice{font-size:.82rem;color:var(--muted)}
+
+.card{cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;width:100%}
+.hint{font-size:.82rem;color:var(--muted)}
+[hidden]{display:none!important}
+.views{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px}
+.view{background:none;border:0;border-radius:9px;padding:11px 6px;font-weight:800;font-size:.98rem;color:var(--muted)}
+.view[aria-selected="true"]{background:var(--accent);color:var(--accent-fg)}
+.say{font-size:1.12rem;line-height:1.5;max-width:34ch;text-wrap:pretty}
+.key{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--accent);overflow-wrap:anywhere}
+.gr.gsm{font-size:clamp(1.35rem,6vw,1.9rem);line-height:1.3}
+.topics{display:grid;gap:6px}
+.topic{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 8px 8px 12px}
+.topic input{width:20px;height:20px;accent-color:var(--accent);margin:0}
+.topic label{display:flex;flex-direction:column;gap:1px;min-width:0;cursor:pointer}
+.topic .tt{font-weight:700}
+.topic .ts{font-size:.8rem;color:var(--muted);overflow-wrap:anywhere}
+.topic.now{border-color:var(--accent);background:var(--accent-soft)}
+.topic .ib{width:40px;height:40px}
+.topic .ib svg{width:18px;height:18px}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:16px}
+.sheet h3{margin:0 0 6px;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;width:100%}
+.tbl th{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:left;padding:4px 10px 4px 0;font-weight:800;white-space:nowrap}
+.tbl td{padding:6px 10px 6px 0;border-top:1px solid var(--line);font-family:var(--serif);font-size:.98rem;vertical-align:top}
+.tbl td.lab{font-family:var(--sans);font-size:.8rem;color:var(--muted);white-space:nowrap}
+.flabel{font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:800;min-height:1.2em}
+.forms{width:100%;max-width:360px;display:grid;grid-template-columns:auto 1fr;gap:3px 14px;text-align:left;margin-top:4px}
+.forms .l{color:var(--muted);font-size:.8rem;align-self:baseline;white-space:nowrap}
+.forms .f{font-family:var(--serif);font-size:1.05rem;overflow-wrap:anywhere;min-width:0}
+.forms .cur{color:var(--accent);font-weight:700}
+.forms .gh{grid-column:1/-1;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-top:10px}
+.forms .gh:first-child{margin-top:0}
+.optgrp{display:grid;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.optgrp h3{margin:0;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800}
+
+.answers{display:grid;gap:8px;width:100%}
+.ans{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-align:left;font-weight:600;overflow-wrap:anywhere}
+.ans.ok{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.ans.no{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.score{font-variant-numeric:tabular-nums;font-weight:700}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 16px}
+summary{cursor:pointer;padding:12px 0;font-weight:700;list-style-position:inside}
+.list{display:grid;grid-template-columns:1fr;gap:0;padding-bottom:8px}
+.li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--line);background:none;border-inline:0;border-bottom:0;width:100%;text-align:left;align-items:baseline}
+.li .g{font-family:var(--serif);font-weight:500;font-size:1.05rem;min-width:0;overflow-wrap:anywhere}
+.li .r{color:var(--muted);font-size:.88rem;text-align:right;min-width:0;overflow-wrap:anywhere}
+.li.on{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Ελληνικά λέξεις</h1>
+    <p class="sub">Слова и грамматика с озвучкой. Включи плеер и слушай, хоть в машине.</p>
+  </header>
+
+  <div class="views" role="tablist" aria-label="Раздел">
+    <button class="view" role="tab" id="v-words" data-view="words" aria-selected="true">Слова</button>
+    <button class="view" role="tab" id="v-gram" data-view="gram" aria-selected="false">Грамматика</button>
+  </div>
+
+  <details class="setbox" id="setbox">
+    <summary><span>Наборы</span><span class="sel" id="sel-sum"></span></summary>
+    <div class="setbody">
+      <div class="head">
+        <span class="count" id="count"></span>
+        <div class="row" style="gap:10px">
+          <button class="linkbtn" id="all" type="button">Все</button>
+          <button class="linkbtn" id="none" type="button">Сбросить</button>
+        </div>
+      </div>
+      <div class="sets" id="sets"></div>
+    </div>
+  </details>
+
+  <div class="tabs" role="tablist" aria-label="Режим">
+    <button class="tab" role="tab" id="t-dict" data-mode="dict" aria-selected="true">Диктовка</button>
+    <button class="tab" role="tab" id="t-cards" data-mode="cards" aria-selected="false">Карточки</button>
+    <button class="tab" role="tab" id="t-quiz" data-mode="quiz" aria-selected="false">Тест</button>
+  </div>
+
+  <div class="notice" id="novoice" hidden></div>
+
+  <!-- ДИКТОВКА -->
+  <section class="panel" id="p-dict" role="tabpanel" aria-labelledby="t-dict">
+    <div class="stage" aria-live="polite">
+      <div class="flabel" id="d-lab"></div>
+      <div class="gr" id="d-gr" lang="el"></div>
+      <div class="ru" id="d-ru"></div>
+      <div class="forms" id="d-forms" lang="el" hidden></div>
+    </div>
+    <div class="opts">
+      <div class="opt"><label for="o-gap">Пауза между словом, переводом и следующим</label><output id="o-gap-v"></output>
+        <input id="o-gap" type="range" min="0.5" max="5" step="0.5"></div>
+      <div class="opt"><label for="o-rate">Скорость речи</label><output id="o-rate-v"></output>
+        <input id="o-rate" type="range" min="0.5" max="1.1" step="0.05"></div>
+      <label class="chk"><input id="o-ru" type="checkbox"> Озвучивать перевод по-русски</label>
+      <label class="chk"><input id="o-show" type="checkbox"> Показывать перевод сразу</label>
+      <label class="chk"><input id="o-shuf" type="checkbox"> Перемешать порядок</label>
+      <div class="optgrp">
+        <h3>Грамматика в диктовке</h3>
+        <label class="chk"><input id="g-case" type="checkbox"> Падежи существительных и род прилагательных</label>
+        <label class="chk"><input id="g-pres" type="checkbox"> Настоящее время глаголов</label>
+        <label class="chk"><input id="g-past" type="checkbox"> Прошедшее время глаголов</label>
+        <label class="chk"><input id="g-fut" type="checkbox"> Будущее время глаголов</label>
+        <label class="chk"><input id="g-only" type="checkbox"> Только слова, у которых есть эти формы</label>
+        <div class="hint" id="g-count"></div>
+      </div>
+      <div class="voice" id="voice"></div>
+    </div>
+  </section>
+
+  <!-- КАРТОЧКИ -->
+  <section class="panel" id="p-cards" role="tabpanel" aria-labelledby="t-cards" hidden>
+    <button class="stage card" id="c-card" type="button" aria-label="Перевернуть карточку">
+      <div class="meta" id="c-meta"></div>
+      <div class="gr" id="c-gr" lang="el"></div>
+      <div class="ru hide" id="c-ru"></div>
+      <div class="forms" id="c-forms" lang="el" hidden></div>
+      <div class="hint" id="c-hint">Нажми на карточку, чтобы увидеть перевод</div>
+    </button>
+    <div class="ctrls">
+      <button class="ib" id="c-prev" type="button" aria-label="Предыдущая"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9.5 12z"/></svg></button>
+      <button class="ib main" id="c-say" type="button" aria-label="Произнести"><svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 4V6L7 10zM15.5 8.5a5 5 0 0 1 0 7l-1.4-1.4a3 3 0 0 0 0-4.2zM18.4 5.6a9 9 0 0 1 0 12.8L17 17a7 7 0 0 0 0-10z"/></svg></button>
+      <button class="ib" id="c-next" type="button" aria-label="Следующая"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l10.5-7z"/></svg></button>
+    </div>
+    <label class="chk" style="justify-content:center"><input id="c-shuf" type="checkbox"> Перемешать</label>
+  </section>
+
+  <!-- ТЕСТ -->
+  <section class="panel" id="p-quiz" role="tabpanel" aria-labelledby="t-quiz" hidden>
+    <div class="stage" style="align-items:stretch;text-align:left">
+      <div class="row" style="justify-content:space-between">
+        <span class="meta">Выбери перевод</span>
+        <span class="score" id="q-score">0 / 0</span>
+      </div>
+      <div class="row" style="justify-content:center;gap:12px">
+        <div class="gr" id="q-gr" lang="el"></div>
+        <button class="ib" id="q-say" type="button" aria-label="Произнести" style="width:44px;height:44px"><svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 4V6L7 10zM15.5 8.5a5 5 0 0 1 0 7l-1.4-1.4a3 3 0 0 0 0-4.2zM18.4 5.6a9 9 0 0 1 0 12.8L17 17a7 7 0 0 0 0-10z"/></svg></button>
+      </div>
+      <div class="answers" id="q-ans"></div>
+    </div>
+    <div class="row" style="justify-content:center">
+      <button class="btn pri" id="q-next" type="button" hidden>Дальше</button>
+      <button class="btn" id="q-reset" type="button">Начать заново</button>
+    </div>
+    <label class="chk" style="justify-content:center"><input id="q-auto" type="checkbox"> Озвучивать слово в вопросе</label>
+  </section>
+
+  <!-- ГРАММАТИКА -->
+  <section class="panel" id="p-gram" hidden>
+    <div class="stage" aria-live="polite">
+      <div class="flabel" id="g-lab"></div>
+      <div id="g-main"></div>
+      <div class="ru" id="g-tr"></div>
+    </div>
+    <div class="head">
+      <h2>Темы</h2>
+      <div class="row" style="gap:10px">
+        <button class="linkbtn" id="gt-all" type="button">Все</button>
+        <button class="linkbtn" id="gt-none" type="button">Сбросить</button>
+      </div>
+    </div>
+    <div class="topics" id="topics"></div>
+    <div class="opts">
+      <div class="opt"><label for="o-ggap">Пауза после фразы</label><output id="o-ggap-v"></output>
+        <input id="o-ggap" type="range" min="0.5" max="4" step="0.5"></div>
+      <div class="opt"><label for="o-rate2">Скорость греческой речи</label><output id="o-rate2-v"></output>
+        <input id="o-rate2" type="range" min="0.5" max="1.1" step="0.05"></div>
+      <label class="chk"><input id="o-gtr" type="checkbox"> Озвучивать перевод примеров</label>
+      <label class="chk"><input id="o-grep" type="checkbox"> Повторять греческие примеры дважды</label>
+      <label class="chk"><input id="o-gloop" type="checkbox"> По кругу</label>
+    </div>
+    <div class="sheet" id="sheet"></div>
+  </section>
+
+  <details id="listbox">
+    <summary>Список слов (нажми на слово, чтобы услышать)</summary>
+    <div class="list" id="list"></div>
+  </details>
+</div>
+
+<div class="dock" id="dock">
+  <div class="dock-in">
+    <div class="meta" id="d-meta"></div>
+    <div class="bar"><i id="d-bar"></i></div>
+    <div class="ctrls">
+      <button class="ib" id="d-prev" type="button" aria-label="Предыдущее слово"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9.5 12z"/></svg></button>
+      <button class="ib main" id="d-play" type="button" aria-label="Начать диктовку"></button>
+      <button class="ib" id="d-next" type="button" aria-label="Следующее слово"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l10.5-7z"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var SETS=[
+  {id:"1.1",t:"семья, глаголы",w:"η οικογένεια|семья\nο πατέρας|отец\nη μητέρα|мать\nο γιος|сын\nη κόρη|дочь\nο αδελφός|брат\nη αδελφή|сестра\nο παππούς|дедушка\nη γιαγιά|бабушка\nτο παιδί|ребёнок\nείμαι|быть\nέχω|иметь\nκάνω|делать\nμπορώ|мочь\nθέλω|хотеть\nλέω|говорить\nβλέπω|видеть\nακούω|слышать\nξέρω|знать\nμαθαίνω|учить\nκαταλαβαίνω|понимать\nγράφω|писать\nδιαβάζω|читать\nτρώω|есть\nπίνω|пить\nμαζί|вместе\nπάντα|всегда\nσυχνά|часто\nσπάνια|редко\nεδώ|здесь\nακριβώς|точно\nκαλός|хороший\nκακός|плохой"},
+  {id:"1.2",t:"дом, еда, природа",w:"το σπίτι|дом\nη γάτα|кошка\nο σκύλος|собака\nτο νερό|вода\nτο γάλα|молоко\nτο φως|свет\nο ήλιος|солнце\nτο δέντρο|дерево\nη μπάλα|мяч\nτα μαλλιά|волосы\nτο χέρι|рука\nτο πόδι|нога\nτο βουνό|гора\nη θάλασσα|море\nτο βιβλίο|книга\nτο μπάνιο|ванна\nη μύτη|нос\nτο φρούτο|фрукт\nτο ψωμί|хлеб\nτο μέλι|мёд\nτο κρεβάτι|кровать\nη βάρκα|лодка\nη αγάπη|любовь\nο φίλος|друг\nη καρδιά|сердце\nτο γλυκό|сладкое\nη σοκολάτα|шоколад\nτο πάρκο|парк\nτο σχολείο|школа\nτο μπαλκόνι|балкон"},
+  {id:"1.3",t:"прилагательные, глаголы",w:"η αυλή|двор\nο αέρας|воздух\nτο ψάρι|рыба\nο κήπος|сад\nτο παγωτό|мороженое\nτο γέλιο|смех\nτο κλειδί|ключ\nτο μήλο|яблоко\nτο σπίτι|дом\nτο ζάρι|кубик\nτο μάτι|глаз\nη κάρτα|карта\nη φίλη|подруга\nαγαπώ|любить\nπαίζω|играть\nαγαπητός|любимый\nδυνατός|сильный\nφιλικός|дружелюбный\nέξυπνος|умный\nμεγάλος|большой\nμικρός|маленький\nψηλός|высокий\nκοντός|низкий\nχοντρός|полный\nκάνω|делать\nδουλεύω|работать\nγράφω|писать\nδιαβάζω|читать\nτρώω|есть\nπίνω|пить\nαρχίζω|начинать\nτελειώνω|заканчивать\nανοίγω|открывать\nκλείνω|закрывать\nγελώ|смеяться"},
+  {id:"1.4",t:"быт, время, тело",w:"το φαγητό|еда\nη κουζίνα|кухня\nο δρόμος|дорога\nτο παράθυρο|окно\nη καρέκλα|стул\nτο τραπέζι|стол\nη πόρτα|дверь\nτο χαμόγελο|улыбка\nη μουσική|музыка\nτο όνομα|имя\nτα ρούχα|одежда\nη πόλη|город\nτο αυτοκίνητο|автомобиль\nη βιβλιοθήκη|библиотека\nη φωτογραφία|фотография\nο υπολογιστής|компьютер\nτο τηλέφωνο|телефон\nο καφές|кофе\nη νύχτα|ночь\nη ημέρα|день\nο χειμώνας|зима\nτο καλοκαίρι|лето\nη άνοιξη|весна\nτο φθινόπωρο|осень\nη εβδομάδα|неделя\nο μήνας|месяц\nο χρόνος|год\nτο λεπτό|минута\nη ώρα|час\nτο κεφάλι|голова\nη πλάτη|спина\nο καρπός|запястье\nτο δάχτυλο|палец\nτο μάγουλο|щека\nτο δόντι|зуб"},
+  {id:"2.1",t:"эмоции, погода, посуда",w:"η γλώσσα|язык\nτο φρύδι|бровь\nτα χείλη|губы\nτο στήθος|грудь\nη πλάτη|спина\nη καρδιά|сердце\nτο μυαλό|мозг\nτο νερό|вода\nη φωτιά|огонь\nη γη|земля\nο ουρανός|небо\nτα αστέρια|звёзды\nτο σύννεφο|облако\nη βροχή|дождь\nτο χιόνι|снег\nη θερμοκρασία|температура\nο φίλος|друг\nο εχθρός|враг\nη χαρά|радость\nη λύπη|грусть\nο φόβος|страх\nη αγάπη|любовь\nη ελπίδα|надежда\nη διασκέδαση|развлечение\nτα χρήματα|деньги\nτο δώρο|подарок\nτο μάθημα|урок\nη γιορτή|праздник\nτο παιχνίδι|игра\nη ομπρέλα|зонт\nτα παπούτσια|обувь\nτο κουτάλι|ложка\nτο πιρούνι|вилка\nτο μαχαίρι|нож\nτο ποτήρι|стакан"},
+  {id:"2.2",t:"движение, качества",w:"πηγαίνω|идти\nέρχομαι|приходить\nφεύγω|уходить\nτρέχω|бежать\nπετάω|летать\nκολυμπάω|плавать\nπερπατάω|ходить пешком\nχορεύω|танцевать\nγυρίζω|поворачиваться, возвращаться\nκατεβαίνω|спускаться\nανεβαίνω|подниматься\nπηδώ|прыгать\nπερνάω|проходить, пересекать\nστέκομαι|стоять\nκρύος|холодный\nζεστός|тёплый\nαργός|медленный\nγρήγορος|быстрый\nβαθύς|глубокий\nρηχός|мелкий\nλαμπερός|сияющий\nσκοτεινός|тёмный\nλευκός|белый\nμαύρος|чёрный\nπλούσιος|богатый\nφτωχός|бедный\nβαρύς|тяжёлый\nελαφρύς|лёгкий\nμεγάλος|большой\nμικρός|маленький\nπολύχρωμος|разноцветный\nμονόχρωμος|одноцветный\nεπιστρέφω|возвращаться"},
+  {id:"2.3",t:"еда, цвета, природа",w:"το λεμόνι|лимон\nτο πορτοκάλι|апельсин\nτο αυγό|яйцо\nη σαλάτα|салат\nη σούπα|суп\nτο κρέας|мясо\nτο ψάρι|рыба\nη ζάχαρη|сахар\nτο αλάτι|соль\nτο πιπέρι|перец\nτο λάδι|масло (растительное)\nτο βούτυρο|масло (сливочное)\nκόκκινο|красный\nμπλε|синий\nκίτρινο|жёлтый\nμαύρο|чёрный\nλευκό|белый\nγκρι|серый\nκαφέ|коричневый\nροζ|розовый\nπράσινο|зелёный\nτο δάσος|лес\nτο βουνό|гора\nτο ποτάμι|река\nη λίμνη|озеро\nη θάλασσα|море\nο ωκεανός|океан\nτο σύννεφο|облако\nο αέρας|воздух\nτο ζώο|животное\nτο φυτό|растение\nο άνθρωπος|человек\nτο βιβλίο|книга\nτο χαρτί|бумага\nτο μολύβι|карандаш\nτο στυλό|ручка"},
+  {id:"2.4",t:"овощи, фрукты, тело",w:"το λουλούδι|цветок\nτο χρώμα|цвет\nη Γη|земля\nο μήνας|месяц\nτο χαλί|ковёр\nο καθρέφτης|зеркало\nη οροφή|потолок\nτο πάτωμα|пол\nτο ποτήρι|стакан\nτο πιάτο|тарелка\nτο μαχαίρι|нож\nτο πιρούνι|вилка\nτο κουτάλι|ложка\nτο παιχνίδι|игрушка\nτο κρεμμύδι|лук\nτο σκόρδο|чеснок\nη ντομάτα|помидор\nτο αγγούρι|огурец\nη πατάτα|картофель\nτο κεράσι|черешня\nη φράουλα|клубника\nτο σταφύλι|виноград\nτο καρπούζι|арбуз\nτο πεπόνι|дыня\nτο δάχτυλο|палец\nτο χέρι|рука\nτο πόδι|нога\nτο αυτί|ухо\nτο μάτι|глаз\nτο στόμα|рот\nτο δόντι|зуб\nη μύτη|нос"},
+  {id:"3.1",t:"здоровье, дом, школа",w:"τα μαλλιά|волосы\nο πόνος|боль\nτο αίμα|кровь\nη καρδιά|сердце\nο πνεύμονας|лёгкое\nτο στομάχι|желудок\nτο ήπαρ|печень\nτο νεφρό|почка\nη φωνή|голос\nο λαιμός|горло\nη πλάτη|спина\nτο κεφάλι|голова\nη ανάσα|дыхание\nη ζωή|жизнь\nη υγεία|здоровье\nάρρωστος|больной\nο γιατρός|врач\nτο νοσοκομείο|больница\nτο φάρμακο|лекарство\nτο σπίτι|дом\nτο δωμάτιο|комната\nη καρέκλα|стул\nτο τραπέζι|стол\nη κουζίνα|кухня\nτο μπάνιο|ванная комната\nτο κρεβάτι|кровать\nτο παράθυρο|окно\nη πόρτα|дверь\nτο γραφείο|письменный стол\nτο σχολείο|школа\nο δάσκαλος|учитель\nο μαθητής|ученик"},
+  {id:"3.2",t:"числа",w:"ένα|один\nδύο|два\nτρία|три\nτέσσερα|четыре\nπέντε|пять\nέξι|шесть\nεπτά|семь\nοκτώ|восемь\nεννέα|девять\nδέκα|десять\nέντεκα|одиннадцать\nδώδεκα|двенадцать\nδεκατρία|тринадцать\nδεκατέσσερα|четырнадцать\nδεκαπέντε|пятнадцать\nδεκαέξι|шестнадцать\nδεκαεπτά|семнадцать\nδεκαοκτώ|восемнадцать\nδεκαεννέα|девятнадцать\nείκοσι|двадцать\nτριάντα|тридцать\nσαράντα|сорок\nπενήντα|пятьдесят\nεξήντα|шестьдесят\nεβδομήντα|семьдесят\nογδόντα|восемьдесят\nενενήντα|девяносто\nεκατό|сто\nδιακόσια|двести\nτριακόσια|триста\nτετρακόσια|четыреста\nπεντακόσια|пятьсот\nεξακόσια|шестьсот\nεφτακόσια|семьсот\nοκτακόσια|восемьсот\nεννιακόσια|девятьсот"},
+  {id:"3.3",t:"дом и сад",w:"το χωριό|деревня\nτα σπίρτα|спички\nο φούρνος|печь\nτο ψυγείο|холодильник\nτο πλυντήριο|стиральная машина\nτο ραδιόφωνο|радио\nη τηλεόραση|телевизор\nτο ποδήλατο|велосипед\nο διακόπτης|выключатель\nο καναπές|диван\nτο ράφι|полка\nο κήπος|сад\nτο μπάνιο|ванная\nτο σαπούνι|мыло\nη οδοντόβουρτσα|зубная щётка\nη οδοντόκρεμα|зубная паста\nο νιπτήρας|раковина\nη σκούπα|метла\nη σακούλα|мешок\nτα σκουπίδια|мусор\nο κάδος|мусорное ведро\nτο λάστιχο|шланг\nη γλάστρα|цветочный горшок\nο σπόρος|семя\nτο χορτάρι|трава\nτα κλαδιά|ветки\nο φράχτης|забор"},
+  {id:"3.4",t:"кухня, домашние дела",w:"το καλαθάκι|корзина\nτο μαχαίρι κουζίνας|кухонный нож\nη κατσαρόλα|кастрюля\nτο τηγάνι|сковорода\nη καφετιέρα|кофеварка\nη λάμπα|лампочка\nη κουρτίνα|занавеска\nη κορνίζα|рама для фотографий\nη βιβλιοθήκη|книжный шкаф\nο απορροφητήρας|вытяжка\nη βρύση|кран\nη ηλεκτρική κουζίνα|плита\nμαγειρεύω|готовить\nπλένω|мыть\nσκουπίζω|подметать\nκαθαρίζω|чистить\nφτιάχνω|чинить\nποτίζω|поливать\nσκάβω|копать\nφυτεύω|сажать\nψήνω|печь, жарить\nβάζω|класть\nβγάζω|вынимать"},
+  {id:"4.1",t:"действия, качества",w:"μαζεύω|собирать (урожай)\nκλείνω|закрывать\nανοίγω|открывать\nαποθηκεύω|хранить\nκαθαρός|чистый\nβρώμικος|грязный\nμαλακός|мягкий\nσκληρός|твердый\nφρέσκος|свежий\nψηλός|высокий\nκοντός|низкий\nκαινούργιος|новый\nζεστός|теплый\nκρύος|холодный\nάνετος|удобный\nασφαλής|безопасный\nανοιχτός|открытый\nκλειστός|закрытый\nχαρούμενος|радостный\nήσυχος|тихий"},
+  {id:"4.2",t:"двор, дом, животные",w:"η αυλή|двор\nτο γκαζόν|газон\nτο χαλίκι|гравий\nη κούνια|качели\nτο πατάκι|коврик\nη σκιά|тень\nτο παράθυρο|окно\nη κουρτίνα|занавеска\nτο κάδρο|картина, рамка\nτο κερί|свеча\nτο τραπεζομάντηλο|скатерть\nτο βάζο|ваза\nτο σεντόνι|простыня\nη κουβέρτα|одеяло\nο γάιδαρος|осёл\nη αγελάδα|корова\nτο πρόβατο|овца\nτο κουνέλι|кролик\nη αλεπού|лиса\nο λύκος|волк\nτο ελάφι|олень\nο σκύλος|собака\nη γάτα|кошка\nη κότα|курица\nτο άλογο|лошадь\nο λαγός|заяц\nη αρκούδα|медведь\nο σκίουρος|белка\nτο φίδι|змея"},
+  {id:"4.3",t:"продукты",w:"το τυρί|сыр\nτο ελαιόλαδο|оливковое масло\nτα ζυμαρικά|макароны\nτο ρύζι|рис\nτο αλεύρι|мука\nτο βούτυρο|масло (сливочное)\nτο κρέας|мясо\nτο ψάρι|рыба\nτο γιαούρτι|йогурт\nη σοκολάτα|шоколад\nτα αμύγδαλα|миндаль\nτα φιστίκια|фисташки\nοι σταφίδες|изюм\nο καφές|кофе\nη ζάχαρη|сахар\nτο αλάτι|соль\nτο πιπέρι|перец\nτα μπαχαρικά|специи\nτο λουκάνικο|колбаса\nτο σαλάμι|салями\nη σαλάτα|салат\nτο καρπούζι|арбуз\nτο πεπόνι|дыня\nτο μήλο|яблоко\nτο πορτοκάλι|апельсин\nο ανανάς|ананас\nτο σταφύλι|виноград\nτο βερίκοκο|абрикос\nτο κολοκυθάκι|кабачок\nη μελιτζάνα|баклажан\nτο μπρόκολο|брокколи\nτο κουνουπίδι|цветная капуста\nη πιπεριά|перец (овощ)\nτο καρότο|морковь"},
+  {id:"4.4",t:"овощи, вещи, канцелярия",w:"η πατάτα|картофель\nτο κρεμμύδι|лук\nτο σκόρδο|чеснок\nτο μαρούλι|салат-латук\nτο σπανάκι|шпинат\nη ντομάτα|помидор\nτα φασόλια|фасоль\nοι φακές|чечевица\nτα ρεβύθια|нут\nτο σουσάμι|кунжут\nτο μέλι|мед\nη μαρμελάδα|варенье\nτο βούτυρο καρύδας|кокосовое масло\nτο ξίδι|уксус\nο σολομός|лосось\nο τόνος|тунец\nτο λουκάνικο|колбаса\nτα ρούχα|одежда\nτα παπούτσια|обувь\nη τσάντα|сумка\nτο ρολόι|часы\nτα κοσμήματα|украшения\nτα καλλυντικά|косметика\nτο παιχνίδι|игрушка\nτα ηλεκτρονικά|электроника\nτο βιβλίο|книга\nο δίσκος|диск (музыкальный или компьютерный)\nη εφημερίδα|газета\nτο περιοδικό|журнал\nτο στυλό|ручка\nτο μολύβι|карандаш\nτο χαρτί|бумага\nτο τετράδιο|тетрадь\nτο σαπούνι|мыло\nτο σαμπουάν|шампунь\nη οδοντόκρεμα|зубная паста\nοι χαρτοπετσέτες|бумажные салфетки"},
+  {id:"5.1",t:"магазины, быт",w:"η οδοντόβουρτσα|зубная щетка\nτο αφρόλουτρο|гель для душа\nτο απορρυπαντικό|моющее средство\nτο σεντόνι|простыня\nτο μαξιλάρι|подушка\nτο σούπερ μάρκετ|супермаркет\nτο φαρμακείο|аптека\nτο κρεοπωλείο|мясная лавка\nτο ιχθυοπωλείο (η ψαραγορά)|рыбная лавка\nτο περίπτερο|киоск\nτο βιβλιοπωλείο|книжный магазин\nτο ανθοπωλείο|цветочный магазин\nτο κατάστημα ρούχων|магазин одежды\nτο παιχνιδάδικο|магазин игрушек\nτο ζαχαροπλαστείο|кондитерская\nη ταβέρνα|таверна\nη καφετέρια|кафе\nτο εστιατόριο|ресторан\nτο μανάβικο|овощной магазин\nτο μενού|меню\nη παραγγελία|заказ\nο σερβιτόρος|официант\nτο πιάτο|тарелка\nτο ποτήρι|стакан\nτο κρασί|вино\nη μπύρα|пиво\nη σκόνη πλυντηρίου|стиральный порошок\nτο μαλακτικό|кондиционер\nη πετσέτα|полотенце\nη κουβέρτα|одеяло\nο φούρνος|пекарня\nτο γαλακτοπωλείο|молочный магазин"},
+  {id:"5.2",t:"ресторан, покупки",w:"ο χυμός|сок\nτο επιδόρπιο|десерт\nτο κυρίως πιάτο|основное блюдо\nτο ποτό|напиток\nο λογαριασμός|счет\nη απόδειξη|чек\nη κουζίνα|кухня (в ресторане)\nτο μεσημεριανό|обед\nτο βραδινό|ужин\nτο πρωινό|завтрак\nτο ορεκτικό|закуска\nτο αλάτι και το πιπέρι|соль и перец\nο σερβιτόρος|официант (мужчина)\nη σερβιτόρα|официантка\nο πελάτης|клиент\nτο λευκό κρασί|белое вино\nτο κόκκινο κρασί|красное вино\nτο ροζέ κρασί|розовое вино\nτο σπιτικό κρασί|домашнее вино\nτο ψάρι της ημέρας|рыба дня\nαγοράζω|покупать\nπουλάω|продавать\nπαραγγέλνω|заказывать\nπληρώνω|платить\nμαγειρεύω|готовить\nτρώω|есть (принимать пищу)\nπίνω|пить\nσερβίρω|подавать (на стол)\nδιαλέγω|выбирать\nφέρνω|приносить\nπροσφέρω|предлагать\nσυσκευάζω|упаковывать\nανοίγω|открывать (например, упаковку или магазин)\nκλείνω|закрывать (магазин, дверь)\nμπαίνω|входить (в магазин, ресторан)"},
+  {id:"5.21",t:"вопросительные слова",w:"ποιος|кто\nτι|что\nπού|где\nπότε|когда\nγιατί|почему\nπώς|как\nπόσο|сколько\nποιο|какой\nποια|какая\nποιους|каких\nποιανού|чей"},
+  {id:"5.3",t:"еда, жильё",w:"βγαίνω|выходить\nδοκιμάζω|пробовать (еду)\nφτιάχνω|готовить, создавать (еду, блюдо)\nκαθαρίζω|чистить, очищать (овощи, фрукты)\nζυγίζω|взвешивать\nφρέσκος|свежий\nνόστιμος|вкусный\nφθηνός/φτηνός|дешевый\nακριβός|дорогой\nγρήγορος|быстрый (например, сервис)\nποιοτικός|качественный\nχορταστικός|сытный\nζεστός|теплый (о еде)\nκρύος|холодный (о напитке или еде)\nοργανικός|органический (например, продукты)\nεξοχικός|загородный\nφωτεινός|светлый\nη άνεση|удобство\nισόγειο|первый (цокольный) этаж\nάνετος|удобный\nτο υπνοδωμάτιο|спальня\nμπροστά|впереди, перед\nτο υπόγειο|подвал\nο χώρος|пространство, место\nη αποθήκη|кладовая, склад\nατομικός|индивидуальный\nη θέρμανση|отопление\nτο πετρέλαιο|дизельное топливо\nη θέση|место, позиция\nτο έτος|год\nη θέα|вид (на что-либо)\nεπικοινωνώ|связываться, общаться\nμεσιτικός|посреднический (в недвижимости)"},
+  {id:"5.4",t:"погода, природа",w:"ο καιρός|погода\nη αστραπή|молния\nη βροντή|гром\nτο χαλάζι|град\nο παγετός|мороз, иней\nτα σύννεφα|облака\nη λάσπη|грязь\nτο κύμα|волна\nτι καιρό κάνει σήμερα;|какая сегодня погода?\nη θερμοκρασία|температура\nτο θερμόμετρο|термометр\nτο ψύχος|холод\nη ζέστη|жара\nη υγρασία|влажность\nη θέρμανση|отопление\nο αέρας|воздух\nη πεδιάδα|равнина\nο λόφος|холм\nτο ποτάμι|река\nη λίμνη|озеро\nο καταρράκτης|водопад\nτο βουνό|гора\nτο δάσος|лес\nη ακτή|берег\nη παραλία|пляж\nη άμμος|песок\nτο χωριό|деревня\nτο νησί|остров\nη πηγή|источник\nτο φύλλο|лист\nτο λουλούδι|цветок\nτο δέντρο|дерево\nη στάθμευση|парковка, стоянка"},
+  {id:"6.1",t:"растения, разное",w:"το κλαδί|ветка\nτο χορτάρι|трава\nτο αμπέλι|виноградник\nη ελιά|оливковое дерево\nο καρπός|плод\nτο πεύκο|сосна\nη πορτοκαλιά|апельсиновое дерево\nη μηλιά|яблоня\nτο πουλί|птица\nη πεταλούδα|бабочка\nη μέλισσα|пчела\nτο φίδι|змея\nτο ψάρι|рыба\nδικός|свой\nο τοίχος|стена\nχθες|вчера\nξεκινώ|начинать\nμαθαίνω|учить\nο χορός|танец\nτίποτα|ничего\nτο κυλικείο|буфет\nφέτος|в этом году\nόμως|однако\nη προσοχή|внимание\nήσυχος|тихий\nτο έργο|спектакль\nόταν|когда\nτο διάλειμμα|перерыв\nτρώω|есть\nκερδίζω|выигрывать\nτο κουτί|коробка\nοι νερομπογιές|акварельные краски\nοι πληροφορίες|информация\nαστείος|смешной\nη φασαρία|шум\nπρέπει|нужно\nο διαγωνισμός|конкурс"},
+  {id:"6.1.1",t:"предлоги, место",w:"δίπλα σε|рядом с\nαπέναντι από|напротив\nανάμεσα σε|между\nκοντά σε|недалеко от\nμακριά από|далеко от\nπάνω σε|на (поверхности)\nκάτω από|под\nμέσα σε|внутри\nέξω από|снаружи\nμπροστά από|перед\nπίσω από|за\nγύρω από|вокруг\nπρος|в направлении\nκατά μήκος|вдоль\nπέρα από|за пределами\nδίχως|без\nαντί για|вместо\nεδώ|здесь\nεκεί|там\nπαραπέρα|подальше\nκάπου|где-то\nπουθενά|нигде\nπαντού|везде\nπάνω|наверху\nκάτω|внизу\nαριστερά|слева\nδεξιά|справа\nμπροστά|впереди\nπίσω|сзади\nγύρω|вокруг"},
+  {id:"6.2",t:"дни, время суток",w:"η δευτέρα|понедельник\nη τρίτη|вторник\nη τετάρτη|среда\nη πέμπτη|четверг\nη παρασκευή|пятница\nτο σάββατο|суббота\nη κυριακή|воскресенье\nη ημέρα|день\nτο πρωί|утро\nτο μεσημέρι|полдень\nτο απόγευμα|послеобеденное время\nτο βράδυ|вечер\nη νύχτα|ночь\nη εβδομάδα|неделя\nο μήνας|месяц\nτο έτος|год\nο χρόνος|время\nτο σαββατοκύριακο|выходные (Суббота и Воскресенье)\nη διάρκεια|продолжительность\nχθες|вчера\nσήμερα|сегодня\nαύριο|завтра\nμεθαύριο|послезавтра\nτο πρωινό|завтрак\nτο μεσημεριανό|обед\nτο βραδινό|ужин\nη αρχή|начало\nτο τέλος|конец\nη εποχή|сезон (время года)\nη άνοιξη|весна\nτο καλοκαίρι|лето\nτο φθινόπωρο|осень\nο χειμώνας|зима\nη σχέση|отношение, связь\nχαμηλός|низкий\nίδια|одинаковая, та же\nδοκιμάζω|пробовать\nσκοπεύω|намереваться, планировать\nξανά|снова, заново\nη ακτή|берег, побережье\nαναφέρονται|упоминаться, ссылаться\nη συζήτηση|обсуждение, беседа\nως|как, в качестве\nποιοτικός|качественный"},
+  {id:"6.2.1",t:"прошлое, время",w:"χθες|вчера\nπροχθές|позавчера\nπαλιά|раньше, давно\nκάποτε|когда-то\nπαλαιότερα|в старые времена\nπριν|до, раньше\nήδη|уже\nτότε|тогда\nτην προηγούμενη εβδομάδα|на прошлой неделе\nτην προηγούμενη Δευτέρα|в прошлый понедельник\nτον προηγούμενο μήνα|в прошлом месяце\nτον περασμένο χρόνο|в прошлом году\nπέρσι|в прошлом году\nπρόπερσι|два года назад\nπριν από λίγο|недавно\nπριν από μία ώρα|час назад\nπριν από δύο ημέρες|два дня назад\nπριν από μία εβδομάδα|неделю назад\nπριν από έναν μήνα|месяц назад\nπριν από έναν χρόνο|год назад\nπριν από χρόνια|много лет назад\nτο πρωί|утром\nτο μεσημέρι|в полдень\nτο απόγευμα|днём, после обеда\nτο βράδυ|вечером\nτη νύχτα|ночью\nόταν|когда\nενώ|пока, в то время как\nκαθώς|когда, по мере того как\nαφού|после того как\nμόλις|как только"},
+  {id:"6.3",t:"места, профессии",w:"το σπίτι|дом\nτο διαμέρισμα|квартира\nτο σχολείο|школа\nτο νοσοκομείο|больница\nη εκκλησία|церковь\nτο δημαρχείο|мэрия\nτο αστυνομικό τμήμα|полицейский участок\nο σταθμός|станция\nτο κατάστημα|магазин\nτο θέατρο|театр\nτο μουσείο|музей\nτο ξενοδοχείο|отель\nη καφετέρια|кафе\nτο εστιατόριο|ресторан\nη βιβλιοθήκη|библиотека\nτο σινεμά|кинотеатр\nτο αεροδρόμιο|аэропорт\nτο λιμάνι|порт\nτο γραφείο|офис\nτα χρήματα|деньги\nο/η γιατρός|врач\nο δάσκαλος, η δασκάλα|учитель/Учительница\nο/η αστυνομικός|полицейский\nο πυροσβέστης, η πυροσβέστρια|пожарный\nο/η δικηγόρος|адвокат\nο/η μηχανικός|инженер\nο/η αρχιτέκτονας|архитектор\nο καθηγητής, η καθηγήτρια|преподаватель\nο/η φαρμακοποιός|фармацевт\nο/η οδηγός|водитель\nο/η σεφ|шеф-повар\nη νοσηλεύτρια, ο νοσηλευτής|медсестра / Медбрат\nο/η ηλεκτρολόγος|электрик\nο κομμωτής, η κομμώτρια|парикмахер\nο/η ταμίας|кассир\nο/η υπάλληλος|служащий\nο αγρότης, η αγρότισσα|фермер\nο μάγειρας, η μαγείρισσα|повар"},
+  {id:"6.4",t:"город, анкета",w:"η πλατεία|площадь\nο δρόμος|улица\nη λεωφόρος|проспект\nτο μονοπάτι|тропа\nη γέφυρα|мост\nτο χωράφι|поле\nη περιοχή|район\nο σταθμός λεωφορείων|автобусная станция\nη αγορά|рынок\nη κεντρική πλατεία|центральная площадь\nη εξοχή|пригород, сельская местность\nο σταθμός μετρό|станция метро\nο κυκλικός κόμβος|круговая развязка\nτο πάρκο|парк\nη παραλία|пляж\nβρίσκομαι|находиться\nπηγαίνω|идти, направляться\nκατοικώ|проживать\nστέκομαι|стоять, располагаться\nπερπατάω|ходить, гулять\nγυρίζω|возвращаться, вращаться\nανεβαίνω|подниматься\nΥπάρχει|существует или имеется\nΥπάρχει ένα σπίτι στην πλατεία|На площади есть дом\nΥπάρχουν καταστήματα στην περιοχή|В этом районе есть магазины\nζητάω|просить\nτα στοιχεία|данные\nη ηλικία|возраст\nτο επάγγελμα|профессия\nμερικός|некоторый\nτο έγγραφο|документ\nη ταυτότητα|удостоверение личности\nαπαντάω|отвечать\nη ερώτηση|вопрос\nκατεβαίνω|спускаться"},
+  {id:"7.1",t:"путешествие",w:"το ταξίδι|путешествие\nτο εισιτήριο|билет\nτο διαβατήριο|паспорт\nη αποσκευή|багаж\nη βαλίτσα|чемодан\nτο ξενοδοχείο|отель\nο χάρτης|карта\nτο αεροδρόμιο|аэропорт\nο ταξιδιωτικός οδηγός|путеводитель\nη διαμονή|проживание\nη κράτηση|бронирование\nη εκδρομή|экскурсия\nοι διακοπές|отпуск\nη κατασκήνωση|кемпинг\nη σκηνή|палатка\nτο σακίδιο|рюкзак\nτο αντηλιακό|солнцезащитный крем\nο οδηγός|водитель\nτο αυτοκίνητο|автомобиль\nτο τρένο|поезд\nτο πλοίο|корабль\nτο λεωφορείο|автобус\nτο ποδήλατο|велосипед\nτο αεροπλάνο|самолет\nτο τραμ|трамвай\nτο μετρό|метро\nτο ταξί|такси"},
+  {id:"7.1.1",t:"учёба",w:"ο φοιτητής|студент (мужчина)\nη φοιτήτρια|студентка\nο μαθητής|ученик (школьник)\nη μαθήτρια|ученица\nο δάσκαλος|учитель\nη δασκάλα|учительница\nο καθηγητής, η καθηγήτρια|преподаватель (высшей школы)\nτο πανεπιστήμιο|университет\nτο σχολείο|школа\nτο γυμνάσιο|средняя школа (аналог средней ступени)\nτο λύκειο|старшая школа (аналог старшей ступени)\nο διευθυντής, η διευθύντρια|директор школы\nτο μάθημα|урок, предмет\nη τάξη|класс (группа учеников)\nο πίνακας|доска (школьная)\nη κιμωλία|мел\nτο τετράδιο|тетрадь\nοι εξετάσεις|экзамены\nη αίθουσα|аудитория, классная комната\nτο διάλειμμα|перемена\nτο πρόγραμμα|расписание"},
+  {id:"7.2",t:"спорт, глаголы",w:"το μονοπάτι|тропа\nτο εμπορικό κέντρο|торговый центр\nη γέφυρα|мост\nο σιδηρόδρομος|железная дорога\nη πλατεία|площадь\nτο σπορ|спорт\nτο βόλεϊ|волейбол\nη παραλία|пляж\nη αναρρίχηση|альпинизм\nοδηγώ|водить\nπετάω|летать\nαναχωρώ|отправляться\nκλείνω|бронировать\nπερπατάω|ходить пешком\nπαίζω|играть\nκολυμπάω|плавать\nτρέχω|бегать\nκάνω ποδήλατο|кататься на велосипеде\nπηδάω|прыгать\nκάνω κράτηση|делать бронирование\nπρογραμματίζω|планировать"},
+  {id:"7.2.1",t:"транспорт, места",w:"η γέφυρα|мост\nο σταθμός|станция\nτο φανάρι|светофор\nο δρόμος|дорога\nτο λιμάνι|порт\nη κρουαζιέρα|круиз\nη διαδρομή|маршрут\nη ταχύτητα|скорость\nτο σπορ|спорт\nτο ποδόσφαιρο|футбол\nτο τένις/η αντισφαίριση|теннис\nτο μπάσκετ|баскетбол\nτο βόλεϊ|волейбол\nη ποδηλασία|велоспорт\nη κολύμβηση|плавание\nτο γυμναστήριο|спортзал\nη παιδική χαρά|детская площадка\nη αναρρίχηση|альпинизм\nτα αξιοθέατα|достопримечательности\nτο μουσείο|музей\nο αρχαιολογικός χώρος|археологическая зона\nτο κάστρο|замок\nτο μνημείο|памятник\nη πλατεία|площадь\nη παραλία|пляж\nο λόφος|холм\nη εκκλησία|церковь"},
+  {id:"7.3",t:"качества, время, природа",w:"όμορφος|красивый\nμεγάλος|большой\nμικρός|маленький\nγρήγορος|быстрый\nαργός|медленный\nάνετος|удобный\nδιασκεδαστικός|развлекательный\nκουραστικός|утомительный\nασφαλής|безопасный\nεπικίνδυνος|опасный\nτο πρόγραμμα|расписание\nη ώρα|время\nη ημέρα|день\nη διάρκεια|продолжительность\nσήμερα|сегодня\nαύριο|завтра\nχθες|вчера\nο μήνας|месяц\nτο σαββατοκύριακο|выходные\nτο βουνό|гора\nη λίμνη|озеро\nτο ποτάμι|река\nτο δάσος|лес\nη θάλασσα|море\nη παραλία|пляж"},
+  {id:"7.4",t:"поездка, отдых",w:"το νησί|остров\nο καταρράκτης|водопад\nη σπηλιά|пещера\nη ασφάλεια|страховка\nη πτήση|рейс\nοι αποσκευές|багаж\nο φόρος|налог\nοι αποδείξεις|квитанции\nο ξεναγός|гид\nη μαρκίζα|навес\nη ενοικίαση|аренда\nοι οδηγίες|инструкции\nη εκδρομή|экскурсия\nη διαμονή|проживание\nη τιμή|цена\nο ελεύθερος χρόνος|свободное время\nη θέση|место\nτο φαγητό|еда\nη ξεκούραση|отдых\nτο πρωινό|завтрак\nτο μεσημεριανό|обед\nτο δείπνο|ужин\nη μνήμη|память\nη ομάδα|группа, команда"},
+  {id:"8.1",t:"аренда жилья",w:"η ενοικίαση|аренда\nενοικιάζω|сдавать в аренду\nτο ενοίκιο|арендная плата\nη κατάθεση|залог\nτο συμβόλαιο|договор\nη υπογραφή|подпись\nτα κοινόχρηστα|коммунальные платежи\nοι λογαριασμοί|счета (за услуги)\nη διάρκεια μίσθωσης|срок аренды\nη προκαταβολή|предоплата\nτο διαμέρισμα|квартира\nεπιπλωμένος|меблированный\nανακαινισμένος|отремонтированный\nοι υποδομές|удобства (инфраструктура)\nο όροφος|этаж\nη θέρμανση|отопление\nτο κλιματιστικό|кондиционер\nτο ηλεκτρικό ρεύμα|электричество\nτο νερό|вода\nτο αέριο|газ\nδιαθέσιμο|доступно (свободно для аренды)\nοι επισκευές|ремонтные работы\nη προμήθεια|комиссия\nη επισκευή|ремонт\nτα κλειδιά|ключи"},
+  {id:"8.2",t:"питомцы",w:"η γάτα|кошка\nο σκύλος|собака\nτο γατάκι|котёнок\nτο κουτάβι|щенок\nτο φαγητό για σκύλους|корм для собак\nτο φαγητό για γάτες|корм для кошек\nτο λουρί|поводок\nτο κλουβί|клетка\nτο μπολ φαγητού|миска для еды\nτο νερό|вода\nτο σαμπουάν για κατοικίδια|шампунь для домашних животных\nη περιποίηση|уход\nο κτηνίατρος|ветеринар\nτο εμβόλιο|вакцина\nη αποπαρασίτωση|обработка от паразитов\nτο κρεβάτι κατοικιδίου|лежанка для питомца\nτο νύχι|коготь\nη χτένα|расческа\nη φροντίδα|забота\nη βόλτα|прогулка\nη σακούλα για περιττώματα|пакет для уборки за питомцем\nο κάδος απορριμμάτων|мусорное ведро\nη εκπαίδευση|дрессировка\nτο αμμοδοχείο|лоток\nη άμμος για γάτες|наполнитель для кошачьего туалета\nτο σπιτάκι|домик для питомца\nτο δάγκωμα|укус\nχαϊδεύω|гладить (животное)\nγαβγίζω|лаять"},
+  {id:"8.3",t:"питомцы, учёба",w:"πεινασμένος|голодный\nδιψασμένος|жаждущий\nκαθαρός|чистый\nβρόμικος|грязный\nχαρούμενος|радостный\nνευρικός|нервный\nυγιής|здоровый\nασθενής|больной\nήσυχος|спокойный\nδραστήριος|активный\nταΐζω|кормить\nπερπατάω|гулять\nποτίζω|давать воду\nφροντίζω|заботиться\nβουρτσίζω|расчесывать\nπαίζω|играть\nξύνω|чесать / точить\nτρέχω|бегать\nλούζω|мыть (животное)\nχαϊδεύω|гладить\nο φοιτητής|студент (мужчина)\nη φοιτήτρια|студентка\nο μαθητής|ученик (школьник)\nη μαθήτρια|ученица\nο δάσκαλος|учитель\nο καθηγητής|преподаватель (высшей школы)\nτο πανεπιστήμιο|университет\nτο σχολείο|школа\nτο γυμνάσιο|средняя школа (аналог средней ступени)\nτο λύκειο|старшая школа (аналог старшей ступени)\nο διευθυντής|директор, руководитель\nτο μάθημα|урок, предмет\nη τάξη|класс (группа учеников)\nο πίνακας|доска (школьная)\nη κιμωλία|мел\nτο τετράδιο|тетрадь\nοι εξετάσεις|экзамены\nη αίθουσα|аудитория, классная комната\nτο διάλειμμα|перемена\nτο πρόγραμμα|расписание"},
+  {id:"8.4",t:"праздники",w:"η γιορτή|праздник\nη Πρωτοχρονιά|новый год\nτο Πάσχα|пасха\nο γάμος|свадьба\nη βάπτιση|крещение\nτα γενέθλια|день рождения\nη επέτειος|годовщина\nτα δώρα|подарки\nο χορός|танец\nτα πυροτεχνήματα|фейерверки\nτο κέικ|торт\nο στολισμός|украшение\nτο πάρτι|вечеринка\nη μάσκα|маска\nτα φωτάκια|гирлянды\nτο χριστουγεννιάτικο δέντρο|рождественская ёлка\nτο έθιμο|традиция\nη προσευχή|молитва\nη τελετή|церемония\nτο πανηγύρι|ярмарка, народное гуляние\nτο φανάρι|фонарь\nη εκκλησία|церковь\nη δημόσια εορτή|государственный праздник\nη ευλογία|благословение\nη παρέλαση|парад\nη σημαία|флаг\nτα κουφέτα|миндаль в сахарной глазури (традиционное угощение на свадьбе)\nη φιλοξενία|гостеприимство\nη λαμπάδα|пасхальная свеча\nη ευχαριστία|благодарение\nο αγιασμός|освящение"}
+  ];
+  var FORMS={"η οικογένεια":{"t":"n","sg":["η οικογένεια","της οικογένειας","την οικογένεια"],"pl":["οι οικογένειες","των οικογενειών","τις οικογένειες"]},"ο πατέρας":{"t":"n","sg":["ο πατέρας","του πατέρα","τον πατέρα"],"pl":["οι πατέρες","των πατέρων","τους πατέρες"]},"η μητέρα":{"t":"n","sg":["η μητέρα","της μητέρας","τη μητέρα"],"pl":["οι μητέρες","των μητέρων","τις μητέρες"]},"ο γιος":{"t":"n","sg":["ο γιος","του γιου","τον γιο"],"pl":["οι γιοι","των γιων","τους γιους"]},"η κόρη":{"t":"n","sg":["η κόρη","της κόρης","την κόρη"],"pl":["οι κόρες","των κορών","τις κόρες"]},"ο αδελφός":{"t":"n","sg":["ο αδελφός","του αδελφού","τον αδελφό"],"pl":["οι αδελφοί","των αδελφών","τους αδελφούς"]},"η αδελφή":{"t":"n","sg":["η αδελφή","της αδελφής","την αδελφή"],"pl":["οι αδελφές","των αδελφών","τις αδελφές"]},"ο παππούς":{"t":"n","sg":["ο παππούς","του παππού","τον παππού"],"pl":["οι παππούδες","των παππούδων","τους παππούδες"]},"η γιαγιά":{"t":"n","sg":["η γιαγιά","της γιαγιάς","τη γιαγιά"],"pl":["οι γιαγιές","των γιαγιάδων","τις γιαγιές"]},"το παιδί":{"t":"n","sg":["το παιδί","του παιδιού","το παιδί"],"pl":["τα παιδιά","των παιδιών","τα παιδιά"]},"είμαι":{"t":"v","pr":["είμαι","είσαι","είναι","είμαστε","είστε","είναι"],"pa":["ήμουν","ήσουν","ήταν","ήμασταν","ήσασταν","ήταν"],"fu":["θα είμαι","θα είσαι","θα είναι","θα είμαστε","θα είστε","θα είναι"]},"έχω":{"t":"v","pr":["έχω","έχεις","έχει","έχουμε","έχετε","έχουν"],"pa":["είχα","είχες","είχε","είχαμε","είχατε","είχαν"],"fu":["θα έχω","θα έχεις","θα έχει","θα έχουμε","θα έχετε","θα έχουν"]},"κάνω":{"t":"v","pr":["κάνω","κάνεις","κάνει","κάνουμε","κάνετε","κάνουν"],"pa":["έκανα","έκανες","έκανε","κάναμε","κάνατε","έκαναν"],"fu":["θα κάνω","θα κάνεις","θα κάνει","θα κάνουμε","θα κάνετε","θα κάνουν"]},"θέλω":{"t":"v","pr":["θέλω","θέλεις","θέλει","θέλουμε","θέλετε","θέλουν"],"pa":["ήθελα","ήθελες","ήθελε","θέλαμε","θέλατε","ήθελαν"],"fu":["θα θέλω","θα θέλεις","θα θέλει","θα θέλουμε","θα θέλετε","θα θέλουν"]},"λέω":{"t":"v","pr":["λέω","λες","λέει","λέμε","λέτε","λένε"],"pa":["είπα","είπες","είπε","είπαμε","είπατε","είπαν"],"fu":["θα πω","θα πεις","θα πει","θα πούμε","θα πείτε","θα πουν"]},"βλέπω":{"t":"v","pr":["βλέπω","βλέπεις","βλέπει","βλέπουμε","βλέπετε","βλέπουν"],"pa":["είδα","είδες","είδε","είδαμε","είδατε","είδαν"],"fu":["θα δω","θα δεις","θα δει","θα δούμε","θα δείτε","θα δουν"]},"ακούω":{"t":"v","pr":["ακούω","ακούς","ακούει","ακούμε","ακούτε","ακούν"],"pa":["άκουσα","άκουσες","άκουσε","ακούσαμε","ακούσατε","άκουσαν"],"fu":["θα ακούσω","θα ακούσεις","θα ακούσει","θα ακούσουμε","θα ακούσετε","θα ακούσουν"]},"ξέρω":{"t":"v","pr":["ξέρω","ξέρεις","ξέρει","ξέρουμε","ξέρετε","ξέρουν"],"pa":["ήξερα","ήξερες","ήξερε","ξέραμε","ξέρατε","ήξεραν"],"fu":["θα ξέρω","θα ξέρεις","θα ξέρει","θα ξέρουμε","θα ξέρετε","θα ξέρουν"]},"μαθαίνω":{"t":"v","pr":["μαθαίνω","μαθαίνεις","μαθαίνει","μαθαίνουμε","μαθαίνετε","μαθαίνουν"],"pa":["έμαθα","έμαθες","έμαθε","μάθαμε","μάθατε","έμαθαν"],"fu":["θα μάθω","θα μάθεις","θα μάθει","θα μάθουμε","θα μάθετε","θα μάθουν"]},"καταλαβαίνω":{"t":"v","pr":["καταλαβαίνω","καταλαβαίνεις","καταλαβαίνει","καταλαβαίνουμε","καταλαβαίνετε","καταλαβαίνουν"],"pa":["κατάλαβα","κατάλαβες","κατάλαβε","καταλάβαμε","καταλάβατε","κατάλαβαν"],"fu":["θα καταλάβω","θα καταλάβεις","θα καταλάβει","θα καταλάβουμε","θα καταλάβετε","θα καταλάβουν"]},"γράφω":{"t":"v","pr":["γράφω","γράφεις","γράφει","γράφουμε","γράφετε","γράφουν"],"pa":["έγραψα","έγραψες","έγραψε","γράψαμε","γράψατε","έγραψαν"],"fu":["θα γράψω","θα γράψεις","θα γράψει","θα γράψουμε","θα γράψετε","θα γράψουν"]},"διαβάζω":{"t":"v","pr":["διαβάζω","διαβάζεις","διαβάζει","διαβάζουμε","διαβάζετε","διαβάζουν"],"pa":["διάβασα","διάβασες","διάβασε","διαβάσαμε","διαβάσατε","διάβασαν"],"fu":["θα διαβάσω","θα διαβάσεις","θα διαβάσει","θα διαβάσουμε","θα διαβάσετε","θα διαβάσουν"]},"τρώω":{"t":"v","pr":["τρώω","τρως","τρώει","τρώμε","τρώτε","τρώνε"],"pa":["έφαγα","έφαγες","έφαγε","φάγαμε","φάγατε","έφαγαν"],"fu":["θα φάω","θα φας","θα φάει","θα φάμε","θα φάτε","θα φάνε"]},"πίνω":{"t":"v","pr":["πίνω","πίνεις","πίνει","πίνουμε","πίνετε","πίνουν"],"pa":["ήπια","ήπιες","ήπιε","ήπιαμε","ήπιατε","ήπιαν"],"fu":["θα πιω","θα πιεις","θα πιει","θα πιούμε","θα πιείτε","θα πιουν"]},"καλός":{"t":"a","g":["καλός","καλή","καλό"],"gp":["καλοί","καλές","καλά"]},"κακός":{"t":"a","g":["κακός","κακή","κακό"],"gp":["κακοί","κακές","κακά"]},"το σπίτι":{"t":"n","sg":["το σπίτι","του σπιτιού","το σπίτι"],"pl":["τα σπίτια","των σπιτιών","τα σπίτια"]},"η γάτα":{"t":"n","sg":["η γάτα","της γάτας","τη γάτα"],"pl":["οι γάτες","των γατών","τις γάτες"]},"ο σκύλος":{"t":"n","sg":["ο σκύλος","του σκύλου","τον σκύλο"],"pl":["οι σκύλοι","των σκύλων","τους σκύλους"]},"το νερό":{"t":"n","sg":["το νερό","του νερού","το νερό"],"pl":["τα νερά","των νερών","τα νερά"]},"το γάλα":{"t":"n","sg":["το γάλα","του γάλακτος","το γάλα"]},"το φως":{"t":"n","sg":["το φως","του φωτός","το φως"],"pl":["τα φώτα","των φώτων","τα φώτα"]},"ο ήλιος":{"t":"n","sg":["ο ήλιος","του ηλίου","τον ήλιο"],"pl":["οι ήλιοι","των ήλιων","τους ήλιους"]},"το δέντρο":{"t":"n","sg":["το δέντρο","του δέντρου","το δέντρο"],"pl":["τα δέντρα","των δέντρων","τα δέντρα"]},"η μπάλα":{"t":"n","sg":["η μπάλα","της μπάλας","την μπάλα"]},"τα μαλλιά":{"t":"n","pl":["τα μαλλιά","των μαλλιών","τα μαλλιά"]},"το χέρι":{"t":"n","sg":["το χέρι","του χεριού","το χέρι"],"pl":["τα χέρια","των χεριών","τα χέρια"]},"το πόδι":{"t":"n","sg":["το πόδι","του ποδιού","το πόδι"],"pl":["τα πόδια","των ποδιών","τα πόδια"]},"το βουνό":{"t":"n","sg":["το βουνό","του βουνού","το βουνό"],"pl":["τα βουνά","των βουνών","τα βουνά"]},"η θάλασσα":{"t":"n","sg":["η θάλασσα","της θάλασσας","τη θάλασσα"],"pl":["οι θάλασσες","των θαλασσών","τις θάλασσες"]},"το βιβλίο":{"t":"n","sg":["το βιβλίο","του βιβλίου","το βιβλίο"],"pl":["τα βιβλία","των βιβλίων","τα βιβλία"]},"το μπάνιο":{"t":"n","sg":["το μπάνιο","του μπάνιου","το μπάνιο"],"pl":["τα μπάνια","των μπάνιων","τα μπάνια"]},"η μύτη":{"t":"n","sg":["η μύτη","της μύτης","τη μύτη"],"pl":["οι μύτες","των μυτών","τις μύτες"]},"το φρούτο":{"t":"n","sg":["το φρούτο","του φρούτου","το φρούτο"],"pl":["τα φρούτα","των φρούτων","τα φρούτα"]},"το ψωμί":{"t":"n","sg":["το ψωμί","του ψωμιού","το ψωμί"],"pl":["τα ψωμιά","των ψωμιών","τα ψωμιά"]},"το μέλι":{"t":"n","sg":["το μέλι","του μελιού","το μέλι"],"pl":["τα μέλια","των μελιών","τα μέλια"]},"το κρεβάτι":{"t":"n","sg":["το κρεβάτι","του κρεβατιού","το κρεβάτι"],"pl":["τα κρεβάτια","των κρεβατιών","τα κρεβάτια"]},"η βάρκα":{"t":"n","sg":["η βάρκα","της βάρκας","τη βάρκα"],"pl":["οι βάρκες","των βαρκών","τις βάρκες"]},"η αγάπη":{"t":"n","sg":["η αγάπη","της αγάπης","την αγάπη"]},"ο φίλος":{"t":"n","sg":["ο φίλος","του φίλου","τον φίλο"],"pl":["οι φίλοι","των φίλων","τους φίλους"]},"η καρδιά":{"t":"n","sg":["η καρδιά","της καρδιάς","την καρδιά"],"pl":["οι καρδιές","των καρδιών","τις καρδιές"]},"το γλυκό":{"t":"n","sg":["το γλυκό","του γλυκού","το γλυκό"],"pl":["τα γλυκά","των γλυκών","τα γλυκά"]},"η σοκολάτα":{"t":"n","sg":["η σοκολάτα","της σοκολάτας","τη σοκολάτα"],"pl":["οι σοκολάτες","των σοκολατών","τις σοκολάτες"]},"το πάρκο":{"t":"n","sg":["το πάρκο","του πάρκου","το πάρκο"],"pl":["τα πάρκα","των πάρκων","τα πάρκα"]},"το σχολείο":{"t":"n","sg":["το σχολείο","του σχολείου","το σχολείο"],"pl":["τα σχολεία","των σχολείων","τα σχολεία"]},"το μπαλκόνι":{"t":"n","sg":["το μπαλκόνι","του μπαλκονιού","το μπαλκόνι"],"pl":["τα μπαλκόνια","των μπαλκονιών","τα μπαλκόνια"]},"η αυλή":{"t":"n","sg":["η αυλή","της αυλής","την αυλή"],"pl":["οι αυλές","των αυλών","τις αυλές"]},"ο αέρας":{"t":"n","sg":["ο αέρας","του αέρα","τον αέρα"],"pl":["οι αέρες","των αέρων","τους αέρες"]},"το ψάρι":{"t":"n","sg":["το ψάρι","του ψαριού","το ψάρι"],"pl":["τα ψάρια","των ψαριών","τα ψάρια"]},"ο κήπος":{"t":"n","sg":["ο κήπος","του κήπου","τον κήπο"],"pl":["οι κήποι","των κήπων","τους κήπους"]},"το παγωτό":{"t":"n","sg":["το παγωτό","του παγωτού","το παγωτό"],"pl":["τα παγωτά","των παγωτών","τα παγωτά"]},"το γέλιο":{"t":"n","sg":["το γέλιο","του γέλιου","το γέλιο"],"pl":["τα γέλια","των γέλιων","τα γέλια"]},"το κλειδί":{"t":"n","sg":["το κλειδί","του κλειδιού","το κλειδί"],"pl":["τα κλειδιά","των κλειδιών","τα κλειδιά"]},"το μήλο":{"t":"n","sg":["το μήλο","του μήλου","το μήλο"],"pl":["τα μήλα","των μήλων","τα μήλα"]},"το ζάρι":{"t":"n","sg":["το ζάρι","του ζαριού","το ζάρι"],"pl":["τα ζάρια","των ζαριών","τα ζάρια"]},"το μάτι":{"t":"n","sg":["το μάτι","του ματιού","το μάτι"],"pl":["τα μάτια","των ματιών","τα μάτια"]},"η κάρτα":{"t":"n","sg":["η κάρτα","της κάρτας","την κάρτα"],"pl":["οι κάρτες","των καρτών","τις κάρτες"]},"η φίλη":{"t":"n","sg":["η φίλη","της φίλης","τη φίλη"],"pl":["οι φίλες","των φίλων","τις φίλες"]},"αγαπώ":{"t":"v","pr":["αγαπώ","αγαπάς","αγαπά","αγαπάμε","αγαπάτε","αγαπούν"],"pa":["αγάπησα","αγάπησες","αγάπησε","αγαπήσαμε","αγαπήσατε","αγάπησαν"],"fu":["θα αγαπήσω","θα αγαπήσεις","θα αγαπήσει","θα αγαπήσουμε","θα αγαπήσετε","θα αγαπήσουν"]},"παίζω":{"t":"v","pr":["παίζω","παίζεις","παίζει","παίζουμε","παίζετε","παίζουν"],"pa":["έπαιξα","έπαιξες","έπαιξε","παίξαμε","παίξατε","έπαιξαν"],"fu":["θα παίξω","θα παίξεις","θα παίξει","θα παίξουμε","θα παίξετε","θα παίξουν"]},"αγαπητός":{"t":"a","g":["αγαπητός","αγαπητή","αγαπητό"],"gp":["αγαπητοί","αγαπητές","αγαπητά"]},"δυνατός":{"t":"a","g":["δυνατός","δυνατή","δυνατό"],"gp":["δυνατοί","δυνατές","δυνατά"]},"φιλικός":{"t":"a","g":["φιλικός","φιλική","φιλικό"],"gp":["φιλικοί","φιλικές","φιλικά"]},"έξυπνος":{"t":"a","g":["έξυπνος","έξυπνη","έξυπνο"],"gp":["έξυπνοι","έξυπνες","έξυπνα"]},"μεγάλος":{"t":"a","g":["μεγάλος","μεγάλη","μεγάλο"],"gp":["μεγάλοι","μεγάλες","μεγάλα"]},"μικρός":{"t":"a","g":["μικρός","μικρή","μικρό"],"gp":["μικροί","μικρές","μικρά"]},"ψηλός":{"t":"a","g":["ψηλός","ψηλή","ψηλό"],"gp":["ψηλοί","ψηλές","ψηλά"]},"κοντός":{"t":"a","g":["κοντός","κοντή","κοντό"],"gp":["κοντοί","κοντές","κοντά"]},"χοντρός":{"t":"a","g":["χοντρός","χοντρή","χοντρό"],"gp":["χοντροί","χοντρές","χοντρά"]},"δουλεύω":{"t":"v","pr":["δουλεύω","δουλεύεις","δουλεύει","δουλεύουμε","δουλεύετε","δουλεύουν"],"pa":["δούλεψα","δούλεψες","δούλεψε","δουλέψαμε","δουλέψατε","δούλεψαν"],"fu":["θα δουλέψω","θα δουλέψεις","θα δουλέψει","θα δουλέψουμε","θα δουλέψετε","θα δουλέψουν"]},"αρχίζω":{"t":"v","pr":["αρχίζω","αρχίζεις","αρχίζει","αρχίζουμε","αρχίζετε","αρχίζουν"],"pa":["άρχισα","άρχισες","άρχισε","αρχίσαμε","αρχίσατε","άρχισαν"],"fu":["θα αρχίσω","θα αρχίσεις","θα αρχίσει","θα αρχίσουμε","θα αρχίσετε","θα αρχίσουν"]},"τελειώνω":{"t":"v","pr":["τελειώνω","τελειώνεις","τελειώνει","τελειώνουμε","τελειώνετε","τελειώνουν"],"pa":["τέλειωσα","τέλειωσες","τέλειωσε","τελειώσαμε","τελειώσατε","τέλειωσαν"],"fu":["θα τελειώσω","θα τελειώσεις","θα τελειώσει","θα τελειώσουμε","θα τελειώσετε","θα τελειώσουν"]},"ανοίγω":{"t":"v","pr":["ανοίγω","ανοίγεις","ανοίγει","ανοίγουμε","ανοίγετε","ανοίγουν"],"pa":["άνοιξα","άνοιξες","άνοιξε","ανοίξαμε","ανοίξατε","άνοιξαν"],"fu":["θα ανοίξω","θα ανοίξεις","θα ανοίξει","θα ανοίξουμε","θα ανοίξετε","θα ανοίξουν"]},"κλείνω":{"t":"v","pr":["κλείνω","κλείνεις","κλείνει","κλείνουμε","κλείνετε","κλείνουν"],"pa":["έκλεισα","έκλεισες","έκλεισε","κλείσαμε","κλείσατε","έκλεισαν"],"fu":["θα κλείσω","θα κλείσεις","θα κλείσει","θα κλείσουμε","θα κλείσετε","θα κλείσουν"]},"γελώ":{"t":"v","pr":["γελώ","γελάς","γελά","γελάμε","γελάτε","γελούν"],"pa":["γέλασα","γέλασες","γέλασε","γελάσαμε","γελάσατε","γέλασαν"],"fu":["θα γελάσω","θα γελάσεις","θα γελάσει","θα γελάσουμε","θα γελάσετε","θα γελάσουν"]},"το φαγητό":{"t":"n","sg":["το φαγητό","του φαγητού","το φαγητό"],"pl":["τα φαγητά","των φαγητών","τα φαγητά"]},"η κουζίνα":{"t":"n","sg":["η κουζίνα","της κουζίνας","την κουζίνα"],"pl":["οι κουζίνες","των κουζινών","τις κουζίνες"]},"ο δρόμος":{"t":"n","sg":["ο δρόμος","του δρόμου","τον δρόμο"],"pl":["οι δρόμοι","των δρόμων","τους δρόμους"]},"το παράθυρο":{"t":"n","sg":["το παράθυρο","του παραθύρου","το παράθυρο"],"pl":["τα παράθυρα","των παραθύρων","τα παράθυρα"]},"η καρέκλα":{"t":"n","sg":["η καρέκλα","της καρέκλας","την καρέκλα"],"pl":["οι καρέκλες","των καρεκλών","τις καρέκλες"]},"το τραπέζι":{"t":"n","sg":["το τραπέζι","του τραπεζιού","το τραπέζι"],"pl":["τα τραπέζια","των τραπεζιών","τα τραπέζια"]},"η πόρτα":{"t":"n","sg":["η πόρτα","της πόρτας","την πόρτα"],"pl":["οι πόρτες","των πορτών","τις πόρτες"]},"το χαμόγελο":{"t":"n","sg":["το χαμόγελο","του χαμόγελου","το χαμόγελο"],"pl":["τα χαμόγελα","των χαμόγελων","τα χαμόγελα"]},"η μουσική":{"t":"n","sg":["η μουσική","της μουσικής","τη μουσική"],"pl":["οι μουσικές","των μουσικών","τις μουσικές"]},"το όνομα":{"t":"n","sg":["το όνομα","του ονόματος","το όνομα"],"pl":["τα ονόματα","των ονομάτων","τα ονόματα"]},"τα ρούχα":{"t":"n","pl":["τα ρούχα","των ρούχων","τα ρούχα"]},"η πόλη":{"t":"n","sg":["η πόλη","της πόλης","την πόλη"],"pl":["οι πόλεις","των πόλεων","τις πόλεις"]},"το αυτοκίνητο":{"t":"n","sg":["το αυτοκίνητο","του αυτοκινήτου","το αυτοκίνητο"],"pl":["τα αυτοκίνητα","των αυτοκινήτων","τα αυτοκίνητα"]},"η βιβλιοθήκη":{"t":"n","sg":["η βιβλιοθήκη","της βιβλιοθήκης","τη βιβλιοθήκη"],"pl":["οι βιβλιοθήκες","των βιβλιοθηκών","τις βιβλιοθήκες"]},"η φωτογραφία":{"t":"n","sg":["η φωτογραφία","της φωτογραφίας","τη φωτογραφία"],"pl":["οι φωτογραφίες","των φωτογραφιών","τις φωτογραφίες"]},"ο υπολογιστής":{"t":"n","sg":["ο υπολογιστής","του υπολογιστή","τον υπολογιστή"],"pl":["οι υπολογιστές","των υπολογιστών","τους υπολογιστές"]},"το τηλέφωνο":{"t":"n","sg":["το τηλέφωνο","του τηλεφώνου","το τηλέφωνο"],"pl":["τα τηλέφωνα","των τηλεφώνων","τα τηλέφωνα"]},"ο καφές":{"t":"n","sg":["ο καφές","του καφέ","τον καφέ"],"pl":["οι καφέδες","των καφέδων","τους καφέδες"]},"η νύχτα":{"t":"n","sg":["η νύχτα","της νύχτας","τη νύχτα"],"pl":["οι νύχτες","των νυχτών","τις νύχτες"]},"η ημέρα":{"t":"n","sg":["η ημέρα","της ημέρας","την ημέρα"],"pl":["οι ημέρες","των ημερών","τις ημέρες"]},"ο χειμώνας":{"t":"n","sg":["ο χειμώνας","του χειμώνα","τον χειμώνα"],"pl":["οι χειμώνες","των χειμώνων","τους χειμώνες"]},"το καλοκαίρι":{"t":"n","sg":["το καλοκαίρι","του καλοκαιριού","το καλοκαίρι"],"pl":["τα καλοκαίρια","των καλοκαιριών","τα καλοκαίρια"]},"η άνοιξη":{"t":"n","sg":["η άνοιξη","της άνοιξης","την άνοιξη"],"pl":["οι ανοίξεις","των ανοίξεων","τις ανοίξεις"]},"το φθινόπωρο":{"t":"n","sg":["το φθινόπωρο","του φθινοπώρου","το φθινόπωρο"],"pl":["τα φθινόπωρα","των φθινοπώρων","τα φθινόπωρα"]},"η εβδομάδα":{"t":"n","sg":["η εβδομάδα","της εβδομάδας","την εβδομάδα"],"pl":["οι εβδομάδες","των εβδομάδων","τις εβδομάδες"]},"ο μήνας":{"t":"n","sg":["ο μήνας","του μήνα","τον μήνα"],"pl":["οι μήνες","των μηνών","τους μήνες"]},"ο χρόνος":{"t":"n","sg":["ο χρόνος","του χρόνου","τον χρόνο"],"pl":["οι χρόνοι","των χρονώ","τους χρόνους"]},"το λεπτό":{"t":"n","sg":["το λεπτό","του λεπτού","το λεπτό"],"pl":["τα λεπτά","των λεπτών","τα λεπτά"]},"η ώρα":{"t":"n","sg":["η ώρα","της ώρας","την ώρα"],"pl":["οι ώρες","των ωρών","τις ώρες"]},"το κεφάλι":{"t":"n","sg":["το κεφάλι","του κεφαλιού","το κεφάλι"],"pl":["τα κεφάλια","των κεφαλιών","τα κεφάλια"]},"η πλάτη":{"t":"n","sg":["η πλάτη","της πλάτης","την πλάτη"],"pl":["οι πλάτες","των πλατών","τις πλάτες"]},"ο καρπός":{"t":"n","sg":["ο καρπός","του καρπού","τον καρπό"],"pl":["οι καρποί","των καρπών","τους καρπούς"]},"το δάχτυλο":{"t":"n","sg":["το δάχτυλο","του δαχτύλου","το δάχτυλο"],"pl":["τα δάχτυλα","των δαχτύλων","τα δάχτυλα"]},"το μάγουλο":{"t":"n","sg":["το μάγουλο","του μάγουλου","το μάγουλο"],"pl":["τα μάγουλα","των μάγουλων","τα μάγουλα"]},"το δόντι":{"t":"n","sg":["το δόντι","του δοντιού","το δόντι"],"pl":["τα δόντια","των δοντιών","τα δόντια"]},"η γλώσσα":{"t":"n","sg":["η γλώσσα","της γλώσσας","τη γλώσσα"],"pl":["οι γλώσσες","των γλωσσών","τις γλώσσες"]},"το φρύδι":{"t":"n","sg":["το φρύδι","του φρυδιού","το φρύδι"],"pl":["τα φρύδια","των φρυδιών","τα φρύδια"]},"τα χείλη":{"t":"n","pl":["τα χείλη","των χειλιών","τα χείλη"]},"το στήθος":{"t":"n","sg":["το στήθος","του στήθους","το στήθος"],"pl":["τα στήθη","των στηθών","τα στήθη"]},"το μυαλό":{"t":"n","sg":["το μυαλό","του μυαλού","το μυαλό"],"pl":["τα μυαλά","των μυαλών","τα μυαλά"]},"η φωτιά":{"t":"n","sg":["η φωτιά","της φωτιάς","τη φωτιά"],"pl":["οι φωτιές","των φωτιών","τις φωτιές"]},"η γη":{"t":"n","sg":["η γη","της γης","τη γη"]},"ο ουρανός":{"t":"n","sg":["ο ουρανός","του ουρανού","τον ουρανό"],"pl":["οι ουρανοί","των ουρανών","τους ουρανούς"]},"τα αστέρια":{"t":"n","pl":["τα αστέρια","των αστεριών","τα αστέρια"]},"το σύννεφο":{"t":"n","sg":["το σύννεφο","του σύννεφου","το σύννεφο"],"pl":["τα σύννεφα","των σύννεφων","τα σύννεφα"]},"η βροχή":{"t":"n","sg":["η βροχή","της βροχής","τη βροχή"],"pl":["οι βροχές","των βροχών","τις βροχές"]},"το χιόνι":{"t":"n","sg":["το χιόνι","του χιονιού","το χιόνι"],"pl":["τα χιόνια","των χιονιών","τα χιόνια"]},"η θερμοκρασία":{"t":"n","sg":["η θερμοκρασία","της θερμοκρασίας","τη θερμοκρασία"],"pl":["οι θερμοκρασίες","των θερμοκρασιών","τις θερμοκρασίες"]},"ο εχθρός":{"t":"n","sg":["ο εχθρός","του εχθρού","τον εχθρό"],"pl":["οι εχθροί","των εχθρών","τους εχθρούς"]},"η χαρά":{"t":"n","sg":["η χαρά","της χαράς","τη χαρά"],"pl":["οι χαρές","των χαρών","τις χαρές"]},"η λύπη":{"t":"n","sg":["η λύπη","της λύπης","τη λύπη"]},"ο φόβος":{"t":"n","sg":["ο φόβος","του φόβου","τον φόβο"],"pl":["οι φόβοι","των φόβων","τους φόβους"]},"η ελπίδα":{"t":"n","sg":["η ελπίδα","της ελπίδας","την ελπίδα"],"pl":["οι ελπίδες","των ελπίδων","τις ελπίδες"]},"η διασκέδαση":{"t":"n","sg":["η διασκέδαση","της διασκέδασης","τη διασκέδαση"],"pl":["οι διασκεδάσεις","των διασκεδάσεων","τις διασκεδάσεις"]},"τα χρήματα":{"t":"n","pl":["τα χρήματα","των χρημάτων","τα χρήματα"]},"το δώρο":{"t":"n","sg":["το δώρο","του δώρου","το δώρο"],"pl":["τα δώρα","των δώρων","τα δώρα"]},"το μάθημα":{"t":"n","sg":["το μάθημα","του μαθήματος","το μάθημα"],"pl":["τα μαθήματα","των μαθημάτων","τα μαθήματα"]},"η γιορτή":{"t":"n","sg":["η γιορτή","της γιορτής","τη γιορτή"],"pl":["οι γιορτές","των γιορτάδων","τις γιορτές"]},"το παιχνίδι":{"t":"n","sg":["το παιχνίδι","του παιχνιδιού","το παιχνίδι"],"pl":["τα παιχνίδια","των παιχνιδιών","τα παιχνίδια"]},"η ομπρέλα":{"t":"n","sg":["η ομπρέλα","της ομπρέλας","την ομπρέλα"],"pl":["οι ομπρέλες","των ομπρελών","τις ομπρέλες"]},"τα παπούτσια":{"t":"n","pl":["τα παπούτσια","των παπουτσιών","τα παπούτσια"]},"το κουτάλι":{"t":"n","sg":["το κουτάλι","του κουταλιού","το κουτάλι"],"pl":["τα κουτάλια","των κουταλιών","τα κουτάλια"]},"το πιρούνι":{"t":"n","sg":["το πιρούνι","του πιρουνιού","το πιρούνι"],"pl":["τα πιρούνια","των πιρουνιών","τα πιρούνια"]},"το μαχαίρι":{"t":"n","sg":["το μαχαίρι","του μαχαιριού","το μαχαίρι"],"pl":["τα μαχαίρια","των μαχαιριών","τα μαχαίρια"]},"το ποτήρι":{"t":"n","sg":["το ποτήρι","του ποτηριού","το ποτήρι"],"pl":["τα ποτήρια","των ποτηριών","τα ποτήρια"]},"πηγαίνω":{"t":"v","pr":["πηγαίνω","πηγαίνεις","πηγαίνει","πηγαίνουμε","πηγαίνετε","πηγαίνουν"],"pa":["πήγα","πήγες","πήγε","πήγαμε","πήγατε","πήγαν"],"fu":["θα πάω","θα πας","θα πάει","θα πάμε","θα πάτε","θα πάνε"]},"έρχομαι":{"t":"v","pr":["έρχομαι","έρχεσαι","έρχεται","ερχόμαστε","έρχεστε","έρχονται"],"pa":["ήρθα","ήρθες","ήρθε","ήρθαμε","ήρθατε","ήρθαν"],"fu":["θα έρθω","θα έρθεις","θα έρθει","θα έρθουμε","θα έρθετε","θα έρθουν"]},"φεύγω":{"t":"v","pr":["φεύγω","φεύγεις","φεύγει","φεύγουμε","φεύγετε","φεύγουν"],"pa":["έφυγα","έφυγες","έφυγε","φύγαμε","φύγατε","έφυγαν"],"fu":["θα φύγω","θα φύγεις","θα φύγει","θα φύγουμε","θα φύγετε","θα φύγουν"]},"τρέχω":{"t":"v","pr":["τρέχω","τρέχεις","τρέχει","τρέχουμε","τρέχετε","τρέχουν"],"pa":["έτρεξα","έτρεξες","έτρεξε","τρέξαμε","τρέξατε","έτρεξαν"],"fu":["θα τρέξω","θα τρέξεις","θα τρέξει","θα τρέξουμε","θα τρέξετε","θα τρέξουν"]},"πετάω":{"t":"v","pr":["πετάω","πετάς","πετάει","πετάμε","πετάτε","πετούν"],"pa":["πέταξα","πέταξες","πέταξε","πετάξαμε","πετάξατε","πέταξαν"],"fu":["θα πετάξω","θα πετάξεις","θα πετάξει","θα πετάξουμε","θα πετάξετε","θα πετάξουν"]},"κολυμπάω":{"t":"v","pr":["κολυμπάω","κολυμπάς","κολυμπάει","κολυμπάμε","κολυμπάτε","κολυμπούν"],"pa":["κολύμπησα","κολύμπησες","κολύμπησε","κολυμπήσαμε","κολυμπήσατε","κολύμπησαν"],"fu":["θα κολυμπήσω","θα κολυμπήσεις","θα κολυμπήσει","θα κολυμπήσουμε","θα κολυμπήσετε","θα κολυμπήσουν"]},"περπατάω":{"t":"v","pr":["περπατάω","περπατάς","περπατάει","περπατάμε","περπατάτε","περπατούν"],"pa":["περπάτησα","περπάτησες","περπάτησε","περπατήσαμε","περπατήσατε","περπάτησαν"],"fu":["θα περπατήσω","θα περπατήσεις","θα περπατήσει","θα περπατήσουμε","θα περπατήσετε","θα περπατήσουν"]},"χορεύω":{"t":"v","pr":["χορεύω","χορεύεις","χορεύει","χορεύουμε","χορεύετε","χορεύουν"],"pa":["χόρεψα","χόρεψες","χόρεψε","χορέψαμε","χορέψατε","χόρεψαν"],"fu":["θα χορέψω","θα χορέψεις","θα χορέψει","θα χορέψουμε","θα χορέψετε","θα χορέψουν"]},"γυρίζω":{"t":"v","pr":["γυρίζω","γυρίζεις","γυρίζει","γυρίζουμε","γυρίζετε","γυρίζουν"],"pa":["γύρισα","γύρισες","γύρισε","γυρίσαμε","γυρίσατε","γύρισαν"],"fu":["θα γυρίσω","θα γυρίσεις","θα γυρίσει","θα γυρίσουμε","θα γυρίσετε","θα γυρίσουν"]},"κατεβαίνω":{"t":"v","pr":["κατεβαίνω","κατεβαίνεις","κατεβαίνει","κατεβαίνουμε","κατεβαίνετε","κατεβαίνουν"],"pa":["κατέβηκα","κατέβηκες","κατέβηκε","κατεβήκαμε","κατεβήκατε","κατέβηκαν"],"fu":["θα κατέβω","θα κατέβεις","θα κατέβει","θα κατεβούμε","θα κατεβείτε","θα κατέβουν"]},"ανεβαίνω":{"t":"v","pr":["ανεβαίνω","ανεβαίνεις","ανεβαίνει","ανεβαίνουμε","ανεβαίνετε","ανεβαίνουν"],"pa":["ανέβηκα","ανέβηκες","ανέβηκε","ανεβήκαμε","ανεβήκατε","ανέβηκαν"],"fu":["θα ανέβω","θα ανέβεις","θα ανέβει","θα ανεβούμε","θα ανεβείτε","θα ανέβουν"]},"πηδώ":{"t":"v","pr":["πηδώ","πηδάς","πηδά","πηδάμε","πηδάτε","πηδούν"],"pa":["πήδηξα","πήδηξες","πήδηξε","πηδήξαμε","πηδήξατε","πήδηξαν"],"fu":["θα πηδήξω","θα πηδήξεις","θα πηδήξει","θα πηδήξουμε","θα πηδήξετε","θα πηδήξουν"]},"περνάω":{"t":"v","pr":["περνάω","περνάς","περνάει","περνάμε","περνάτε","περνούν"],"pa":["πέρασα","πέρασες","πέρασε","περάσαμε","περάσατε","πέρασαν"],"fu":["θα περάσω","θα περάσεις","θα περάσει","θα περάσουμε","θα περάσετε","θα περάσουν"]},"στέκομαι":{"t":"v","pr":["στέκομαι","στέκεσαι","στέκεται","στεκόμαστε","στέκεστε","στέκονται"],"pa":["στάθηκα","στάθηκες","στάθηκε","σταθήκαμε","σταθήκατε","στάθηκαν"],"fu":["θα σταθώ","θα σταθείς","θα σταθεί","θα σταθούμε","θα σταθείτε","θα σταθούν"]},"κρύος":{"t":"a","g":["κρύος","κρύα","κρύο"],"gp":["κρύοι","κρύες","κρύα"]},"ζεστός":{"t":"a","g":["ζεστός","ζεστή","ζεστό"],"gp":["ζεστοί","ζεστές","ζεστά"]},"αργός":{"t":"a","g":["αργός","αργή","αργό"],"gp":["αργοί","αργές","αργά"]},"γρήγορος":{"t":"a","g":["γρήγορος","γρήγορη","γρήγορο"],"gp":["γρήγοροι","γρήγορες","γρήγορα"]},"βαθύς":{"t":"a","g":["βαθύς","βαθιά","βαθύ"],"gp":["βαθιοί","βαθιές","βαθιά"]},"ρηχός":{"t":"a","g":["ρηχός","ρηχή","ρηχό"],"gp":["ρηχοί","ρηχές","ρηχά"]},"λαμπερός":{"t":"a","g":["λαμπερός","λαμπερή","λαμπερό"],"gp":["λαμπεροί","λαμπερές","λαμπερά"]},"σκοτεινός":{"t":"a","g":["σκοτεινός","σκοτεινή","σκοτεινό"],"gp":["σκοτεινοί","σκοτεινές","σκοτεινά"]},"λευκός":{"t":"a","g":["λευκός","λευκή","λευκό"],"gp":["λευκοί","λευκές","λευκά"]},"μαύρος":{"t":"a","g":["μαύρος","μαύρη","μαύρο"],"gp":["μαύροι","μαύρες","μαύρα"]},"πλούσιος":{"t":"a","g":["πλούσιος","πλούσια","πλούσιο"],"gp":["πλούσιοι","πλούσιες","πλούσια"]},"φτωχός":{"t":"a","g":["φτωχός","φτωχή","φτωχό"],"gp":["φτωχοί","φτωχές","φτωχά"]},"βαρύς":{"t":"a","g":["βαρύς","βαριά","βαρύ"],"gp":["βαριοί","βαριές","βαριά"]},"ελαφρύς":{"t":"a","g":["ελαφρύς","ελαφριά","ελαφρύ"],"gp":["ελαφριοί","ελαφριές","ελαφριά"]},"πολύχρωμος":{"t":"a","g":["πολύχρωμος","πολύχρωμη","πολύχρωμο"],"gp":["πολύχρωμοι","πολύχρωμες","πολύχρωμα"]},"μονόχρωμος":{"t":"a","g":["μονόχρωμος","μονόχρωμη","μονόχρωμο"],"gp":["μονόχρωμοι","μονόχρωμες","μονόχρωμα"]},"επιστρέφω":{"t":"v","pr":["επιστρέφω","επιστρέφεις","επιστρέφει","επιστρέφουμε","επιστρέφετε","επιστρέφουν"],"pa":["επέστρεψα","επέστρεψες","επέστρεψε","επιστρέψαμε","επιστρέψατε","επέστρεψαν"],"fu":["θα επιστρέψω","θα επιστρέψεις","θα επιστρέψει","θα επιστρέψουμε","θα επιστρέψετε","θα επιστρέψουν"]},"το λεμόνι":{"t":"n","sg":["το λεμόνι","του λεμονιού","το λεμόνι"],"pl":["τα λεμόνια","των λεμονιών","τα λεμόνια"]},"το πορτοκάλι":{"t":"n","sg":["το πορτοκάλι","του πορτοκαλιού","το πορτοκάλι"],"pl":["τα πορτοκάλια","των πορτοκαλιών","τα πορτοκάλια"]},"το αυγό":{"t":"n","sg":["το αυγό","του αυγού","το αυγό"],"pl":["τα αυγά","των αυγών","τα αυγά"]},"η σαλάτα":{"t":"n","sg":["η σαλάτα","της σαλάτας","τη σαλάτα"],"pl":["οι σαλάτες","των σαλατών","τις σαλάτες"]},"η σούπα":{"t":"n","sg":["η σούπα","της σούπας","τη σούπα"]},"το κρέας":{"t":"n","sg":["το κρέας","του κρέατος","το κρέας"],"pl":["τα κρέατα","των κρεάτων","τα κρέατα"]},"η ζάχαρη":{"t":"n","sg":["η ζάχαρη","της ζάχαρης","τη ζάχαρη"]},"το αλάτι":{"t":"n","sg":["το αλάτι","του αλατιού","το αλάτι"],"pl":["τα αλάτια","των αλατιών","τα αλάτια"]},"το πιπέρι":{"t":"n","sg":["το πιπέρι","του πιπεριού","το πιπέρι"],"pl":["τα πιπέρια","των πιπεριών","τα πιπέρια"]},"το λάδι":{"t":"n","sg":["το λάδι","του λαδιού","το λάδι"],"pl":["τα λάδια","των λαδιών","τα λάδια"]},"το βούτυρο":{"t":"n","sg":["το βούτυρο","του βουτύρου","το βούτυρο"],"pl":["τα βούτυρα","των βουτύρων","τα βούτυρα"]},"το δάσος":{"t":"n","sg":["το δάσος","του δάσους","το δάσος"],"pl":["τα δάση","των δασέων","τα δάση"]},"το ποτάμι":{"t":"n","sg":["το ποτάμι","του ποταμιού","το ποτάμι"],"pl":["τα ποτάμια","των ποταμιών","τα ποτάμια"]},"η λίμνη":{"t":"n","sg":["η λίμνη","της λίμνης","τη λίμνη"],"pl":["οι λίμνες","των λιμνών","τις λίμνες"]},"ο ωκεανός":{"t":"n","sg":["ο ωκεανός","του ωκεανού","τον ωκεανό"],"pl":["οι ωκεανοί","των ωκεανών","τους ωκεανούς"]},"το ζώο":{"t":"n","sg":["το ζώο","του ζώου","το ζώο"],"pl":["τα ζώα","των ζώων","τα ζώα"]},"το φυτό":{"t":"n","sg":["το φυτό","του φυτού","το φυτό"],"pl":["τα φυτά","των φυτών","τα φυτά"]},"ο άνθρωπος":{"t":"n","sg":["ο άνθρωπος","του ανθρώπου","τον άνθρωπο"],"pl":["οι άνθρωποι","των ανθρώπων","τους ανθρώπους"]},"το χαρτί":{"t":"n","sg":["το χαρτί","του χαρτιού","το χαρτί"],"pl":["τα χαρτιά","των χαρτιών","τα χαρτιά"]},"το μολύβι":{"t":"n","sg":["το μολύβι","του μολυβιού","το μολύβι"],"pl":["τα μολύβια","των μολυβιών","τα μολύβια"]},"το στυλό":{"t":"n","sg":["το στυλό","του στυλού","το στυλό"],"pl":["τα στυλά","των στυλών","τα στυλά"]},"το λουλούδι":{"t":"n","sg":["το λουλούδι","του λουλουδιού","το λουλούδι"],"pl":["τα λουλούδια","των λουλουδιών","τα λουλούδια"]},"το χρώμα":{"t":"n","sg":["το χρώμα","του χρώματος","το χρώμα"],"pl":["τα χρώματα","των χρωμάτων","τα χρώματα"]},"η Γη":{"t":"n","sg":["η Γη","της Γης","τη Γη"]},"το χαλί":{"t":"n","sg":["το χαλί","του χαλιού","το χαλί"],"pl":["τα χαλιά","των χαλιών","τα χαλιά"]},"ο καθρέφτης":{"t":"n","sg":["ο καθρέφτης","του καθρέφτη","τον καθρέφτη"],"pl":["οι καθρέφτες","των καθρεφτών","τους καθρέφτες"]},"η οροφή":{"t":"n","sg":["η οροφή","της οροφής","την οροφή"],"pl":["οι οροφές","των οροφών","τις οροφές"]},"το πάτωμα":{"t":"n","sg":["το πάτωμα","του πατώματος","το πάτωμα"],"pl":["τα πατώματα","των πατωμάτων","τα πατώματα"]},"το πιάτο":{"t":"n","sg":["το πιάτο","του πιάτου","το πιάτο"],"pl":["τα πιάτα","των πιάτων","τα πιάτα"]},"το κρεμμύδι":{"t":"n","sg":["το κρεμμύδι","του κρεμμυδιού","το κρεμμύδι"],"pl":["τα κρεμμύδια","των κρεμμυδιών","τα κρεμμύδια"]},"το σκόρδο":{"t":"n","sg":["το σκόρδο","του σκόρδου","το σκόρδο"],"pl":["τα σκόρδα","των σκόρδων","τα σκόρδα"]},"η ντομάτα":{"t":"n","sg":["η ντομάτα","της ντομάτας","την ντομάτα"],"pl":["οι ντομάτες","των ντοματών","τις ντομάτες"]},"το αγγούρι":{"t":"n","sg":["το αγγούρι","του αγγουριού","το αγγούρι"],"pl":["τα αγγούρια","των αγγουριών","τα αγγούρια"]},"η πατάτα":{"t":"n","sg":["η πατάτα","της πατάτας","την πατάτα"],"pl":["οι πατάτες","των πατατών","τις πατάτες"]},"το κεράσι":{"t":"n","sg":["το κεράσι","του κερασιού","το κεράσι"],"pl":["τα κεράσια","των κερασιών","τα κεράσια"]},"η φράουλα":{"t":"n","sg":["η φράουλα","της φράουλας","τη φράουλα"],"pl":["οι φράουλες","των φραουλών","τις φράουλες"]},"το σταφύλι":{"t":"n","sg":["το σταφύλι","του σταφυλιού","το σταφύλι"],"pl":["τα σταφύλια","των σταφυλιών","τα σταφύλια"]},"το καρπούζι":{"t":"n","sg":["το καρπούζι","του καρπουζιού","το καρπούζι"],"pl":["τα καρπούζια","των καρπουζιών","τα καρπούζια"]},"το πεπόνι":{"t":"n","sg":["το πεπόνι","του πεπονιού","το πεπόνι"],"pl":["τα πεπόνια","των πεπονιών","τα πεπόνια"]},"το αυτί":{"t":"n","sg":["το αυτί","του αυτιού","το αυτί"],"pl":["τα αυτιά","των αυτιών","τα αυτιά"]},"το στόμα":{"t":"n","sg":["το στόμα","του στόματος","το στόμα"],"pl":["τα στόματα","των στομάτων","τα στόματα"]},"ο πόνος":{"t":"n","sg":["ο πόνος","του πόνου","τον πόνο"],"pl":["οι πόνοι","των πόνων","τους πόνους"]},"το αίμα":{"t":"n","sg":["το αίμα","του αίματος","το αίμα"],"pl":["τα αίματα","των αιμάτων","τα αίματα"]},"ο πνεύμονας":{"t":"n","sg":["ο πνεύμονας","του πνεύμονα","τον πνεύμονα"],"pl":["οι πνεύμονες","των πνευμόνων","τους πνεύμονες"]},"το στομάχι":{"t":"n","sg":["το στομάχι","του στομαχιού","το στομάχι"],"pl":["τα στομάχια","των στομαχιών","τα στομάχια"]},"το ήπαρ":{"t":"n","sg":["το ήπαρ","του ήπατος","το ήπαρ"],"pl":["τα ήπατα","των ηπάτων","τα ήπατα"]},"το νεφρό":{"t":"n","sg":["το νεφρό","του νεφρού","το νεφρό"],"pl":["τα νεφρά","των νεφρών","τα νεφρά"]},"η φωνή":{"t":"n","sg":["η φωνή","της φωνής","τη φωνή"],"pl":["οι φωνές","των φωνών","τις φωνές"]},"ο λαιμός":{"t":"n","sg":["ο λαιμός","του λαιμού","τον λαιμό"],"pl":["οι λαιμοί","των λαιμών","τους λαιμούς"]},"η ανάσα":{"t":"n","sg":["η ανάσα","της ανάσας","την ανάσα"]},"η ζωή":{"t":"n","sg":["η ζωή","της ζωής","τη ζωή"],"pl":["οι ζωές","των ζωών","τις ζωές"]},"η υγεία":{"t":"n","sg":["η υγεία","της υγείας","την υγεία"]},"άρρωστος":{"t":"a","g":["άρρωστος","άρρωστη","άρρωστο"],"gp":["άρρωστοι","άρρωστες","άρρωστα"]},"ο γιατρός":{"t":"n","sg":["ο γιατρός","του γιατρού","τον γιατρό"],"pl":["οι γιατροί","των γιατρών","τους γιατρούς"]},"το νοσοκομείο":{"t":"n","sg":["το νοσοκομείο","του νοσοκομείου","το νοσοκομείο"],"pl":["τα νοσοκομεία","των νοσοκομείων","τα νοσοκομεία"]},"το φάρμακο":{"t":"n","sg":["το φάρμακο","του φαρμάκου","το φάρμακο"],"pl":["τα φάρμακα","των φαρμάκων","τα φάρμακα"]},"το δωμάτιο":{"t":"n","sg":["το δωμάτιο","του δωματίου","το δωμάτιο"],"pl":["τα δωμάτια","των δωματίων","τα δωμάτια"]},"το γραφείο":{"t":"n","sg":["το γραφείο","του γραφείου","το γραφείο"],"pl":["τα γραφεία","των γραφείων","τα γραφεία"]},"ο δάσκαλος":{"t":"n","sg":["ο δάσκαλος","του δασκάλου","τον δάσκαλο"],"pl":["οι δάσκαλοι","των δασκάλων","τους δάσκαλους"]},"ο μαθητής":{"t":"n","sg":["ο μαθητής","του μαθητή","τον μαθητή"],"pl":["οι μαθητές","των μαθητών","τους μαθητές"]},"το χωριό":{"t":"n","sg":["το χωριό","του χωριού","το χωριό"],"pl":["τα χωριά","των χωριών","τα χωριά"]},"τα σπίρτα":{"t":"n","pl":["τα σπίρτα","των σπίρτων","τα σπίρτα"]},"ο φούρνος":{"t":"n","sg":["ο φούρνος","του φούρνου","τον φούρνο"],"pl":["οι φούρνοι","των φούρνων","τους φούρνους"]},"το ψυγείο":{"t":"n","sg":["το ψυγείο","του ψυγείου","το ψυγείο"],"pl":["τα ψυγεία","των ψυγείων","τα ψυγεία"]},"το πλυντήριο":{"t":"n","sg":["το πλυντήριο","του πλυντηρίου","το πλυντήριο"],"pl":["τα πλυντήρια","των πλυντηρίων","τα πλυντήρια"]},"το ραδιόφωνο":{"t":"n","sg":["το ραδιόφωνο","του ραδιοφώνου","το ραδιόφωνο"],"pl":["τα ραδιόφωνα","των ραδιοφώνων","τα ραδιόφωνα"]},"η τηλεόραση":{"t":"n","sg":["η τηλεόραση","της τηλεόρασης","την τηλεόραση"],"pl":["οι τηλεοράσεις","των τηλεοράσεων","τις τηλεοράσεις"]},"το ποδήλατο":{"t":"n","sg":["το ποδήλατο","του ποδηλάτου","το ποδήλατο"],"pl":["τα ποδήλατα","των ποδηλάτων","τα ποδήλατα"]},"ο διακόπτης":{"t":"n","sg":["ο διακόπτης","του διακόπτη","τον διακόπτη"],"pl":["οι διακόπτες","των διακοπτών","τους διακόπτες"]},"ο καναπές":{"t":"n","sg":["ο καναπές","του καναπέ","τον καναπέ"],"pl":["οι καναπέδες","των καναπέδων","τους καναπέδες"]},"το ράφι":{"t":"n","sg":["το ράφι","του ραφιού","το ράφι"],"pl":["τα ράφια","των ραφιών","τα ράφια"]},"το σαπούνι":{"t":"n","sg":["το σαπούνι","του σαπουνιού","το σαπούνι"],"pl":["τα σαπούνια","των σαπουνιών","τα σαπούνια"]},"η οδοντόβουρτσα":{"t":"n","sg":["η οδοντόβουρτσα","της οδοντόβουρτσας","την οδοντόβουρτσα"],"pl":["οι οδοντόβουρτσες","των οδοντοβουρτσών","τις οδοντόβουρτσες"]},"η οδοντόκρεμα":{"t":"n","sg":["η οδοντόκρεμα","της οδοντόκρεμας","την οδοντόκρεμα"]},"ο νιπτήρας":{"t":"n","sg":["ο νιπτήρας","του νιπτήρα","τον νιπτήρα"],"pl":["οι νιπτήρες","των νιπτήρων","τους νιπτήρες"]},"η σκούπα":{"t":"n","sg":["η σκούπα","της σκούπας","τη σκούπα"],"pl":["οι σκούπες","των σκουπών","τις σκούπες"]},"η σακούλα":{"t":"n","sg":["η σακούλα","της σακούλας","τη σακούλα"],"pl":["οι σακούλες","των σακουλών","τις σακούλες"]},"τα σκουπίδια":{"t":"n","pl":["τα σκουπίδια","των σκουπιδιών","τα σκουπίδια"]},"ο κάδος":{"t":"n","sg":["ο κάδος","του κάδου","τον κάδο"],"pl":["οι κάδοι","των κάδων","τους κάδους"]},"το λάστιχο":{"t":"n","sg":["το λάστιχο","του λάστιχου","το λάστιχο"],"pl":["τα λάστιχα","των λάστιχων","τα λάστιχα"]},"η γλάστρα":{"t":"n","sg":["η γλάστρα","της γλάστρας","τη γλάστρα"],"pl":["οι γλάστρες","των γλαστρών","τις γλάστρες"]},"ο σπόρος":{"t":"n","sg":["ο σπόρος","του σπόρου","τον σπόρο"],"pl":["οι σπόροι","των σπόρων","τους σπόρους"]},"το χορτάρι":{"t":"n","sg":["το χορτάρι","του χορταριού","το χορτάρι"],"pl":["τα χορτάρια","των χορταριών","τα χορτάρια"]},"τα κλαδιά":{"t":"n","pl":["τα κλαδιά","των κλαδιών","τα κλαδιά"]},"ο φράχτης":{"t":"n","sg":["ο φράχτης","του φράχτη","τον φράχτη"],"pl":["οι φράχτες","των φραχτών","τους φράχτες"]},"η κατσαρόλα":{"t":"n","sg":["η κατσαρόλα","της κατσαρόλας","την κατσαρόλα"],"pl":["οι κατσαρόλες","των κατσαρολών","τις κατσαρόλες"]},"το τηγάνι":{"t":"n","sg":["το τηγάνι","του τηγανιού","το τηγάνι"],"pl":["τα τηγάνια","των τηγανιών","τα τηγάνια"]},"η καφετιέρα":{"t":"n","sg":["η καφετιέρα","της καφετιέρας","την καφετιέρα"]},"η λάμπα":{"t":"n","sg":["η λάμπα","της λάμπας","τη λάμπα"],"pl":["οι λάμπες","των λαμπών","τις λάμπες"]},"η κουρτίνα":{"t":"n","sg":["η κουρτίνα","της κουρτίνας","την κουρτίνα"],"pl":["οι κουρτίνες","των κουρτινών","τις κουρτίνες"]},"η κορνίζα":{"t":"n","sg":["η κορνίζα","της κορνίζας","την κορνίζα"],"pl":["οι κορνίζες","των κορνιζών","τις κορνίζες"]},"ο απορροφητήρας":{"t":"n","sg":["ο απορροφητήρας","του απορροφητήρα","τον απορροφητήρα"],"pl":["οι απορροφητήρες","των απορροφητήρων","τους απορροφητήρες"]},"η βρύση":{"t":"n","sg":["η βρύση","της βρύσης","τη βρύση"],"pl":["οι βρύσεις","των βρύσεων","τις βρύσεις"]},"μαγειρεύω":{"t":"v","pr":["μαγειρεύω","μαγειρεύεις","μαγειρεύει","μαγειρεύουμε","μαγειρεύετε","μαγειρεύουν"],"pa":["μαγείρεψα","μαγείρεψες","μαγείρεψε","μαγειρέψαμε","μαγειρέψατε","μαγείρεψαν"],"fu":["θα μαγειρέψω","θα μαγειρέψεις","θα μαγειρέψει","θα μαγειρέψουμε","θα μαγειρέψετε","θα μαγειρέψουν"]},"πλένω":{"t":"v","pr":["πλένω","πλένεις","πλένει","πλένουμε","πλένετε","πλένουν"],"pa":["έπλυνα","έπλυνες","έπλυνε","πλύναμε","πλύνατε","έπλυναν"],"fu":["θα πλύνω","θα πλύνεις","θα πλύνει","θα πλύνουμε","θα πλύνετε","θα πλύνουν"]},"σκουπίζω":{"t":"v","pr":["σκουπίζω","σκουπίζεις","σκουπίζει","σκουπίζουμε","σκουπίζετε","σκουπίζουν"],"pa":["σκούπισα","σκούπισες","σκούπισε","σκουπίσαμε","σκουπίσατε","σκούπισαν"],"fu":["θα σκουπίσω","θα σκουπίσεις","θα σκουπίσει","θα σκουπίσουμε","θα σκουπίσετε","θα σκουπίσουν"]},"καθαρίζω":{"t":"v","pr":["καθαρίζω","καθαρίζεις","καθαρίζει","καθαρίζουμε","καθαρίζετε","καθαρίζουν"],"pa":["καθάρισα","καθάρισες","καθάρισε","καθαρίσαμε","καθαρίσατε","καθάρισαν"],"fu":["θα καθαρίσω","θα καθαρίσεις","θα καθαρίσει","θα καθαρίσουμε","θα καθαρίσετε","θα καθαρίσουν"]},"φτιάχνω":{"t":"v","pr":["φτιάχνω","φτιάχνεις","φτιάχνει","φτιάχνουμε","φτιάχνετε","φτιάχνουν"],"pa":["έφτιαξα","έφτιαξες","έφτιαξε","φτιάξαμε","φτιάξατε","έφτιαξαν"],"fu":["θα φτιάξω","θα φτιάξεις","θα φτιάξει","θα φτιάξουμε","θα φτιάξετε","θα φτιάξουν"]},"ποτίζω":{"t":"v","pr":["ποτίζω","ποτίζεις","ποτίζει","ποτίζουμε","ποτίζετε","ποτίζουν"],"pa":["πότισα","πότισες","πότισε","ποτίσαμε","ποτίσατε","πότισαν"],"fu":["θα ποτίσω","θα ποτίσεις","θα ποτίσει","θα ποτίσουμε","θα ποτίσετε","θα ποτίσουν"]},"σκάβω":{"t":"v","pr":["σκάβω","σκάβεις","σκάβει","σκάβουμε","σκάβετε","σκάβουν"],"pa":["έσκαψα","έσκαψες","έσκαψε","σκάψαμε","σκάψατε","έσκαψαν"],"fu":["θα σκάψω","θα σκάψεις","θα σκάψει","θα σκάψουμε","θα σκάψετε","θα σκάψουν"]},"φυτεύω":{"t":"v","pr":["φυτεύω","φυτεύεις","φυτεύει","φυτεύουμε","φυτεύετε","φυτεύουν"],"pa":["φύτεψα","φύτεψες","φύτεψε","φυτέψαμε","φυτέψατε","φύτεψαν"],"fu":["θα φυτέψω","θα φυτέψεις","θα φυτέψει","θα φυτέψουμε","θα φυτέψετε","θα φυτέψουν"]},"ψήνω":{"t":"v","pr":["ψήνω","ψήνεις","ψήνει","ψήνουμε","ψήνετε","ψήνουν"],"pa":["έψησα","έψησες","έψησε","ψήσαμε","ψήσατε","έψησαν"],"fu":["θα ψήσω","θα ψήσεις","θα ψήσει","θα ψήσουμε","θα ψήσετε","θα ψήσουν"]},"βάζω":{"t":"v","pr":["βάζω","βάζεις","βάζει","βάζουμε","βάζετε","βάζουν"],"pa":["έβαλα","έβαλες","έβαλε","βάλαμε","βάλατε","έβαλαν"],"fu":["θα βάλω","θα βάλεις","θα βάλει","θα βάλουμε","θα βάλετε","θα βάλουν"]},"βγάζω":{"t":"v","pr":["βγάζω","βγάζεις","βγάζει","βγάζουμε","βγάζετε","βγάζουν"],"pa":["έβγαλα","έβγαλες","έβγαλε","βγάλαμε","βγάλατε","έβγαλαν"],"fu":["θα βγάλω","θα βγάλεις","θα βγάλει","θα βγάλουμε","θα βγάλετε","θα βγάλουν"]},"μαζεύω":{"t":"v","pr":["μαζεύω","μαζεύεις","μαζεύει","μαζεύουμε","μαζεύετε","μαζεύουν"],"pa":["μάζεψα","μάζεψες","μάζεψε","μαζέψαμε","μαζέψατε","μάζεψαν"],"fu":["θα μαζέψω","θα μαζέψεις","θα μαζέψει","θα μαζέψουμε","θα μαζέψετε","θα μαζέψουν"]},"αποθηκεύω":{"t":"v","pr":["αποθηκεύω","αποθηκεύεις","αποθηκεύει","αποθηκεύουμε","αποθηκεύετε","αποθηκεύουν"],"pa":["αποθήκευσα","αποθήκευσες","αποθήκευσε","αποθηκεύσαμε","αποθηκεύσατε","αποθήκευσαν"],"fu":["θα αποθηκεύσω","θα αποθηκεύσεις","θα αποθηκεύσει","θα αποθηκεύσουμε","θα αποθηκεύσετε","θα αποθηκεύσουν"]},"καθαρός":{"t":"a","g":["καθαρός","καθαρή","καθαρό"],"gp":["καθαροί","καθαρές","καθαρά"]},"βρώμικος":{"t":"a","g":["βρώμικος","βρώμικη","βρώμικο"],"gp":["βρώμικοι","βρώμικες","βρώμικα"]},"μαλακός":{"t":"a","g":["μαλακός","μαλακή","μαλακό"],"gp":["μαλακοί","μαλακές","μαλακά"]},"σκληρός":{"t":"a","g":["σκληρός","σκληρή","σκληρό"],"gp":["σκληροί","σκληρές","σκληρά"]},"φρέσκος":{"t":"a","g":["φρέσκος","φρέσκη","φρέσκο"],"gp":["φρέσκοι","φρέσκες","φρέσκα"]},"καινούργιος":{"t":"a","g":["καινούργιος","καινούργια","καινούργιο"],"gp":["καινούργιοι","καινούργιες","καινούργια"]},"άνετος":{"t":"a","g":["άνετος","άνετη","άνετο"],"gp":["άνετοι","άνετες","άνετα"]},"ασφαλής":{"t":"a","g":["ασφαλής","ασφαλής","ασφαλές"],"gp":["ασφαλείς","ασφαλείς","ασφαλή"]},"ανοιχτός":{"t":"a","g":["ανοιχτός","ανοιχτή","ανοιχτό"],"gp":["ανοιχτοί","ανοιχτές","ανοιχτά"]},"κλειστός":{"t":"a","g":["κλειστός","κλειστή","κλειστό"],"gp":["κλειστοί","κλειστές","κλειστά"]},"χαρούμενος":{"t":"a","g":["χαρούμενος","χαρούμενη","χαρούμενο"],"gp":["χαρούμενοι","χαρούμενες","χαρούμενα"]},"ήσυχος":{"t":"a","g":["ήσυχος","ήσυχη","ήσυχο"],"gp":["ήσυχοι","ήσυχες","ήσυχα"]},"το γκαζόν":{"t":"n","sg":["το γκαζόν","του γκαζόν","το γκαζόν"],"pl":["τα γκαζόν","των γκαζόν","τα γκαζόν"]},"το χαλίκι":{"t":"n","sg":["το χαλίκι","του χαλικιού","το χαλίκι"],"pl":["τα χαλίκια","των χαλικιών","τα χαλίκια"]},"η κούνια":{"t":"n","sg":["η κούνια","της κούνιας","την κούνια"]},"η σκιά":{"t":"n","sg":["η σκιά","της σκιάς","τη σκιά"],"pl":["οι σκιές","των σκιάδων","τις σκιές"]},"το κάδρο":{"t":"n","sg":["το κάδρο","του κάδρου","το κάδρο"],"pl":["τα κάδρα","των κάδρων","τα κάδρα"]},"το κερί":{"t":"n","sg":["το κερί","του κεριού","το κερί"],"pl":["τα κεριά","των κεριών","τα κεριά"]},"το τραπεζομάντηλο":{"t":"n","sg":["το τραπεζομάντηλο","του τραπεζομάντηλου","το τραπεζομάντηλο"],"pl":["τα τραπεζομάντηλα","των τραπεζομάντηλων","τα τραπεζομάντηλα"]},"το βάζο":{"t":"n","sg":["το βάζο","του βάζου","το βάζο"],"pl":["τα βάζα","των βάζων","τα βάζα"]},"το σεντόνι":{"t":"n","sg":["το σεντόνι","του σεντονιού","το σεντόνι"],"pl":["τα σεντόνια","των σεντονιών","τα σεντόνια"]},"η κουβέρτα":{"t":"n","sg":["η κουβέρτα","της κουβέρτας","την κουβέρτα"],"pl":["οι κουβέρτες","των κουβερτών","τις κουβέρτες"]},"ο γάιδαρος":{"t":"n","sg":["ο γάιδαρος","του γάιδαρου","τον γάιδαρο"],"pl":["οι γάιδαροι","των γαϊδάρων","τους γάιδαρους"]},"η αγελάδα":{"t":"n","sg":["η αγελάδα","της αγελάδας","την αγελάδα"],"pl":["οι αγελάδες","των αγελάδων","τις αγελάδες"]},"το πρόβατο":{"t":"n","sg":["το πρόβατο","του προβάτου","το πρόβατο"],"pl":["τα πρόβατα","των προβάτων","τα πρόβατα"]},"το κουνέλι":{"t":"n","sg":["το κουνέλι","του κουνελιού","το κουνέλι"],"pl":["τα κουνέλια","των κουνελιών","τα κουνέλια"]},"η αλεπού":{"t":"n","sg":["η αλεπού","της αλεπούς","την αλεπού"],"pl":["οι αλεπούδες","των αλεπούδων","τις αλεπούδες"]},"ο λύκος":{"t":"n","sg":["ο λύκος","του λύκου","τον λύκο"],"pl":["οι λύκοι","των λύκων","τους λύκους"]},"το ελάφι":{"t":"n","sg":["το ελάφι","του ελαφιού","το ελάφι"],"pl":["τα ελάφια","των ελαφιών","τα ελάφια"]},"η κότα":{"t":"n","sg":["η κότα","της κότας","την κότα"],"pl":["οι κότες","των κοτών","τις κότες"]},"το άλογο":{"t":"n","sg":["το άλογο","του αλόγου","το άλογο"],"pl":["τα άλογα","των αλόγων","τα άλογα"]},"ο λαγός":{"t":"n","sg":["ο λαγός","του λαγού","τον λαγό"],"pl":["οι λαγοί","των λαγών","τους λαγούς"]},"η αρκούδα":{"t":"n","sg":["η αρκούδα","της αρκούδας","την αρκούδα"],"pl":["οι αρκούδες","των αρκούδων","τις αρκούδες"]},"ο σκίουρος":{"t":"n","sg":["ο σκίουρος","του σκίουρου","τον σκίουρο"],"pl":["οι σκίουροι","των σκίουρων","τους σκίουρους"]},"το φίδι":{"t":"n","sg":["το φίδι","του φιδιού","το φίδι"],"pl":["τα φίδια","των φιδιών","τα φίδια"]},"το τυρί":{"t":"n","sg":["το τυρί","του τυριού","το τυρί"],"pl":["τα τυριά","των τυριών","τα τυριά"]},"το ελαιόλαδο":{"t":"n","sg":["το ελαιόλαδο","του ελαιολάδου","το ελαιόλαδο"],"pl":["τα ελαιόλαδα","των ελαιολάδων","τα ελαιόλαδα"]},"τα ζυμαρικά":{"t":"n","pl":["τα ζυμαρικά","των ζυμαρικών","τα ζυμαρικά"]},"το ρύζι":{"t":"n","sg":["το ρύζι","του ρυζιού","το ρύζι"],"pl":["τα ρύζια","των ρυζιών","τα ρύζια"]},"το αλεύρι":{"t":"n","sg":["το αλεύρι","του αλευριού","το αλεύρι"],"pl":["τα αλεύρια","των αλευριών","τα αλεύρια"]},"το γιαούρτι":{"t":"n","sg":["το γιαούρτι","του γιαουρτιού","το γιαούρτι"],"pl":["τα γιαούρτια","των γιαουρτιών","τα γιαούρτια"]},"τα αμύγδαλα":{"t":"n","pl":["τα αμύγδαλα","των αμυγδάλων","τα αμύγδαλα"]},"τα φιστίκια":{"t":"n","pl":["τα φιστίκια","των φιστικιών","τα φιστίκια"]},"οι σταφίδες":{"t":"n","pl":["οι σταφίδες","των σταφιδών","τις σταφίδες"]},"τα μπαχαρικά":{"t":"n","pl":["τα μπαχαρικά","των μπαχαρικών","τα μπαχαρικά"]},"το λουκάνικο":{"t":"n","sg":["το λουκάνικο","του λουκάνικου","το λουκάνικο"],"pl":["τα λουκάνικα","των λουκάνικων","τα λουκάνικα"]},"το σαλάμι":{"t":"n","sg":["το σαλάμι","του σαλαμιού","το σαλάμι"],"pl":["τα σαλάμια","των σαλαμιών","τα σαλάμια"]},"ο ανανάς":{"t":"n","sg":["ο ανανάς","του ανανά","τον ανανά"],"pl":["οι ανανάδες","των ανανάδων","τους ανανάδες"]},"το βερίκοκο":{"t":"n","sg":["το βερίκοκο","του βερίκοκου","το βερίκοκο"],"pl":["τα βερίκοκα","των βερίκοκων","τα βερίκοκα"]},"η μελιτζάνα":{"t":"n","sg":["η μελιτζάνα","της μελιτζάνας","τη μελιτζάνα"],"pl":["οι μελιτζάνες","των μελιτζανών","τις μελιτζάνες"]},"το μπρόκολο":{"t":"n","sg":["το μπρόκολο","του μπρόκολου","το μπρόκολο"],"pl":["τα μπρόκολα","των μπρόκολων","τα μπρόκολα"]},"το κουνουπίδι":{"t":"n","sg":["το κουνουπίδι","του κουνουπιδιού","το κουνουπίδι"],"pl":["τα κουνουπίδια","των κουνουπιδιών","τα κουνουπίδια"]},"η πιπεριά":{"t":"n","sg":["η πιπεριά","της πιπεριάς","την πιπεριά"],"pl":["οι πιπεριές","των πιπεριών","τις πιπεριές"]},"το καρότο":{"t":"n","sg":["το καρότο","του καρότου","το καρότο"],"pl":["τα καρότα","των καρότων","τα καρότα"]},"το μαρούλι":{"t":"n","sg":["το μαρούλι","του μαρουλιού","το μαρούλι"],"pl":["τα μαρούλια","των μαρουλιών","τα μαρούλια"]},"το σπανάκι":{"t":"n","sg":["το σπανάκι","του σπανακιού","το σπανάκι"],"pl":["τα σπανάκια","των σπανακιών","τα σπανάκια"]},"τα φασόλια":{"t":"n","pl":["τα φασόλια","των φασολιών","τα φασόλια"]},"οι φακές":{"t":"n","pl":["οι φακές","των φακών","τις φακές"]},"τα ρεβύθια":{"t":"n","pl":["τα ρεβύθια","των ρεβιθιών","τα ρεβύθια"]},"το σουσάμι":{"t":"n","sg":["το σουσάμι","του σουσαμιού","το σουσάμι"],"pl":["τα σουσάμια","των σουσαμιών","τα σουσάμια"]},"η μαρμελάδα":{"t":"n","sg":["η μαρμελάδα","της μαρμελάδας","τη μαρμελάδα"],"pl":["οι μαρμελάδες","των μαρμελάδων","τις μαρμελάδες"]},"το ξίδι":{"t":"n","sg":["το ξίδι","του ξιδιού","το ξίδι"],"pl":["τα ξίδια","των ξιδιών","τα ξίδια"]},"ο σολομός":{"t":"n","sg":["ο σολομός","του σολομού","τον σολομό"],"pl":["οι σολομοί","των σολομών","τους σολομούς"]},"ο τόνος":{"t":"n","sg":["ο τόνος","του τόνου","τον τόνο"],"pl":["οι τόνοι","των τόνων","τους τόνους"]},"η τσάντα":{"t":"n","sg":["η τσάντα","της τσάντας","την τσάντα"],"pl":["οι τσάντες","των τσαντών","τις τσάντες"]},"το ρολόι":{"t":"n","sg":["το ρολόι","του ρολογιού","το ρολόι"],"pl":["τα ρολόγια","των ρολογιών","τα ρολόγια"]},"τα κοσμήματα":{"t":"n","pl":["τα κοσμήματα","των κοσμημάτων","τα κοσμήματα"]},"τα καλλυντικά":{"t":"n","pl":["τα καλλυντικά","των καλλυντικών","τα καλλυντικά"]},"τα ηλεκτρονικά":{"t":"n","pl":["τα ηλεκτρονικά","των ηλεκτρονικών","τα ηλεκτρονικά"]},"ο δίσκος":{"t":"n","sg":["ο δίσκος","του δίσκου","τον δίσκο"],"pl":["οι δίσκοι","των δίσκων","τους δίσκους"]},"η εφημερίδα":{"t":"n","sg":["η εφημερίδα","της εφημερίδας","την εφημερίδα"],"pl":["οι εφημερίδες","των εφημερίδων","τις εφημερίδες"]},"το περιοδικό":{"t":"n","sg":["το περιοδικό","του περιοδικού","το περιοδικό"],"pl":["τα περιοδικά","των περιοδικών","τα περιοδικά"]},"το τετράδιο":{"t":"n","sg":["το τετράδιο","του τετραδίου","το τετράδιο"],"pl":["τα τετράδια","των τετραδίων","τα τετράδια"]},"το σαμπουάν":{"t":"n","sg":["το σαμπουάν","του σαμπουάν","το σαμπουάν"],"pl":["τα σαμπουάν","των σαμπουάν","τα σαμπουάν"]},"οι χαρτοπετσέτες":{"t":"n","pl":["οι χαρτοπετσέτες","των χαρτοπετσετών","τις χαρτοπετσέτες"]},"το αφρόλουτρο":{"t":"n","sg":["το αφρόλουτρο","του αφρόλουτρου","το αφρόλουτρο"],"pl":["τα αφρόλουτρα","των αφρόλουτρων","τα αφρόλουτρα"]},"το απορρυπαντικό":{"t":"n","sg":["το απορρυπαντικό","του απορρυπαντικού","το απορρυπαντικό"],"pl":["τα απορρυπαντικά","των απορρυπαντικών","τα απορρυπαντικά"]},"το μαξιλάρι":{"t":"n","sg":["το μαξιλάρι","του μαξιλαριού","το μαξιλάρι"],"pl":["τα μαξιλάρια","των μαξιλαριών","τα μαξιλάρια"]},"το φαρμακείο":{"t":"n","sg":["το φαρμακείο","του φαρμακείου","το φαρμακείο"],"pl":["τα φαρμακεία","των φαρμακείων","τα φαρμακεία"]},"το κρεοπωλείο":{"t":"n","sg":["το κρεοπωλείο","του κρεοπωλείου","το κρεοπωλείο"],"pl":["τα κρεοπωλεία","των κρεοπωλείων","τα κρεοπωλεία"]},"το περίπτερο":{"t":"n","sg":["το περίπτερο","του περιπτέρου","το περίπτερο"],"pl":["τα περίπτερα","των περιπτέρων","τα περίπτερα"]},"το βιβλιοπωλείο":{"t":"n","sg":["το βιβλιοπωλείο","του βιβλιοπωλείου","το βιβλιοπωλείο"],"pl":["τα βιβλιοπωλεία","των βιβλιοπωλείων","τα βιβλιοπωλεία"]},"το ανθοπωλείο":{"t":"n","sg":["το ανθοπωλείο","του ανθοπωλείου","το ανθοπωλείο"],"pl":["τα ανθοπωλεία","των ανθοπωλείων","τα ανθοπωλεία"]},"το παιχνιδάδικο":{"t":"n","sg":["το παιχνιδάδικο","του παιχνιδάδικου","το παιχνιδάδικο"],"pl":["τα παιχνιδάδικα","των παιχνιδάδικων","τα παιχνιδάδικα"]},"το ζαχαροπλαστείο":{"t":"n","sg":["το ζαχαροπλαστείο","του ζαχαροπλαστείου","το ζαχαροπλαστείο"],"pl":["τα ζαχαροπλαστεία","των ζαχαροπλαστείων","τα ζαχαροπλαστεία"]},"η ταβέρνα":{"t":"n","sg":["η ταβέρνα","της ταβέρνας","την ταβέρνα"],"pl":["οι ταβέρνες","των ταβερνών","τις ταβέρνες"]},"η καφετέρια":{"t":"n","sg":["η καφετέρια","της καφετέριας","την καφετέρια"],"pl":["οι καφετέριες","των καφετεριών","τις καφετέριες"]},"το εστιατόριο":{"t":"n","sg":["το εστιατόριο","του εστιατορίου","το εστιατόριο"],"pl":["τα εστιατόρια","των εστιατορίων","τα εστιατόρια"]},"το μανάβικο":{"t":"n","sg":["το μανάβικο","του μανάβικου","το μανάβικο"],"pl":["τα μανάβικα","των μανάβικων","τα μανάβικα"]},"το μενού":{"t":"n","sg":["το μενού","του μενού","το μενού"],"pl":["τα μενού","των μενού","τα μενού"]},"η παραγγελία":{"t":"n","sg":["η παραγγελία","της παραγγελίας","την παραγγελία"],"pl":["οι παραγγελίες","των παραγγελιών","τις παραγγελίες"]},"ο σερβιτόρος":{"t":"n","sg":["ο σερβιτόρος","του σερβιτόρου","τον σερβιτόρο"],"pl":["οι σερβιτόροι","των σερβιτόρων","τους σερβιτόρους"]},"το κρασί":{"t":"n","sg":["το κρασί","του κρασιού","το κρασί"],"pl":["τα κρασιά","των κρασιών","τα κρασιά"]},"η μπύρα":{"t":"n","sg":["η μπύρα","της μπύρας","την μπύρα"]},"το μαλακτικό":{"t":"n","sg":["το μαλακτικό","του μαλακτικού","το μαλακτικό"],"pl":["τα μαλακτικά","των μαλακτικών","τα μαλακτικά"]},"η πετσέτα":{"t":"n","sg":["η πετσέτα","της πετσέτας","την πετσέτα"],"pl":["οι πετσέτες","των πετσετών","τις πετσέτες"]},"το γαλακτοπωλείο":{"t":"n","sg":["το γαλακτοπωλείο","του γαλακτοπωλείου","το γαλακτοπωλείο"],"pl":["τα γαλακτοπωλεία","των γαλακτοπωλείων","τα γαλακτοπωλεία"]},"ο χυμός":{"t":"n","sg":["ο χυμός","του χυμού","τον χυμό"],"pl":["οι χυμοί","των χυμών","τους χυμούς"]},"το επιδόρπιο":{"t":"n","sg":["το επιδόρπιο","του επιδορπίου","το επιδόρπιο"],"pl":["τα επιδόρπια","των επιδορπίων","τα επιδόρπια"]},"το ποτό":{"t":"n","sg":["το ποτό","του ποτού","το ποτό"],"pl":["τα ποτά","των ποτών","τα ποτά"]},"ο λογαριασμός":{"t":"n","sg":["ο λογαριασμός","του λογαριασμού","τον λογαριασμό"],"pl":["οι λογαριασμοί","των λογαριασμών","τους λογαριασμούς"]},"η απόδειξη":{"t":"n","sg":["η απόδειξη","της απόδειξης","την απόδειξη"],"pl":["οι αποδείξεις","των αποδείξεων","τις αποδείξεις"]},"το μεσημεριανό":{"t":"n","sg":["το μεσημεριανό","του μεσημεριανού","το μεσημεριανό"],"pl":["τα μεσημεριανά","των μεσημεριανών","τα μεσημεριανά"]},"το βραδινό":{"t":"n","sg":["το βραδινό","του βραδινού","το βραδινό"],"pl":["τα βραδινά","των βραδινών","τα βραδινά"]},"το πρωινό":{"t":"n","sg":["το πρωινό","του πρωινού","το πρωινό"],"pl":["τα πρωινά","των πρωινών","τα πρωινά"]},"το ορεκτικό":{"t":"n","sg":["το ορεκτικό","του ορεκτικού","το ορεκτικό"],"pl":["τα ορεκτικά","των ορεκτικών","τα ορεκτικά"]},"η σερβιτόρα":{"t":"n","sg":["η σερβιτόρα","της σερβιτόρας","τη σερβιτόρα"]},"ο πελάτης":{"t":"n","sg":["ο πελάτης","του πελάτη","τον πελάτη"],"pl":["οι πελάτες","των πελατών","τους πελάτες"]},"αγοράζω":{"t":"v","pr":["αγοράζω","αγοράζεις","αγοράζει","αγοράζουμε","αγοράζετε","αγοράζουν"],"pa":["αγόρασα","αγόρασες","αγόρασε","αγοράσαμε","αγοράσατε","αγόρασαν"],"fu":["θα αγοράσω","θα αγοράσεις","θα αγοράσει","θα αγοράσουμε","θα αγοράσετε","θα αγοράσουν"]},"πουλάω":{"t":"v","pr":["πουλάω","πουλάς","πουλάει","πουλάμε","πουλάτε","πουλούν"],"pa":["πούλησα","πούλησες","πούλησε","πουλήσαμε","πουλήσατε","πούλησαν"],"fu":["θα πουλήσω","θα πουλήσεις","θα πουλήσει","θα πουλήσουμε","θα πουλήσετε","θα πουλήσουν"]},"παραγγέλνω":{"t":"v","pr":["παραγγέλνω","παραγγέλνεις","παραγγέλνει","παραγγέλνουμε","παραγγέλνετε","παραγγέλνουν"],"pa":["παράγγειλα","παράγγειλες","παράγγειλε","παραγγείλαμε","παραγγείλατε","παράγγειλαν"],"fu":["θα παραγγείλω","θα παραγγείλεις","θα παραγγείλει","θα παραγγείλουμε","θα παραγγείλετε","θα παραγγείλουν"]},"πληρώνω":{"t":"v","pr":["πληρώνω","πληρώνεις","πληρώνει","πληρώνουμε","πληρώνετε","πληρώνουν"],"pa":["πλήρωσα","πλήρωσες","πλήρωσε","πληρώσαμε","πληρώσατε","πλήρωσαν"],"fu":["θα πληρώσω","θα πληρώσεις","θα πληρώσει","θα πληρώσουμε","θα πληρώσετε","θα πληρώσουν"]},"σερβίρω":{"t":"v","pr":["σερβίρω","σερβίρεις","σερβίρει","σερβίρουμε","σερβίρετε","σερβίρουν"],"pa":["σέρβιρα","σέρβιρες","σέρβιρε","σερβίραμε","σερβίρατε","σέρβιραν"],"fu":["θα σερβίρω","θα σερβίρεις","θα σερβίρει","θα σερβίρουμε","θα σερβίρετε","θα σερβίρουν"]},"διαλέγω":{"t":"v","pr":["διαλέγω","διαλέγεις","διαλέγει","διαλέγουμε","διαλέγετε","διαλέγουν"],"pa":["διάλεξα","διάλεξες","διάλεξε","διαλέξαμε","διαλέξατε","διάλεξαν"],"fu":["θα διαλέξω","θα διαλέξεις","θα διαλέξει","θα διαλέξουμε","θα διαλέξετε","θα διαλέξουν"]},"φέρνω":{"t":"v","pr":["φέρνω","φέρνεις","φέρνει","φέρνουμε","φέρνετε","φέρνουν"],"pa":["έφερα","έφερες","έφερε","φέραμε","φέρατε","έφεραν"],"fu":["θα φέρω","θα φέρεις","θα φέρει","θα φέρουμε","θα φέρετε","θα φέρουν"]},"προσφέρω":{"t":"v","pr":["προσφέρω","προσφέρεις","προσφέρει","προσφέρουμε","προσφέρετε","προσφέρουν"],"pa":["πρόσφερα","πρόσφερες","πρόσφερε","προσφέραμε","προσφέρατε","πρόσφεραν"],"fu":["θα προσφέρω","θα προσφέρεις","θα προσφέρει","θα προσφέρουμε","θα προσφέρετε","θα προσφέρουν"]},"συσκευάζω":{"t":"v","pr":["συσκευάζω","συσκευάζεις","συσκευάζει","συσκευάζουμε","συσκευάζετε","συσκευάζουν"],"pa":["συσκεύασα","συσκεύασες","συσκεύασε","συσκευάσαμε","συσκευάσατε","συσκεύασαν"],"fu":["θα συσκευάσω","θα συσκευάσεις","θα συσκευάσει","θα συσκευάσουμε","θα συσκευάσετε","θα συσκευάσουν"]},"μπαίνω":{"t":"v","pr":["μπαίνω","μπαίνεις","μπαίνει","μπαίνουμε","μπαίνετε","μπαίνουν"],"pa":["μπήκα","μπήκες","μπήκε","μπήκαμε","μπήκατε","μπήκαν"],"fu":["θα μπω","θα μπεις","θα μπει","θα μπούμε","θα μπείτε","θα μπουν"]},"βγαίνω":{"t":"v","pr":["βγαίνω","βγαίνεις","βγαίνει","βγαίνουμε","βγαίνετε","βγαίνουν"],"pa":["βγήκα","βγήκες","βγήκε","βγήκαμε","βγήκατε","βγήκαν"],"fu":["θα βγω","θα βγεις","θα βγει","θα βγούμε","θα βγείτε","θα βγουν"]},"δοκιμάζω":{"t":"v","pr":["δοκιμάζω","δοκιμάζεις","δοκιμάζει","δοκιμάζουμε","δοκιμάζετε","δοκιμάζουν"],"pa":["δοκίμασα","δοκίμασες","δοκίμασε","δοκιμάσαμε","δοκιμάσατε","δοκίμασαν"],"fu":["θα δοκιμάσω","θα δοκιμάσεις","θα δοκιμάσει","θα δοκιμάσουμε","θα δοκιμάσετε","θα δοκιμάσουν"]},"ζυγίζω":{"t":"v","pr":["ζυγίζω","ζυγίζεις","ζυγίζει","ζυγίζουμε","ζυγίζετε","ζυγίζουν"],"pa":["ζύγισα","ζύγισες","ζύγισε","ζυγίσαμε","ζυγίσατε","ζύγισαν"],"fu":["θα ζυγίσω","θα ζυγίσεις","θα ζυγίσει","θα ζυγίσουμε","θα ζυγίσετε","θα ζυγίσουν"]},"νόστιμος":{"t":"a","g":["νόστιμος","νόστιμη","νόστιμο"],"gp":["νόστιμοι","νόστιμες","νόστιμα"]},"φθηνός/φτηνός":{"t":"a","g":["φθηνός","φθηνή","φθηνό"],"gp":["φθηνοί","φθηνές","φθηνά"]},"ακριβός":{"t":"a","g":["ακριβός","ακριβή","ακριβό"],"gp":["ακριβοί","ακριβές","ακριβά"]},"ποιοτικός":{"t":"a","g":["ποιοτικός","ποιοτική","ποιοτικό"],"gp":["ποιοτικοί","ποιοτικές","ποιοτικά"]},"χορταστικός":{"t":"a","g":["χορταστικός","χορταστική","χορταστικό"],"gp":["χορταστικοί","χορταστικές","χορταστικά"]},"οργανικός":{"t":"a","g":["οργανικός","οργανική","οργανικό"],"gp":["οργανικοί","οργανικές","οργανικά"]},"εξοχικός":{"t":"a","g":["εξοχικός","εξοχική","εξοχικό"],"gp":["εξοχικοί","εξοχικές","εξοχικά"]},"φωτεινός":{"t":"a","g":["φωτεινός","φωτεινή","φωτεινό"],"gp":["φωτεινοί","φωτεινές","φωτεινά"]},"η άνεση":{"t":"n","sg":["η άνεση","της άνεσης","την άνεση"],"pl":["οι ανέσεις","των ανέσεων","τις ανέσεις"]},"το υπνοδωμάτιο":{"t":"n","sg":["το υπνοδωμάτιο","του υπνοδωματίου","το υπνοδωμάτιο"],"pl":["τα υπνοδωμάτια","των υπνοδωματίων","τα υπνοδωμάτια"]},"το υπόγειο":{"t":"n","sg":["το υπόγειο","του υπογείου","το υπόγειο"],"pl":["τα υπόγεια","των υπογείων","τα υπόγεια"]},"ο χώρος":{"t":"n","sg":["ο χώρος","του χώρου","τον χώρο"],"pl":["οι χώροι","των χώρων","τους χώρους"]},"η αποθήκη":{"t":"n","sg":["η αποθήκη","της αποθήκης","την αποθήκη"],"pl":["οι αποθήκες","των αποθηκών","τις αποθήκες"]},"ατομικός":{"t":"a","g":["ατομικός","ατομική","ατομικό"],"gp":["ατομικοί","ατομικές","ατομικά"]},"η θέρμανση":{"t":"n","sg":["η θέρμανση","της θέρμανσης","τη θέρμανση"],"pl":["οι θερμάνσεις","των θερμάνσεων","τις θερμάνσεις"]},"το πετρέλαιο":{"t":"n","sg":["το πετρέλαιο","του πετρελαίου","το πετρέλαιο"],"pl":["τα πετρέλαια","των πετρελαίων","τα πετρέλαια"]},"η θέση":{"t":"n","sg":["η θέση","της θέσης","τη θέση"],"pl":["οι θέσεις","των θέσεων","τις θέσεις"]},"το έτος":{"t":"n","sg":["το έτος","του έτους","το έτος"],"pl":["τα έτη","των ετών","τα έτη"]},"η θέα":{"t":"n","sg":["η θέα","της θέας","τη θέα"]},"επικοινωνώ":{"t":"v","pr":["επικοινωνώ","επικοινωνείς","επικοινωνεί","επικοινωνούμε","επικοινωνείτε","επικοινωνούν"],"pa":["επικοινώνησα","επικοινώνησες","επικοινώνησε","επικοινωνήσαμε","επικοινωνήσατε","επικοινώνησαν"],"fu":["θα επικοινωνήσω","θα επικοινωνήσεις","θα επικοινωνήσει","θα επικοινωνήσουμε","θα επικοινωνήσετε","θα επικοινωνήσουν"]},"μεσιτικός":{"t":"a","g":["μεσιτικός","μεσιτική","μεσιτικό"],"gp":["μεσιτικοί","μεσιτικές","μεσιτικά"]},"ο καιρός":{"t":"n","sg":["ο καιρός","του καιρού","τον καιρό"],"pl":["οι καιροί","των καιρών","τους καιρούς"]},"η αστραπή":{"t":"n","sg":["η αστραπή","της αστραπής","την αστραπή"],"pl":["οι αστραπές","των αστραπών","τις αστραπές"]},"η βροντή":{"t":"n","sg":["η βροντή","της βροντής","τη βροντή"],"pl":["οι βροντές","των βροντών","τις βροντές"]},"το χαλάζι":{"t":"n","sg":["το χαλάζι","του χαλαζιού","το χαλάζι"],"pl":["τα χαλάζια","των χαλαζιών","τα χαλάζια"]},"ο παγετός":{"t":"n","sg":["ο παγετός","του παγετού","τον παγετό"],"pl":["οι παγετοί","των παγετών","τους παγετούς"]},"τα σύννεφα":{"t":"n","pl":["τα σύννεφα","των σύννεφων","τα σύννεφα"]},"η λάσπη":{"t":"n","sg":["η λάσπη","της λάσπης","τη λάσπη"],"pl":["οι λάσπες","των λασπών","τις λάσπες"]},"το κύμα":{"t":"n","sg":["το κύμα","του κύματος","το κύμα"],"pl":["τα κύματα","των κυμάτων","τα κύματα"]},"το θερμόμετρο":{"t":"n","sg":["το θερμόμετρο","του θερμομέτρου","το θερμόμετρο"],"pl":["τα θερμόμετρα","των θερμομέτρων","τα θερμόμετρα"]},"το ψύχος":{"t":"n","sg":["το ψύχος","του ψύχους","το ψύχος"]},"η ζέστη":{"t":"n","sg":["η ζέστη","της ζέστης","τη ζέστη"]},"η υγρασία":{"t":"n","sg":["η υγρασία","της υγρασίας","την υγρασία"],"pl":["οι υγρασίες","των υγρασιών","τις υγρασίες"]},"η πεδιάδα":{"t":"n","sg":["η πεδιάδα","της πεδιάδας","την πεδιάδα"],"pl":["οι πεδιάδες","των πεδιάδων","τις πεδιάδες"]},"ο λόφος":{"t":"n","sg":["ο λόφος","του λόφου","τον λόφο"],"pl":["οι λόφοι","των λόφων","τους λόφους"]},"ο καταρράκτης":{"t":"n","sg":["ο καταρράκτης","του καταρράκτη","τον καταρράκτη"],"pl":["οι καταρράκτες","των καταρρακτών","τους καταρράκτες"]},"η ακτή":{"t":"n","sg":["η ακτή","της ακτής","την ακτή"],"pl":["οι ακτές","των ακτών","τις ακτές"]},"η παραλία":{"t":"n","sg":["η παραλία","της παραλίας","την παραλία"],"pl":["οι παραλίες","των παραλιών","τις παραλίες"]},"η άμμος":{"t":"n","sg":["η άμμος","της άμμου","την άμμο"],"pl":["οι άμμοι","των άμμων","τις άμμους"]},"το νησί":{"t":"n","sg":["το νησί","του νησιού","το νησί"],"pl":["τα νησιά","των νησιών","τα νησιά"]},"η πηγή":{"t":"n","sg":["η πηγή","της πηγής","την πηγή"],"pl":["οι πηγές","των πηγάδων","τις πηγές"]},"το φύλλο":{"t":"n","sg":["το φύλλο","του φύλλου","το φύλλο"],"pl":["τα φύλλα","των φύλλων","τα φύλλα"]},"η στάθμευση":{"t":"n","sg":["η στάθμευση","της στάθμευσης","τη στάθμευση"],"pl":["οι σταθμεύσεις","των σταθμεύσεων","τις σταθμεύσεις"]},"το κλαδί":{"t":"n","sg":["το κλαδί","του κλαδιού","το κλαδί"],"pl":["τα κλαδιά","των κλαδιών","τα κλαδιά"]},"το αμπέλι":{"t":"n","sg":["το αμπέλι","του αμπελιού","το αμπέλι"],"pl":["τα αμπέλια","των αμπελιών","τα αμπέλια"]},"η ελιά":{"t":"n","sg":["η ελιά","της ελιάς","την ελιά"],"pl":["οι ελιές","των ελιών","τις ελιές"]},"το πεύκο":{"t":"n","sg":["το πεύκο","του πεύκου","το πεύκο"],"pl":["τα πεύκα","των πεύκων","τα πεύκα"]},"η πορτοκαλιά":{"t":"n","sg":["η πορτοκαλιά","της πορτοκαλιάς","την πορτοκαλιά"],"pl":["οι πορτοκαλιές","των πορτοκαλιών","τις πορτοκαλιές"]},"η μηλιά":{"t":"n","sg":["η μηλιά","της μηλιάς","τη μηλιά"],"pl":["οι μηλιές","των μηλιών","τις μηλιές"]},"το πουλί":{"t":"n","sg":["το πουλί","του πουλιού","το πουλί"],"pl":["τα πουλιά","των πουλιών","τα πουλιά"]},"η πεταλούδα":{"t":"n","sg":["η πεταλούδα","της πεταλούδας","την πεταλούδα"],"pl":["οι πεταλούδες","των πεταλούδων","τις πεταλούδες"]},"η μέλισσα":{"t":"n","sg":["η μέλισσα","της μέλισσας","τη μέλισσα"],"pl":["οι μέλισσες","των μελισσών","τις μέλισσες"]},"δικός":{"t":"a","g":["δικός","δική","δικό"],"gp":["δικοί","δικές","δικά"]},"ο τοίχος":{"t":"n","sg":["ο τοίχος","του τοίχου","τον τοίχο"],"pl":["οι τοίχοι","των τοίχων","τους τοίχους"]},"ξεκινώ":{"t":"v","pr":["ξεκινώ","ξεκινάς","ξεκινά","ξεκινάμε","ξεκινάτε","ξεκινούν"],"pa":["ξεκίνησα","ξεκίνησες","ξεκίνησε","ξεκινήσαμε","ξεκινήσατε","ξεκίνησαν"],"fu":["θα ξεκινήσω","θα ξεκινήσεις","θα ξεκινήσει","θα ξεκινήσουμε","θα ξεκινήσετε","θα ξεκινήσουν"]},"ο χορός":{"t":"n","sg":["ο χορός","του χορού","τον χορό"],"pl":["οι χοροί","των χορών","τους χορούς"]},"το κυλικείο":{"t":"n","sg":["το κυλικείο","του κυλικείου","το κυλικείο"],"pl":["τα κυλικεία","των κυλικείων","τα κυλικεία"]},"η προσοχή":{"t":"n","sg":["η προσοχή","της προσοχής","την προσοχή"],"pl":["οι προσοχές","των προσοχών","τις προσοχές"]},"το έργο":{"t":"n","sg":["το έργο","του έργου","το έργο"],"pl":["τα έργα","των έργων","τα έργα"]},"το διάλειμμα":{"t":"n","sg":["το διάλειμμα","του διαλείμματος","το διάλειμμα"],"pl":["τα διαλείμματα","των διαλειμμάτων","τα διαλείμματα"]},"κερδίζω":{"t":"v","pr":["κερδίζω","κερδίζεις","κερδίζει","κερδίζουμε","κερδίζετε","κερδίζουν"],"pa":["κέρδισα","κέρδισες","κέρδισε","κερδίσαμε","κερδίσατε","κέρδισαν"],"fu":["θα κερδίσω","θα κερδίσεις","θα κερδίσει","θα κερδίσουμε","θα κερδίσετε","θα κερδίσουν"]},"το κουτί":{"t":"n","sg":["το κουτί","του κουτιού","το κουτί"],"pl":["τα κουτιά","των κουτιών","τα κουτιά"]},"οι νερομπογιές":{"t":"n","pl":["οι νερομπογιές","των νερομπογιών","τις νερομπογιές"]},"οι πληροφορίες":{"t":"n","pl":["οι πληροφορίες","των πληροφοριών","τις πληροφορίες"]},"αστείος":{"t":"a","g":["αστείος","αστεία","αστείο"],"gp":["αστείοι","αστείες","αστεία"]},"η φασαρία":{"t":"n","sg":["η φασαρία","της φασαρίας","τη φασαρία"],"pl":["οι φασαρίες","των φασαριών","τις φασαρίες"]},"πρέπει":{"t":"v","imp":true,"pr":["πρέπει"],"pa":["έπρεπε"],"fu":["θα πρέπει"]},"ο διαγωνισμός":{"t":"n","sg":["ο διαγωνισμός","του διαγωνισμού","τον διαγωνισμό"],"pl":["οι διαγωνισμοί","των διαγωνισμών","τους διαγωνισμούς"]},"η δευτέρα":{"t":"n","sg":["η δευτέρα","της δευτέρας","τη δευτέρα"],"pl":["οι δευτέρες","των δευτερών","τις δευτέρες"]},"η τρίτη":{"t":"n","sg":["η τρίτη","της τρίτης","την τρίτη"],"pl":["οι τρίτες","των τριτών","τις τρίτες"]},"η τετάρτη":{"t":"n","sg":["η τετάρτη","της τετάρτης","την τετάρτη"],"pl":["οι τετάρτες","των τεταρτών","τις τετάρτες"]},"η πέμπτη":{"t":"n","sg":["η πέμπτη","της πέμπτης","την πέμπτη"],"pl":["οι πέμπτες","των πεμπτών","τις πέμπτες"]},"η παρασκευή":{"t":"n","sg":["η παρασκευή","της παρασκευής","την παρασκευή"],"pl":["οι παρασκευές","των παρασκευών","τις παρασκευές"]},"το σάββατο":{"t":"n","sg":["το σάββατο","του σαββάτου","το σάββατο"],"pl":["τα σάββατα","των σαββάτων","τα σάββατα"]},"η κυριακή":{"t":"n","sg":["η κυριακή","της κυριακής","την κυριακή"],"pl":["οι κυριακές","των κυριακών","τις κυριακές"]},"το πρωί":{"t":"n","sg":["το πρωί","του πρωινού","το πρωί"],"pl":["τα πρωινά","των πρωινών","τα πρωινά"]},"το μεσημέρι":{"t":"n","sg":["το μεσημέρι","του μεσημεριού","το μεσημέρι"],"pl":["τα μεσημέρια","των μεσημεριών","τα μεσημέρια"]},"το απόγευμα":{"t":"n","sg":["το απόγευμα","του απογεύματος","το απόγευμα"],"pl":["τα απογεύματα","των απογευμάτων","τα απογεύματα"]},"το βράδυ":{"t":"n","sg":["το βράδυ","του βραδιού","το βράδυ"],"pl":["τα βράδια","των βραδιών","τα βράδια"]},"το σαββατοκύριακο":{"t":"n","sg":["το σαββατοκύριακο","του σαββατοκύριακου","το σαββατοκύριακο"],"pl":["τα σαββατοκύριακα","των σαββατοκύριακων","τα σαββατοκύριακα"]},"η διάρκεια":{"t":"n","sg":["η διάρκεια","της διάρκειας","τη διάρκεια"],"pl":["οι διάρκειες","των διαρκειών","τις διάρκειες"]},"η αρχή":{"t":"n","sg":["η αρχή","της αρχής","την αρχή"],"pl":["οι αρχές","των αρχών","τις αρχές"]},"το τέλος":{"t":"n","sg":["το τέλος","του τέλους","το τέλος"],"pl":["τα τέλη","των τελών","τα τέλη"]},"η εποχή":{"t":"n","sg":["η εποχή","της εποχής","την εποχή"],"pl":["οι εποχές","των εποχών","τις εποχές"]},"η σχέση":{"t":"n","sg":["η σχέση","της σχέσης","τη σχέση"],"pl":["οι σχέσεις","των σχέσεων","τις σχέσεις"]},"χαμηλός":{"t":"a","g":["χαμηλός","χαμηλή","χαμηλό"],"gp":["χαμηλοί","χαμηλές","χαμηλά"]},"σκοπεύω":{"t":"v","pr":["σκοπεύω","σκοπεύεις","σκοπεύει","σκοπεύουμε","σκοπεύετε","σκοπεύουν"],"pa":["σκόπευσα","σκόπευσες","σκόπευσε","σκοπεύσαμε","σκοπεύσατε","σκόπευσαν"],"fu":["θα σκοπεύσω","θα σκοπεύσεις","θα σκοπεύσει","θα σκοπεύσουμε","θα σκοπεύσετε","θα σκοπεύσουν"]},"η συζήτηση":{"t":"n","sg":["η συζήτηση","της συζήτησης","τη συζήτηση"],"pl":["οι συζητήσεις","των συζητήσεων","τις συζητήσεις"]},"το διαμέρισμα":{"t":"n","sg":["το διαμέρισμα","του διαμερίσματος","το διαμέρισμα"],"pl":["τα διαμερίσματα","των διαμερισμάτων","τα διαμερίσματα"]},"η εκκλησία":{"t":"n","sg":["η εκκλησία","της εκκλησίας","την εκκλησία"],"pl":["οι εκκλησίες","των εκκλησιών","τις εκκλησίες"]},"το δημαρχείο":{"t":"n","sg":["το δημαρχείο","του δημαρχείου","το δημαρχείο"],"pl":["τα δημαρχεία","των δημαρχείων","τα δημαρχεία"]},"ο σταθμός":{"t":"n","sg":["ο σταθμός","του σταθμού","τον σταθμό"],"pl":["οι σταθμοί","των σταθμών","τους σταθμούς"]},"το κατάστημα":{"t":"n","sg":["το κατάστημα","του καταστήματος","το κατάστημα"],"pl":["τα καταστήματα","των καταστημάτων","τα καταστήματα"]},"το θέατρο":{"t":"n","sg":["το θέατρο","του θεάτρου","το θέατρο"],"pl":["τα θέατρα","των θεάτρων","τα θέατρα"]},"το μουσείο":{"t":"n","sg":["το μουσείο","του μουσείου","το μουσείο"],"pl":["τα μουσεία","των μουσείων","τα μουσεία"]},"το ξενοδοχείο":{"t":"n","sg":["το ξενοδοχείο","του ξενοδοχείου","το ξενοδοχείο"],"pl":["τα ξενοδοχεία","των ξενοδοχείων","τα ξενοδοχεία"]},"το σινεμά":{"t":"n","sg":["το σινεμά","του σινεμά","το σινεμά"],"pl":["τα σινεμά","των σινεμά","τα σινεμά"]},"το αεροδρόμιο":{"t":"n","sg":["το αεροδρόμιο","του αεροδρομίου","το αεροδρόμιο"],"pl":["τα αεροδρόμια","των αεροδρομίων","τα αεροδρόμια"]},"το λιμάνι":{"t":"n","sg":["το λιμάνι","του λιμανιού","το λιμάνι"],"pl":["τα λιμάνια","των λιμανιών","τα λιμάνια"]},"ο/η γιατρός":{"t":"n","sg":["ο γιατρός","του γιατρού","τον γιατρό"],"pl":["οι γιατροί","των γιατρών","τους γιατρούς"]},"ο/η αστυνομικός":{"t":"n","sg":["ο αστυνομικός","του αστυνομικού","τον αστυνομικό"],"pl":["οι αστυνομικοί","των αστυνομικών","τους αστυνομικούς"]},"ο/η δικηγόρος":{"t":"n","sg":["ο δικηγόρος","του δικηγόρου","τον δικηγόρο"],"pl":["οι δικηγόροι","των δικηγόρων","τους δικηγόρους"]},"ο/η μηχανικός":{"t":"n","sg":["ο μηχανικός","του μηχανικού","τον μηχανικό"],"pl":["οι μηχανικοί","των μηχανικών","τους μηχανικούς"]},"ο/η αρχιτέκτονας":{"t":"n","sg":["ο αρχιτέκτονας","του αρχιτέκτονα","τον αρχιτέκτονα"],"pl":["οι αρχιτέκτονες","των αρχιτεκτόνων","τους αρχιτέκτονες"]},"ο/η φαρμακοποιός":{"t":"n","sg":["ο φαρμακοποιός","του φαρμακοποιού","τον φαρμακοποιό"],"pl":["οι φαρμακοποιοί","των φαρμακοποιών","τους φαρμακοποιούς"]},"ο/η οδηγός":{"t":"n","sg":["ο οδηγός","του οδηγού","τον οδηγό"],"pl":["οι οδηγοί","των οδηγών","τους οδηγούς"]},"ο/η σεφ":{"t":"n","sg":["ο σεφ","του σεφ","τον σεφ"],"pl":["οι σεφ","των σεφ","τους σεφ"]},"ο/η ηλεκτρολόγος":{"t":"n","sg":["ο ηλεκτρολόγος","του ηλεκτρολόγου","τον ηλεκτρολόγο"],"pl":["οι ηλεκτρολόγοι","των ηλεκτρολόγων","τους ηλεκτρολόγους"]},"ο/η ταμίας":{"t":"n","sg":["ο ταμίας","του ταμία","τον ταμία"],"pl":["οι ταμίες","των ταμιών","τους ταμίες"]},"ο/η υπάλληλος":{"t":"n","sg":["ο υπάλληλος","του υπαλλήλου","τον υπάλληλο"],"pl":["οι υπάλληλοι","των υπαλλήλων","τους υπάλληλους"]},"η πλατεία":{"t":"n","sg":["η πλατεία","της πλατείας","την πλατεία"],"pl":["οι πλατείες","των πλατειών","τις πλατείες"]},"η λεωφόρος":{"t":"n","sg":["η λεωφόρος","της λεωφόρου","τη λεωφόρο"],"pl":["οι λεωφόροι","των λεωφόρων","τις λεωφόρους"]},"το μονοπάτι":{"t":"n","sg":["το μονοπάτι","του μονοπατιού","το μονοπάτι"],"pl":["τα μονοπάτια","των μονοπατιών","τα μονοπάτια"]},"η γέφυρα":{"t":"n","sg":["η γέφυρα","της γέφυρας","τη γέφυρα"],"pl":["οι γέφυρες","των γεφυρών","τις γέφυρες"]},"το χωράφι":{"t":"n","sg":["το χωράφι","του χωραφιού","το χωράφι"],"pl":["τα χωράφια","των χωραφιών","τα χωράφια"]},"η περιοχή":{"t":"n","sg":["η περιοχή","της περιοχής","την περιοχή"],"pl":["οι περιοχές","των περιοχών","τις περιοχές"]},"η αγορά":{"t":"n","sg":["η αγορά","της αγοράς","την αγορά"],"pl":["οι αγορές","των αγορών","τις αγορές"]},"η εξοχή":{"t":"n","sg":["η εξοχή","της εξοχής","την εξοχή"],"pl":["οι εξοχές","των εξοχών","τις εξοχές"]},"βρίσκομαι":{"t":"v","pr":["βρίσκομαι","βρίσκεσαι","βρίσκεται","βρισκόμαστε","βρίσκεστε","βρίσκονται"],"pa":["βρέθηκα","βρέθηκες","βρέθηκε","βρεθήκαμε","βρεθήκατε","βρέθηκαν"],"fu":["θα βρεθώ","θα βρεθείς","θα βρεθεί","θα βρεθούμε","θα βρεθείτε","θα βρεθούν"]},"κατοικώ":{"t":"v","pr":["κατοικώ","κατοικείς","κατοικεί","κατοικούμε","κατοικείτε","κατοικούν"],"pa":["κατοίκησα","κατοίκησες","κατοίκησε","κατοικήσαμε","κατοικήσατε","κατοίκησαν"],"fu":["θα κατοικήσω","θα κατοικήσεις","θα κατοικήσει","θα κατοικήσουμε","θα κατοικήσετε","θα κατοικήσουν"]},"Υπάρχει":{"t":"v","imp":true,"pr":["υπάρχει","υπάρχουν"],"pa":["υπήρχε","υπήρχαν"],"fu":["θα υπάρχει","θα υπάρχουν"]},"ζητάω":{"t":"v","pr":["ζητάω","ζητάς","ζητάει","ζητάμε","ζητάτε","ζητούν"],"pa":["ζήτησα","ζήτησες","ζήτησε","ζητήσαμε","ζητήσατε","ζήτησαν"],"fu":["θα ζητήσω","θα ζητήσεις","θα ζητήσει","θα ζητήσουμε","θα ζητήσετε","θα ζητήσουν"]},"τα στοιχεία":{"t":"n","pl":["τα στοιχεία","των στοιχείων","τα στοιχεία"]},"η ηλικία":{"t":"n","sg":["η ηλικία","της ηλικίας","την ηλικία"],"pl":["οι ηλικίες","των ηλικιών","τις ηλικίες"]},"το επάγγελμα":{"t":"n","sg":["το επάγγελμα","του επαγγέλματος","το επάγγελμα"],"pl":["τα επαγγέλματα","των επαγγελμάτων","τα επαγγέλματα"]},"μερικός":{"t":"a","g":["μερικός","μερική","μερικό"],"gp":["μερικοί","μερικές","μερικά"]},"το έγγραφο":{"t":"n","sg":["το έγγραφο","του εγγράφου","το έγγραφο"],"pl":["τα έγγραφα","των εγγράφων","τα έγγραφα"]},"η ταυτότητα":{"t":"n","sg":["η ταυτότητα","της ταυτότητας","την ταυτότητα"],"pl":["οι ταυτότητες","των ταυτοτήτων","τις ταυτότητες"]},"απαντάω":{"t":"v","pr":["απαντάω","απαντάς","απαντάει","απαντάμε","απαντάτε","απαντούν"],"pa":["απάντησα","απάντησες","απάντησε","απαντήσαμε","απαντήσατε","απάντησαν"],"fu":["θα απαντήσω","θα απαντήσεις","θα απαντήσει","θα απαντήσουμε","θα απαντήσετε","θα απαντήσουν"]},"η ερώτηση":{"t":"n","sg":["η ερώτηση","της ερώτησης","την ερώτηση"],"pl":["οι ερωτήσεις","των ερωτήσεων","τις ερωτήσεις"]},"το ταξίδι":{"t":"n","sg":["το ταξίδι","του ταξιδιού","το ταξίδι"],"pl":["τα ταξίδια","των ταξιδιών","τα ταξίδια"]},"το εισιτήριο":{"t":"n","sg":["το εισιτήριο","του εισιτηρίου","το εισιτήριο"],"pl":["τα εισιτήρια","των εισιτηρίων","τα εισιτήρια"]},"το διαβατήριο":{"t":"n","sg":["το διαβατήριο","του διαβατηρίου","το διαβατήριο"],"pl":["τα διαβατήρια","των διαβατηρίων","τα διαβατήρια"]},"η αποσκευή":{"t":"n","sg":["η αποσκευή","της αποσκευής","την αποσκευή"],"pl":["οι αποσκευές","των αποσκευών","τις αποσκευές"]},"η βαλίτσα":{"t":"n","sg":["η βαλίτσα","της βαλίτσας","τη βαλίτσα"],"pl":["οι βαλίτσες","των βαλιτσών","τις βαλίτσες"]},"ο χάρτης":{"t":"n","sg":["ο χάρτης","του χάρτη","τον χάρτη"],"pl":["οι χάρτες","των χαρτών","τους χάρτες"]},"η διαμονή":{"t":"n","sg":["η διαμονή","της διαμονής","τη διαμονή"],"pl":["οι διαμονές","των διαμονών","τις διαμονές"]},"η κράτηση":{"t":"n","sg":["η κράτηση","της κράτησης","την κράτηση"],"pl":["οι κρατήσεις","των κρατήσεων","τις κρατήσεις"]},"η εκδρομή":{"t":"n","sg":["η εκδρομή","της εκδρομής","την εκδρομή"],"pl":["οι εκδρομές","των εκδρομών","τις εκδρομές"]},"οι διακοπές":{"t":"n","pl":["οι διακοπές","των διακοπών","τις διακοπές"]},"η κατασκήνωση":{"t":"n","sg":["η κατασκήνωση","της κατασκήνωσης","την κατασκήνωση"],"pl":["οι κατασκηνώσεις","των κατασκηνώσεων","τις κατασκηνώσεις"]},"η σκηνή":{"t":"n","sg":["η σκηνή","της σκηνής","τη σκηνή"],"pl":["οι σκηνές","των σκηνών","τις σκηνές"]},"το σακίδιο":{"t":"n","sg":["το σακίδιο","του σακιδίου","το σακίδιο"],"pl":["τα σακίδια","των σακιδίων","τα σακίδια"]},"το αντηλιακό":{"t":"n","sg":["το αντηλιακό","του αντηλιακού","το αντηλιακό"],"pl":["τα αντηλιακά","των αντηλιακών","τα αντηλιακά"]},"ο οδηγός":{"t":"n","sg":["ο οδηγός","του οδηγού","τον οδηγό"],"pl":["οι οδηγοί","των οδηγών","τους οδηγούς"]},"το τρένο":{"t":"n","sg":["το τρένο","του τρένου","το τρένο"],"pl":["τα τρένα","των τρένων","τα τρένα"]},"το πλοίο":{"t":"n","sg":["το πλοίο","του πλοίου","το πλοίο"],"pl":["τα πλοία","των πλοίων","τα πλοία"]},"το λεωφορείο":{"t":"n","sg":["το λεωφορείο","του λεωφορείου","το λεωφορείο"],"pl":["τα λεωφορεία","των λεωφορείων","τα λεωφορεία"]},"το αεροπλάνο":{"t":"n","sg":["το αεροπλάνο","του αεροπλάνου","το αεροπλάνο"],"pl":["τα αεροπλάνα","των αεροπλάνων","τα αεροπλάνα"]},"το τραμ":{"t":"n","sg":["το τραμ","του τραμ","το τραμ"],"pl":["τα τραμ","των τραμ","τα τραμ"]},"το μετρό":{"t":"n","sg":["το μετρό","του μετρού","το μετρό"],"pl":["τα μετρά","των μετρών","τα μετρά"]},"το ταξί":{"t":"n","sg":["το ταξί","του ταξιού","το ταξί"],"pl":["τα ταξιά","των ταξιών","τα ταξιά"]},"ο φοιτητής":{"t":"n","sg":["ο φοιτητής","του φοιτητή","τον φοιτητή"],"pl":["οι φοιτητές","των φοιτητών","τους φοιτητές"]},"η φοιτήτρια":{"t":"n","sg":["η φοιτήτρια","της φοιτήτριας","τη φοιτήτρια"],"pl":["οι φοιτήτριες","των φοιτητριών","τις φοιτήτριες"]},"η μαθήτρια":{"t":"n","sg":["η μαθήτρια","της μαθήτριας","τη μαθήτρια"],"pl":["οι μαθήτριες","των μαθητριών","τις μαθήτριες"]},"η δασκάλα":{"t":"n","sg":["η δασκάλα","της δασκάλας","τη δασκάλα"]},"το πανεπιστήμιο":{"t":"n","sg":["το πανεπιστήμιο","του πανεπιστημίου","το πανεπιστήμιο"],"pl":["τα πανεπιστήμια","των πανεπιστημίων","τα πανεπιστήμια"]},"το γυμνάσιο":{"t":"n","sg":["το γυμνάσιο","του γυμνασίου","το γυμνάσιο"],"pl":["τα γυμνάσια","των γυμνασίων","τα γυμνάσια"]},"το λύκειο":{"t":"n","sg":["το λύκειο","του λυκείου","το λύκειο"],"pl":["τα λύκεια","των λυκείων","τα λύκεια"]},"η τάξη":{"t":"n","sg":["η τάξη","της τάξης","την τάξη"],"pl":["οι τάξεις","των τάξεων","τις τάξεις"]},"ο πίνακας":{"t":"n","sg":["ο πίνακας","του πίνακα","τον πίνακα"],"pl":["οι πίνακες","των πινάκων","τους πίνακες"]},"η κιμωλία":{"t":"n","sg":["η κιμωλία","της κιμωλίας","την κιμωλία"],"pl":["οι κιμωλίες","των κιμωλιών","τις κιμωλίες"]},"οι εξετάσεις":{"t":"n","pl":["οι εξετάσεις","των εξετάσεων","τις εξετάσεις"]},"η αίθουσα":{"t":"n","sg":["η αίθουσα","της αίθουσας","την αίθουσα"],"pl":["οι αίθουσες","των αιθουσών","τις αίθουσες"]},"το πρόγραμμα":{"t":"n","sg":["το πρόγραμμα","του προγράμματος","το πρόγραμμα"],"pl":["τα προγράμματα","των προγραμμάτων","τα προγράμματα"]},"ο σιδηρόδρομος":{"t":"n","sg":["ο σιδηρόδρομος","του σιδηροδρόμου","τον σιδηρόδρομο"],"pl":["οι σιδηρόδρομοι","των σιδηροδρόμων","τους σιδηροδρόμους"]},"το σπορ":{"t":"n","sg":["το σπορ","του σπορ","το σπορ"],"pl":["τα σπορ","των σπορ","τα σπορ"]},"το βόλεϊ":{"t":"n","sg":["το βόλεϊ","του βόλεϊ","το βόλεϊ"],"pl":["τα βόλεϊ","των βόλεϊ","τα βόλεϊ"]},"η αναρρίχηση":{"t":"n","sg":["η αναρρίχηση","της αναρρίχησης","την αναρρίχηση"],"pl":["οι αναρριχήσεις","των αναρριχήσεων","τις αναρριχήσεις"]},"οδηγώ":{"t":"v","pr":["οδηγώ","οδηγείς","οδηγεί","οδηγούμε","οδηγείτε","οδηγούν"],"pa":["οδήγησα","οδήγησες","οδήγησε","οδηγήσαμε","οδηγήσατε","οδήγησαν"],"fu":["θα οδηγήσω","θα οδηγήσεις","θα οδηγήσει","θα οδηγήσουμε","θα οδηγήσετε","θα οδηγήσουν"]},"αναχωρώ":{"t":"v","pr":["αναχωρώ","αναχωρείς","αναχωρεί","αναχωρούμε","αναχωρείτε","αναχωρούν"],"pa":["αναχώρησα","αναχώρησες","αναχώρησε","αναχωρήσαμε","αναχωρήσατε","αναχώρησαν"],"fu":["θα αναχωρήσω","θα αναχωρήσεις","θα αναχωρήσει","θα αναχωρήσουμε","θα αναχωρήσετε","θα αναχωρήσουν"]},"κάνω ποδήλατο":{"t":"v","pr":["κάνω ποδήλατο","κάνεις ποδήλατο","κάνει ποδήλατο","κάνουμε ποδήλατο","κάνετε ποδήλατο","κάνουν ποδήλατο"],"pa":["έκανα ποδήλατο","έκανες ποδήλατο","έκανε ποδήλατο","κάναμε ποδήλατο","κάνατε ποδήλατο","έκαναν ποδήλατο"],"fu":["θα κάνω ποδήλατο","θα κάνεις ποδήλατο","θα κάνει ποδήλατο","θα κάνουμε ποδήλατο","θα κάνετε ποδήλατο","θα κάνουν ποδήλατο"]},"πηδάω":{"t":"v","pr":["πηδάω","πηδάς","πηδάει","πηδάμε","πηδάτε","πηδούν"],"pa":["πήδηξα","πήδηξες","πήδηξε","πηδήξαμε","πηδήξατε","πήδηξαν"],"fu":["θα πηδήξω","θα πηδήξεις","θα πηδήξει","θα πηδήξουμε","θα πηδήξετε","θα πηδήξουν"]},"κάνω κράτηση":{"t":"v","pr":["κάνω κράτηση","κάνεις κράτηση","κάνει κράτηση","κάνουμε κράτηση","κάνετε κράτηση","κάνουν κράτηση"],"pa":["έκανα κράτηση","έκανες κράτηση","έκανε κράτηση","κάναμε κράτηση","κάνατε κράτηση","έκαναν κράτηση"],"fu":["θα κάνω κράτηση","θα κάνεις κράτηση","θα κάνει κράτηση","θα κάνουμε κράτηση","θα κάνετε κράτηση","θα κάνουν κράτηση"]},"προγραμματίζω":{"t":"v","pr":["προγραμματίζω","προγραμματίζεις","προγραμματίζει","προγραμματίζουμε","προγραμματίζετε","προγραμματίζουν"],"pa":["προγραμμάτισα","προγραμμάτισες","προγραμμάτισε","προγραμματίσαμε","προγραμματίσατε","προγραμμάτισαν"],"fu":["θα προγραμματίσω","θα προγραμματίσεις","θα προγραμματίσει","θα προγραμματίσουμε","θα προγραμματίσετε","θα προγραμματίσουν"]},"το φανάρι":{"t":"n","sg":["το φανάρι","του φαναριού","το φανάρι"],"pl":["τα φανάρια","των φαναριών","τα φανάρια"]},"η κρουαζιέρα":{"t":"n","sg":["η κρουαζιέρα","της κρουαζιέρας","την κρουαζιέρα"]},"η διαδρομή":{"t":"n","sg":["η διαδρομή","της διαδρομής","τη διαδρομή"],"pl":["οι διαδρομές","των διαδρομών","τις διαδρομές"]},"η ταχύτητα":{"t":"n","sg":["η ταχύτητα","της ταχύτητας","την ταχύτητα"],"pl":["οι ταχύτητες","των ταχυτήτων","τις ταχύτητες"]},"το ποδόσφαιρο":{"t":"n","sg":["το ποδόσφαιρο","του ποδοσφαίρου","το ποδόσφαιρο"],"pl":["τα ποδόσφαιρα","των ποδοσφαίρων","τα ποδόσφαιρα"]},"το μπάσκετ":{"t":"n","sg":["το μπάσκετ","του μπάσκετ","το μπάσκετ"],"pl":["τα μπάσκετ","των μπάσκετ","τα μπάσκετ"]},"η ποδηλασία":{"t":"n","sg":["η ποδηλασία","της ποδηλασίας","την ποδηλασία"],"pl":["οι ποδηλασίες","των ποδηλασιών","τις ποδηλασίες"]},"η κολύμβηση":{"t":"n","sg":["η κολύμβηση","της κολύμβησης","την κολύμβηση"],"pl":["οι κολυμβήσεις","των κολυμβήσεων","τις κολυμβήσεις"]},"το γυμναστήριο":{"t":"n","sg":["το γυμναστήριο","του γυμναστηρίου","το γυμναστήριο"],"pl":["τα γυμναστήρια","των γυμναστηρίων","τα γυμναστήρια"]},"τα αξιοθέατα":{"t":"n","pl":["τα αξιοθέατα","των αξιοθέατων","τα αξιοθέατα"]},"το κάστρο":{"t":"n","sg":["το κάστρο","του κάστρου","το κάστρο"],"pl":["τα κάστρα","των κάστρων","τα κάστρα"]},"το μνημείο":{"t":"n","sg":["το μνημείο","του μνημείου","το μνημείο"],"pl":["τα μνημεία","των μνημείων","τα μνημεία"]},"όμορφος":{"t":"a","g":["όμορφος","όμορφη","όμορφο"],"gp":["όμορφοι","όμορφες","όμορφα"]},"διασκεδαστικός":{"t":"a","g":["διασκεδαστικός","διασκεδαστική","διασκεδαστικό"],"gp":["διασκεδαστικοί","διασκεδαστικές","διασκεδαστικά"]},"κουραστικός":{"t":"a","g":["κουραστικός","κουραστική","κουραστικό"],"gp":["κουραστικοί","κουραστικές","κουραστικά"]},"επικίνδυνος":{"t":"a","g":["επικίνδυνος","επικίνδυνη","επικίνδυνο"],"gp":["επικίνδυνοι","επικίνδυνες","επικίνδυνα"]},"η σπηλιά":{"t":"n","sg":["η σπηλιά","της σπηλιάς","τη σπηλιά"],"pl":["οι σπηλιές","των σπηλιών","τις σπηλιές"]},"η ασφάλεια":{"t":"n","sg":["η ασφάλεια","της ασφάλειας","την ασφάλεια"],"pl":["οι ασφάλειες","των ασφαλειών","τις ασφάλειες"]},"η πτήση":{"t":"n","sg":["η πτήση","της πτήσης","την πτήση"],"pl":["οι πτήσεις","των πτήσεων","τις πτήσεις"]},"οι αποσκευές":{"t":"n","pl":["οι αποσκευές","των αποσκευών","τις αποσκευές"]},"ο φόρος":{"t":"n","sg":["ο φόρος","του φόρου","τον φόρο"],"pl":["οι φόροι","των φόρων","τους φόρους"]},"οι αποδείξεις":{"t":"n","pl":["οι αποδείξεις","των αποδείξεων","τις αποδείξεις"]},"ο ξεναγός":{"t":"n","sg":["ο ξεναγός","του ξεναγού","τον ξεναγό"],"pl":["οι ξεναγοί","των ξεναγών","τους ξεναγούς"]},"η μαρκίζα":{"t":"n","sg":["η μαρκίζα","της μαρκίζας","τη μαρκίζα"]},"η ενοικίαση":{"t":"n","sg":["η ενοικίαση","της ενοικίασης","την ενοικίαση"],"pl":["οι ενοικιάσεις","των ενοικιάσεων","τις ενοικιάσεις"]},"οι οδηγίες":{"t":"n","pl":["οι οδηγίες","των οδηγιών","τις οδηγίες"]},"η τιμή":{"t":"n","sg":["η τιμή","της τιμής","την τιμή"],"pl":["οι τιμές","των τιμών","τις τιμές"]},"η ξεκούραση":{"t":"n","sg":["η ξεκούραση","της ξεκούρασης","την ξεκούραση"],"pl":["οι ξεκουράσεις","των ξεκουράσεων","τις ξεκουράσεις"]},"το δείπνο":{"t":"n","sg":["το δείπνο","του δείπνου","το δείπνο"],"pl":["τα δείπνα","των δείπνων","τα δείπνα"]},"η μνήμη":{"t":"n","sg":["η μνήμη","της μνήμης","τη μνήμη"],"pl":["οι μνήμες","των μνημών","τις μνήμες"]},"η ομάδα":{"t":"n","sg":["η ομάδα","της ομάδας","την ομάδα"],"pl":["οι ομάδες","των ομάδων","τις ομάδες"]},"ενοικιάζω":{"t":"v","pr":["ενοικιάζω","ενοικιάζεις","ενοικιάζει","ενοικιάζουμε","ενοικιάζετε","ενοικιάζουν"],"pa":["ενοικίασα","ενοικίασες","ενοικίασε","ενοικιάσαμε","ενοικιάσατε","ενοικίασαν"],"fu":["θα ενοικιάσω","θα ενοικιάσεις","θα ενοικιάσει","θα ενοικιάσουμε","θα ενοικιάσετε","θα ενοικιάσουν"]},"το ενοίκιο":{"t":"n","sg":["το ενοίκιο","του ενοικίου","το ενοίκιο"],"pl":["τα ενοίκια","των ενοικίων","τα ενοίκια"]},"η κατάθεση":{"t":"n","sg":["η κατάθεση","της κατάθεσης","την κατάθεση"],"pl":["οι καταθέσεις","των καταθέσεων","τις καταθέσεις"]},"το συμβόλαιο":{"t":"n","sg":["το συμβόλαιο","του συμβολαίου","το συμβόλαιο"],"pl":["τα συμβόλαια","των συμβολαίων","τα συμβόλαια"]},"η υπογραφή":{"t":"n","sg":["η υπογραφή","της υπογραφής","την υπογραφή"],"pl":["οι υπογραφές","των υπογραφών","τις υπογραφές"]},"τα κοινόχρηστα":{"t":"n","pl":["τα κοινόχρηστα","των κοινοχρήστων","τα κοινόχρηστα"]},"οι λογαριασμοί":{"t":"n","pl":["οι λογαριασμοί","των λογαριασμών","τους λογαριασμούς"]},"η προκαταβολή":{"t":"n","sg":["η προκαταβολή","της προκαταβολής","την προκαταβολή"],"pl":["οι προκαταβολές","των προκαταβολών","τις προκαταβολές"]},"επιπλωμένος":{"t":"a","g":["επιπλωμένος","επιπλωμένη","επιπλωμένο"],"gp":["επιπλωμένοι","επιπλωμένες","επιπλωμένα"]},"ανακαινισμένος":{"t":"a","g":["ανακαινισμένος","ανακαινισμένη","ανακαινισμένο"],"gp":["ανακαινισμένοι","ανακαινισμένες","ανακαινισμένα"]},"οι υποδομές":{"t":"n","pl":["οι υποδομές","των υποδομών","τις υποδομές"]},"ο όροφος":{"t":"n","sg":["ο όροφος","του ορόφου","τον όροφο"],"pl":["οι όροφοι","των ορόφων","τους ορόφους"]},"το κλιματιστικό":{"t":"n","sg":["το κλιματιστικό","του κλιματιστικού","το κλιματιστικό"],"pl":["τα κλιματιστικά","των κλιματιστικών","τα κλιματιστικά"]},"το αέριο":{"t":"n","sg":["το αέριο","του αερίου","το αέριο"],"pl":["τα αέρια","των αερίων","τα αέρια"]},"οι επισκευές":{"t":"n","pl":["οι επισκευές","των επισκευών","τις επισκευές"]},"η προμήθεια":{"t":"n","sg":["η προμήθεια","της προμήθειας","την προμήθεια"],"pl":["οι προμήθειες","των προμηθειών","τις προμήθειες"]},"η επισκευή":{"t":"n","sg":["η επισκευή","της επισκευής","την επισκευή"],"pl":["οι επισκευές","των επισκευών","τις επισκευές"]},"τα κλειδιά":{"t":"n","pl":["τα κλειδιά","των κλειδιών","τα κλειδιά"]},"το κουτάβι":{"t":"n","sg":["το κουτάβι","του κουταβιού","το κουτάβι"],"pl":["τα κουτάβια","των κουταβιών","τα κουτάβια"]},"το λουρί":{"t":"n","sg":["το λουρί","του λουριού","το λουρί"],"pl":["τα λουριά","των λουριών","τα λουριά"]},"το κλουβί":{"t":"n","sg":["το κλουβί","του κλουβιού","το κλουβί"],"pl":["τα κλουβιά","των κλουβιών","τα κλουβιά"]},"η περιποίηση":{"t":"n","sg":["η περιποίηση","της περιποίησης","την περιποίηση"],"pl":["οι περιποιήσεις","των περιποιήσεων","τις περιποιήσεις"]},"ο κτηνίατρος":{"t":"n","sg":["ο κτηνίατρος","του κτηνιάτρου","τον κτηνίατρο"],"pl":["οι κτηνίατροι","των κτηνίατρων","τους κτηνίατρους"]},"το εμβόλιο":{"t":"n","sg":["το εμβόλιο","του εμβολίου","το εμβόλιο"],"pl":["τα εμβόλια","των εμβολίων","τα εμβόλια"]},"η αποπαρασίτωση":{"t":"n","sg":["η αποπαρασίτωση","της αποπαρασίτωσης","την αποπαρασίτωση"],"pl":["οι αποπαρασιτώσεις","των αποπαρασιτώσεων","τις αποπαρασιτώσεις"]},"το νύχι":{"t":"n","sg":["το νύχι","του νυχιού","το νύχι"],"pl":["τα νύχια","των νυχιών","τα νύχια"]},"η χτένα":{"t":"n","sg":["η χτένα","της χτένας","τη χτένα"],"pl":["οι χτένες","των χτενών","τις χτένες"]},"η φροντίδα":{"t":"n","sg":["η φροντίδα","της φροντίδας","τη φροντίδα"],"pl":["οι φροντίδες","των φροντίδων","τις φροντίδες"]},"η βόλτα":{"t":"n","sg":["η βόλτα","της βόλτας","τη βόλτα"]},"η εκπαίδευση":{"t":"n","sg":["η εκπαίδευση","της εκπαίδευσης","την εκπαίδευση"],"pl":["οι εκπαιδεύσεις","των εκπαιδεύσεων","τις εκπαιδεύσεις"]},"το αμμοδοχείο":{"t":"n","sg":["το αμμοδοχείο","του αμμοδοχείου","το αμμοδοχείο"],"pl":["τα αμμοδοχεία","των αμμοδοχείων","τα αμμοδοχεία"]},"το δάγκωμα":{"t":"n","sg":["το δάγκωμα","του δαγκώματος","το δάγκωμα"],"pl":["τα δαγκώματα","των δαγκωμάτων","τα δαγκώματα"]},"χαϊδεύω":{"t":"v","pr":["χαϊδεύω","χαϊδεύεις","χαϊδεύει","χαϊδεύουμε","χαϊδεύετε","χαϊδεύουν"],"pa":["χαΐδεψα","χαΐδεψες","χαΐδεψε","χαϊδέψαμε","χαϊδέψατε","χαΐδεψαν"],"fu":["θα χαϊδέψω","θα χαϊδέψεις","θα χαϊδέψει","θα χαϊδέψουμε","θα χαϊδέψετε","θα χαϊδέψουν"]},"γαβγίζω":{"t":"v","pr":["γαβγίζω","γαβγίζεις","γαβγίζει","γαβγίζουμε","γαβγίζετε","γαβγίζουν"],"pa":["γάβγισα","γάβγισες","γάβγισε","γαβγίσαμε","γαβγίσατε","γάβγισαν"],"fu":["θα γαβγίσω","θα γαβγίσεις","θα γαβγίσει","θα γαβγίσουμε","θα γαβγίσετε","θα γαβγίσουν"]},"πεινασμένος":{"t":"a","g":["πεινασμένος","πεινασμένη","πεινασμένο"],"gp":["πεινασμένοι","πεινασμένες","πεινασμένα"]},"διψασμένος":{"t":"a","g":["διψασμένος","διψασμένη","διψασμένο"],"gp":["διψασμένοι","διψασμένες","διψασμένα"]},"βρόμικος":{"t":"a","g":["βρόμικος","βρόμικη","βρόμικο"],"gp":["βρόμικοι","βρόμικες","βρόμικα"]},"νευρικός":{"t":"a","g":["νευρικός","νευρική","νευρικό"],"gp":["νευρικοί","νευρικές","νευρικά"]},"υγιής":{"t":"a","g":["υγιής","υγιής","υγιές"],"gp":["υγιείς","υγιείς","υγιή"]},"ασθενής":{"t":"a","g":["ασθενής","ασθενής","ασθενές"],"gp":["ασθενείς","ασθενείς","ασθενή"]},"δραστήριος":{"t":"a","g":["δραστήριος","δραστήρια","δραστήριο"],"gp":["δραστήριοι","δραστήριες","δραστήρια"]},"ταΐζω":{"t":"v","pr":["ταΐζω","ταΐζεις","ταΐζει","ταΐζουμε","ταΐζετε","ταΐζουν"],"pa":["τάισα","τάισες","τάισε","ταΐσαμε","ταΐσατε","τάισαν"],"fu":["θα ταΐσω","θα ταΐσεις","θα ταΐσει","θα ταΐσουμε","θα ταΐσετε","θα ταΐσουν"]},"φροντίζω":{"t":"v","pr":["φροντίζω","φροντίζεις","φροντίζει","φροντίζουμε","φροντίζετε","φροντίζουν"],"pa":["φρόντισα","φρόντισες","φρόντισε","φροντίσαμε","φροντίσατε","φρόντισαν"],"fu":["θα φροντίσω","θα φροντίσεις","θα φροντίσει","θα φροντίσουμε","θα φροντίσετε","θα φροντίσουν"]},"βουρτσίζω":{"t":"v","pr":["βουρτσίζω","βουρτσίζεις","βουρτσίζει","βουρτσίζουμε","βουρτσίζετε","βουρτσίζουν"],"pa":["βούρτσισα","βούρτσισες","βούρτσισε","βουρτσίσαμε","βουρτσίσατε","βούρτσισαν"],"fu":["θα βουρτσίσω","θα βουρτσίσεις","θα βουρτσίσει","θα βουρτσίσουμε","θα βουρτσίσετε","θα βουρτσίσουν"]},"ξύνω":{"t":"v","pr":["ξύνω","ξύνεις","ξύνει","ξύνουμε","ξύνετε","ξύνουν"],"pa":["έξυσα","έξυσες","έξυσε","ξύσαμε","ξύσατε","έξυσαν"],"fu":["θα ξύσω","θα ξύσεις","θα ξύσει","θα ξύσουμε","θα ξύσετε","θα ξύσουν"]},"λούζω":{"t":"v","pr":["λούζω","λούζεις","λούζει","λούζουμε","λούζετε","λούζουν"],"pa":["έλουσα","έλουσες","έλουσε","λούσαμε","λούσατε","έλουσαν"],"fu":["θα λούσω","θα λούσεις","θα λούσει","θα λούσουμε","θα λούσετε","θα λούσουν"]},"ο καθηγητής":{"t":"n","sg":["ο καθηγητής","του καθηγητή","τον καθηγητή"],"pl":["οι καθηγητές","των καθηγητών","τους καθηγητές"]},"ο διευθυντής":{"t":"n","sg":["ο διευθυντής","του διευθυντή","τον διευθυντή"],"pl":["οι διευθυντές","των διευθυντών","τους διευθυντές"]},"η Πρωτοχρονιά":{"t":"n","sg":["η Πρωτοχρονιά","της Πρωτοχρονιάς","την Πρωτοχρονιά"]},"το Πάσχα":{"t":"n","sg":["το Πάσχα","του Πάσχα","το Πάσχα"]},"ο γάμος":{"t":"n","sg":["ο γάμος","του γάμου","τον γάμο"],"pl":["οι γάμοι","των γάμων","τους γάμους"]},"η βάπτιση":{"t":"n","sg":["η βάπτιση","της βάπτισης","τη βάπτιση"],"pl":["οι βαπτίσεις","των βαπτίσεων","τις βαπτίσεις"]},"τα γενέθλια":{"t":"n","pl":["τα γενέθλια","των γενεθλίων","τα γενέθλια"]},"η επέτειος":{"t":"n","sg":["η επέτειος","της επετείου","την επέτειο"],"pl":["οι επέτειοι","των επετείων","τις επέτειους"]},"τα δώρα":{"t":"n","pl":["τα δώρα","των δώρων","τα δώρα"]},"τα πυροτεχνήματα":{"t":"n","pl":["τα πυροτεχνήματα","των πυροτεχνημάτων","τα πυροτεχνήματα"]},"το κέικ":{"t":"n","sg":["το κέικ","του κέικ","το κέικ"],"pl":["τα κέικ","των κέικ","τα κέικ"]},"ο στολισμός":{"t":"n","sg":["ο στολισμός","του στολισμού","τον στολισμό"],"pl":["οι στολισμοί","των στολισμών","τους στολισμούς"]},"το πάρτι":{"t":"n","sg":["το πάρτι","του παρτιού","το πάρτι"],"pl":["τα πάρτια","των παρτιών","τα πάρτια"]},"η μάσκα":{"t":"n","sg":["η μάσκα","της μάσκας","τη μάσκα"],"pl":["οι μάσκες","των μασκών","τις μάσκες"]},"το έθιμο":{"t":"n","sg":["το έθιμο","του εθίμου","το έθιμο"],"pl":["τα έθιμα","των εθίμων","τα έθιμα"]},"η προσευχή":{"t":"n","sg":["η προσευχή","της προσευχής","την προσευχή"],"pl":["οι προσευχές","των προσευχών","τις προσευχές"]},"η τελετή":{"t":"n","sg":["η τελετή","της τελετής","την τελετή"],"pl":["οι τελετές","των τελετών","τις τελετές"]},"το πανηγύρι":{"t":"n","sg":["το πανηγύρι","του πανηγυριού","το πανηγύρι"],"pl":["τα πανηγύρια","των πανηγυριών","τα πανηγύρια"]},"η ευλογία":{"t":"n","sg":["η ευλογία","της ευλογίας","την ευλογία"],"pl":["οι ευλογίες","των ευλογιών","τις ευλογίες"]},"η παρέλαση":{"t":"n","sg":["η παρέλαση","της παρέλασης","την παρέλαση"],"pl":["οι παρελάσεις","των παρελάσεων","τις παρελάσεις"]},"η σημαία":{"t":"n","sg":["η σημαία","της σημαίας","τη σημαία"],"pl":["οι σημαίες","των σημαιών","τις σημαίες"]},"τα κουφέτα":{"t":"n","pl":["τα κουφέτα","των κουφέτων","τα κουφέτα"]},"η φιλοξενία":{"t":"n","sg":["η φιλοξενία","της φιλοξενίας","τη φιλοξενία"],"pl":["οι φιλοξενίες","των φιλοξενιών","τις φιλοξενίες"]},"η λαμπάδα":{"t":"n","sg":["η λαμπάδα","της λαμπάδας","τη λαμπάδα"],"pl":["οι λαμπάδες","των λαμπάδων","τις λαμπάδες"]},"η ευχαριστία":{"t":"n","sg":["η ευχαριστία","της ευχαριστίας","την ευχαριστία"],"pl":["οι ευχαριστίες","των ευχαριστιών","τις ευχαριστίες"]},"ο αγιασμός":{"t":"n","sg":["ο αγιασμός","του αγιασμού","τον αγιασμό"],"pl":["οι αγιασμοί","των αγιασμών","τους αγιασμούς"]}};
+  var GRAM=[
+  {id:"art",title:"Род и артикль",sub:"ο · η · το, οι · τα, ένας · μία · ένα",
+   lines:[
+    {r:"Тема: род и артикль. В греческом три рода: мужской, женский и средний. Род почти всегда видно по артиклю, поэтому слово всегда учим вместе с артиклем."},
+    {r:"Мужской род. Артикль: о.",d:"Мужской род · ο"},
+    {g:"ο φίλος · ο άντρας · ο μαθητής",t:"друг, мужчина, ученик"},
+    {r:"Типичные окончания мужского рода: ос, ас, ис.",d:"Окончания: -ος, -ας, -ης"},
+    {r:"Женский род. Артикль: и.",d:"Женский род · η"},
+    {g:"η μητέρα · η κόρη · η πόλη",t:"мать, дочь, город"},
+    {r:"Типичные окончания женского рода: а и и.",d:"Окончания: -α, -η"},
+    {r:"Средний род. Артикль: то.",d:"Средний род · το"},
+    {g:"το σπίτι · το βιβλίο · το όνομα",t:"дом, книга, имя"},
+    {r:"Типичные окончания среднего рода: о, и, ма.",d:"Окончания: -ο, -ι, -μα"},
+    {r:"Во множественном числе артикль мужского и женского рода одинаковый: и. У среднего рода: та.",d:"Мн. число: οι (м., ж.) · τα (ср.)"},
+    {g:"οι φίλοι · οι μητέρες · τα σπίτια",t:"друзья, матери, дома"},
+    {r:"Неопределённый артикль значит «один» или «какой-то». Мужской: энас. Женский: мия. Средний: эна.",d:"ένας · μία · ένα"},
+    {g:"ένας φίλος · μία πόλη · ένα σπίτι",t:"один друг, один город, один дом"},
+    {r:"Коротко. О — мужской, и — женский, то — средний. Во множественном: и, и, та."}
+   ],
+   sheet:[{h:"Определённый артикль",cols:["","м.","ж.","ср."],rows:[["ед.","ο","η","το"],["мн.","οι","οι","τα"]]},
+          {h:"Неопределённый артикль",cols:["м.","ж.","ср."],rows:[["ένας","μία","ένα"]]},
+          {h:"Типичные окончания",cols:["м.","ж.","ср."],rows:[["-ος, -ας, -ης","-α, -η","-ο, -ι, -μα"]]}]},
+
+  {id:"nom",title:"Именительный падеж",sub:"Ονομαστική: кто? что?",
+   lines:[
+    {r:"Падежи. В новогреческом четыре падежа: именительный, родительный, винительный и звательный. Дательного падежа нет. Учим три главных."},
+    {r:"Именительный падеж, по-гречески ономастики. Отвечает на вопросы: кто? что?",d:"Ονομαστική · кто? что?"},
+    {r:"Его роль: подлежащее, то есть тот, кто действует. А ещё то, что стоит после глагола «быть». И это словарная форма слова."},
+    {g:"ο φίλος μου διαβάζει",t:"мой друг читает"},
+    {g:"το παιδί παίζει",t:"ребёнок играет"},
+    {g:"η Μαρία είναι δασκάλα",t:"Мария учительница"},
+    {r:"Артикли. Единственное число: о, и, то. Множественное: и, и, та.",d:"ед.: ο · η · το    мн.: οι · οι · τα"},
+    {r:"Окончания во множественном числе. Мужской род: ос становится ой.",d:"м. -ος → -οι"},
+    {g:"ο φίλος → οι φίλοι",t:"друг, друзья"},
+    {r:"Мужской род на ас и на ис: окончание эс.",d:"м. -ας, -ης → -ες"},
+    {g:"ο πατέρας → οι πατέρες · ο μαθητής → οι μαθητές",t:"отец, отцы. Ученик, ученики"},
+    {r:"Женский род на а и на и: тоже окончание эс.",d:"ж. -α, -η → -ες"},
+    {g:"η μητέρα → οι μητέρες · η κόρη → οι κόρες",t:"мать, матери. Дочь, дочери"},
+    {r:"Средний род: о становится а, и становится я, ма становится мата.",d:"ср. -ο → -α · -ι → -ιά · -μα → -ματα"},
+    {g:"το βιβλίο → τα βιβλία · το παιδί → τα παιδιά · το όνομα → τα ονόματα",t:"книга, книги. Ребёнок, дети. Имя, имена"},
+    {r:"Коротко. Именительный: кто, что. Подлежащее и словарная форма. О, и, то. Во множественном: и, и, та."}
+   ],
+   sheet:"nom"},
+
+  {id:"gen",title:"Родительный падеж",sub:"Γενική: чей? кого? чего?",
+   lines:[
+    {r:"Родительный падеж, по-гречески еники. Отвечает на вопросы: чей? кого? чего?",d:"Γενική · чей? кого? чего?"},
+    {r:"Главная роль: принадлежность. Слово в родительном падеже стоит после того, чему принадлежит, как в русском."},
+    {g:"το σπίτι του φίλου",t:"дом друга"},
+    {g:"η πόρτα της κουζίνας",t:"дверь кухни"},
+    {g:"το όνομα του παιδιού",t:"имя ребёнка"},
+    {r:"Короткие местоимения в родительном падеже означают «мой, твой, его». Они стоят после существительного."},
+    {g:"το σπίτι μου · το όνομά σου · η μητέρα του",t:"мой дом, твоё имя, его мать"},
+    {r:"Ещё родительный падеж местоимений отвечает на вопрос «кому?».",d:"μου, σου, του = мне, тебе, ему"},
+    {g:"μου δίνει ένα δώρο",t:"он даёт мне подарок"},
+    {r:"Артикли единственного числа: ту, тис, ту. У мужского и среднего рода артикль одинаковый.",d:"του (м.) · της (ж.) · του (ср.)"},
+    {r:"Во множественном числе один артикль для всех родов: тон.",d:"мн.: των"},
+    {r:"Окончания единственного числа. Мужской род: ос становится у, ас становится а, ис становится и. То есть у ас и ис просто пропадает с.",d:"м. -ος → -ου · -ας → -α · -ης → -η"},
+    {g:"ο φίλος → του φίλου · ο πατέρας → του πατέρα · ο μαθητής → του μαθητή",t:"друга, отца, ученика"},
+    {r:"Женский род: наоборот, добавляем с.",d:"ж. -α → -ας · -η → -ης"},
+    {g:"η μητέρα → της μητέρας · η κόρη → της κόρης",t:"матери, дочери"},
+    {r:"Средний род: о становится у, и становится ю с ударением на конце, ма становится матос.",d:"ср. -ο → -ου · -ι → -ιού · -μα → -ματος"},
+    {g:"το βιβλίο → του βιβλίου · το παιδί → του παιδιού · το όνομα → του ονόματος",t:"книги, ребёнка, имени"},
+    {r:"Множественное число: у всех родов окончание он.",d:"мн. → -ων"},
+    {g:"των φίλων · των παιδιών · των ωρών",t:"друзей, детей, часов"},
+    {r:"Коротко. Родительный: чей. Ту, тис, ту. Во множественном: тон и окончание он."}
+   ],
+   sheet:"gen"},
+
+  {id:"acc",title:"Винительный падеж",sub:"Αιτιατική: кого? что? куда?",
+   lines:[
+    {r:"Винительный падеж, по-гречески этиатики. Отвечает на вопросы: кого? что? куда?",d:"Αιτιατική · кого? что? куда?"},
+    {r:"Первая роль: прямое дополнение, то есть то, на что направлено действие."},
+    {g:"βλέπω τον φίλο",t:"я вижу друга"},
+    {g:"διαβάζω το βιβλίο",t:"я читаю книгу"},
+    {g:"αγαπώ τη μητέρα μου",t:"я люблю маму"},
+    {r:"Вторая роль: после предлогов. Почти все предлоги требуют винительного. Се: в, на. Апо: из, от. Ме: с. Я: для.",d:"σε · από · με · για + αιτιατική"},
+    {g:"πηγαίνω στο σχολείο",t:"я иду в школу"},
+    {g:"είμαι από την Κύπρο",t:"я с Кипра"},
+    {g:"πίνω καφέ με τον φίλο μου",t:"я пью кофе с другом"},
+    {r:"Предлог се сливается с артиклем. Стон, стин, сто. Во множественном: стус, стис, ста.",d:"σε + τον = στον · στην · στο · στους · στις · στα"},
+    {g:"στον δρόμο · στην πόλη · στο σπίτι",t:"на улице, в городе, дома"},
+    {r:"Третья роль: время. «В понедельник», «утром» тоже винительный падеж."},
+    {g:"τη Δευτέρα · το πρωί · την Κυριακή",t:"в понедельник, утром, в воскресенье"},
+    {r:"Артикли. Единственное число: тон, ти, то. Множественное: тус, тис, та.",d:"ед.: τον · τη(ν) · το    мн.: τους · τις · τα"},
+    {r:"Тин с н на конце пишем перед гласной и перед к, п, т, кс, пс, а также перед мп, нт, гк. Перед остальными звуками: ти.",d:"την ώρα · την πόλη · τη μητέρα"},
+    {r:"Окончания. Мужской род в единственном числе теряет с на конце.",d:"м. -ος → -ο · -ας → -α · -ης → -η"},
+    {g:"ο φίλος → τον φίλο · ο πατέρας → τον πατέρα · ο μαθητής → τον μαθητή",t:"друга, отца, ученика"},
+    {r:"Во множественном у мужского рода на ос окончание ус. На ас и ис: эс, как в именительном.",d:"мн. м. -ος → -ους · -ας, -ης → -ες"},
+    {g:"τους φίλους · τους πατέρες · τους μαθητές",t:"друзей, отцов, учеников"},
+    {r:"Женский и средний род в винительном звучат так же, как в именительном. У женского меняется только артикль."},
+    {g:"η μητέρα → τη μητέρα · οι μητέρες → τις μητέρες · τα σπίτια → τα σπίτια",t:"мать, матерей, дома"},
+    {r:"Коротко. Винительный: кого, что, куда. Тон, ти, то. Тус, тис, та. После предлогов всегда винительный."}
+   ],
+   sheet:"acc"},
+
+  {id:"pres",title:"Настоящее время",sub:"Ενεστώτας: делаю, делаю регулярно",
+   lines:[
+    {r:"Настоящее время, по-гречески энэстотас. Действие сейчас или регулярно. Без него не построить будущее, поэтому повторим и его.",d:"Ενεστώτας · делаю сейчас или обычно"},
+    {r:"Личное местоимение обычно не говорят: окончание уже показывает, кто действует."},
+    {r:"Первая группа: ударение не на конце. Окончания: о, ис, и, умэ, этэ, ун.",d:"-ω · -εις · -ει · -ουμε · -ετε · -ουν"},
+    {g:"γράφω · γράφεις · γράφει · γράφουμε · γράφετε · γράφουν",t:"пишу, пишешь, пишет, пишем, пишете, пишут"},
+    {r:"Вторая группа: ударение на конце. Тип А, как агапао.",d:"-άω · -άς · -άει · -άμε · -άτε · -ούν"},
+    {g:"αγαπάω · αγαπάς · αγαπάει · αγαπάμε · αγαπάτε · αγαπούν",t:"люблю, любишь, любит, любим, любите, любят"},
+    {r:"Тип Б, как мпоро.",d:"-ώ · -είς · -εί · -ούμε · -είτε · -ούν"},
+    {g:"μπορώ · μπορείς · μπορεί · μπορούμε · μπορείτε · μπορούν",t:"могу, можешь, может, можем, можете, могут"},
+    {r:"Глаголы на омэ. Например, эрхомэ: прихожу.",d:"-ομαι · -εσαι · -εται · -όμαστε · -εστε · -ονται"},
+    {g:"έρχομαι · έρχεσαι · έρχεται · ερχόμαστε · έρχεστε · έρχονται",t:"прихожу, приходишь, приходит, приходим, приходите, приходят"},
+    {r:"Отрицание: дэн перед глаголом."},
+    {g:"δεν καταλαβαίνω",t:"я не понимаю"},
+    {r:"Коротко. О, ис, и, умэ, этэ, ун."}
+   ],
+   sheet:"pres"},
+
+  {id:"past",title:"Прошедшее время",sub:"Αόριστος: сделал",
+   lines:[
+    {r:"Прошедшее время, аористос. Это законченное действие: сделал один раз, есть результат. По-русски обычно совершенный вид: написал, купил, пришёл.",d:"Αόριστος · сделал"},
+    {g:"χθες έγραψα ένα γράμμα",t:"вчера я написал письмо"},
+    {g:"αγόρασα ψωμί",t:"я купил хлеб"},
+    {r:"Как строится. Основа глагола меняется на конце, и добавляются окончания: а, эс, э, амэ, атэ, ан.",d:"-α · -ες · -ε · -αμε · -ατε · -αν"},
+    {r:"Правило основ. Зо обычно даёт са.",d:"-ζω → -σα"},
+    {g:"αγοράζω → αγόρασα · διαβάζω → διάβασα",t:"покупаю, купил. Читаю, прочитал"},
+    {r:"По, во, фо, пто, эво дают пса.",d:"-πω, -βω, -φω, -πτω, -εύω → -ψα"},
+    {g:"γράφω → έγραψα · δουλεύω → δούλεψα",t:"пишу, написал. Работаю, поработал"},
+    {r:"Ко, го, хо дают кса.",d:"-κω, -γω, -χω → -ξα"},
+    {g:"τρέχω → έτρεξα · ανοίγω → άνοιξα",t:"бегу, побежал. Открываю, открыл"},
+    {r:"Глаголы второй группы, с ударением на конце, обычно дают иса.",d:"-άω, -ώ → -ησα"},
+    {g:"ζητάω → ζήτησα · οδηγώ → οδήγησα",t:"прошу, попросил. Веду машину, повёл"},
+    {r:"Глаголы на оно дают оса.",d:"-ώνω → -ωσα"},
+    {g:"πληρώνω → πλήρωσα · τελειώνω → τελείωσα",t:"плачу, заплатил. Заканчиваю, закончил"},
+    {r:"Ударение. В прошедшем времени оно всегда на третьем слоге с конца. Если слогов не хватает, в начале появляется э. Это приращение.",d:"γράφω → έ-γραψα"},
+    {r:"Поэтому у формы «мы» и «вы» приращения нет: слогов уже хватает."},
+    {g:"έγραψα · έγραψες · έγραψε · γράψαμε · γράψατε · έγραψαν",t:"написал, написал ты, написал он, написали мы, написали вы, написали они"},
+    {r:"Самые нужные неправильные глаголы. Запоминаем парами."},
+    {g:"είμαι → ήμουν · έχω → είχα · κάνω → έκανα",t:"быть, был. Иметь, имел. Делать, сделал"},
+    {g:"πηγαίνω → πήγα · έρχομαι → ήρθα · φεύγω → έφυγα",t:"идти, пошёл. Приходить, пришёл. Уходить, ушёл"},
+    {g:"τρώω → έφαγα · πίνω → ήπια",t:"есть, поел. Пить, выпил"},
+    {g:"λέω → είπα · βλέπω → είδα · μαθαίνω → έμαθα",t:"говорить, сказал. Видеть, увидел. Учить, выучил"},
+    {g:"βγαίνω → βγήκα · μπαίνω → μπήκα · ανεβαίνω → ανέβηκα",t:"выходить, вышел. Входить, вошёл. Подниматься, поднялся"},
+    {r:"Если действие длилось или повторялось, нужно другое прошедшее, парататикос. Оно строится от основы настоящего: эграфа, то есть писал, обычно писал.",d:"Παρατατικός · έγραφα = писал (процесс)"},
+    {g:"κάθε μέρα έγραφα · χθες έγραψα",t:"каждый день я писал. Вчера я написал"},
+    {r:"Коротко. Аорист: сделал. Новая основа и окончания а, эс, э, амэ, атэ, ан. Ударение на третий слог с конца."}
+   ],
+   sheet:"past"},
+
+  {id:"fut",title:"Будущее время",sub:"Μέλλοντας: θα + глагол",
+   lines:[
+    {r:"Будущее время строится с частицей тха перед глаголом.",d:"Μέλλοντας · θα + глагол"},
+    {r:"Будущих времён два. Первое, длительное: тха плюс обычная форма настоящего. Это процесс или привычка: буду делать.",d:"θα + настоящее = буду делать"},
+    {g:"θα γράφω κάθε μέρα",t:"я буду писать каждый день"},
+    {r:"Второе, простое будущее: одно законченное действие, сделаю. Тха плюс основа аориста без приращения и окончания настоящего: о, ис, и, умэ, этэ, ун.",d:"θα + основа аориста + -ω, -εις, -ει… = сделаю"},
+    {g:"θα γράψω · θα γράψεις · θα γράψει · θα γράψουμε · θα γράψετε · θα γράψουν",t:"напишу, напишешь, напишет, напишем, напишете, напишут"},
+    {r:"Сравни. Написал: эграпса. Напишу: тха грапсо. Основа одна и та же."},
+    {g:"έγραψα → θα γράψω · αγόρασα → θα αγοράσω · πλήρωσα → θα πληρώσω",t:"написал, напишу. Купил, куплю. Заплатил, заплачу"},
+    {r:"Самые частые неправильные формы."},
+    {g:"πηγαίνω → θα πάω · έρχομαι → θα έρθω",t:"пойду, приду"},
+    {g:"τρώω → θα φάω · πίνω → θα πιω",t:"поем, выпью"},
+    {g:"λέω → θα πω · βλέπω → θα δω",t:"скажу, увижу"},
+    {g:"βγαίνω → θα βγω · μπαίνω → θα μπω",t:"выйду, войду"},
+    {g:"είμαι → θα είμαι · έχω → θα έχω",t:"буду, буду иметь"},
+    {r:"Отрицание: дэн тха."},
+    {g:"δεν θα έρθω",t:"я не приду"},
+    {r:"Та же форма, только с частицей на вместо тха, нужна после слов «хочу», «могу», «нужно».",d:"θέλω / μπορώ / πρέπει + να + форма будущего"},
+    {g:"θέλω να φάω · μπορώ να έρθω · πρέπει να πληρώσω",t:"хочу поесть, могу прийти, мне нужно заплатить"},
+    {r:"Коротко. Тха плюс настоящее: буду делать. Тха плюс основа аориста: сделаю."}
+   ],
+   sheet:"fut"}
+  ];
+  var PARA=[
+   ["м. -ος",["ο φίλος","του φίλου","τον φίλο","οι φίλοι","των φίλων","τους φίλους"]],
+   ["м. -ας",["ο πατέρας","του πατέρα","τον πατέρα","οι πατέρες","των πατέρων","τους πατέρες"]],
+   ["м. -ης",["ο μαθητής","του μαθητή","τον μαθητή","οι μαθητές","των μαθητών","τους μαθητές"]],
+   ["ж. -α",["η μητέρα","της μητέρας","τη μητέρα","οι μητέρες","των μητέρων","τις μητέρες"]],
+   ["ж. -η",["η κόρη","της κόρης","την κόρη","οι κόρες","των κορών","τις κόρες"]],
+   ["ср. -ο",["το βιβλίο","του βιβλίου","το βιβλίο","τα βιβλία","των βιβλίων","τα βιβλία"]],
+   ["ср. -ι",["το παιδί","του παιδιού","το παιδί","τα παιδιά","των παιδιών","τα παιδιά"]],
+   ["ср. -μα",["το όνομα","του ονόματος","το όνομα","τα ονόματα","των ονομάτων","τα ονόματα"]]
+  ];
+  var CASEART=[[["ο","η","το"],["οι","οι","τα"]],[["του","της","του"],["των","των","των"]],[["τον","τη(ν)","το"],["τους","τις","τα"]]];
+  var PRS=["я","ты","он, она","мы","вы","они"];
+  function caseSheet(ci){
+    return [
+      {h:"Артикль",cols:["","м.","ж.","ср."],rows:[["ед."].concat(CASEART[ci][0]),["мн."].concat(CASEART[ci][1])]},
+      {h:"Образцы",cols:["тип","ед. число","мн. число"],rows:PARA.map(function(p){return[p[0],p[1][ci],p[1][ci+3]]})},
+      {h:"Все три падежа",cols:["","им.","род.","вин."],rows:[["ед. м.","ο","του","τον"],["ед. ж.","η","της","τη(ν)"],["ед. ср.","το","του","το"],["мн. м.","οι","των","τους"],["мн. ж.","οι","των","τις"],["мн. ср.","τα","των","τα"]]}
+    ];
+  }
+  var SHEETS={
+    nom:caseSheet(0),gen:caseSheet(1),acc:caseSheet(2).concat([{h:"σε + артикль",cols:["м.","ж.","ср."],rows:[["στον","στη(ν)","στο"],["στους","στις","στα"]]}]),
+    pres:[{h:"Спряжение",cols:["","γράφω","αγαπάω","μπορώ","έρχομαι"],rows:PRS.map(function(p,i){return[p,["γράφω","γράφεις","γράφει","γράφουμε","γράφετε","γράφουν"][i],["αγαπάω","αγαπάς","αγαπάει","αγαπάμε","αγαπάτε","αγαπούν"][i],["μπορώ","μπορείς","μπορεί","μπορούμε","μπορείτε","μπορούν"][i],["έρχομαι","έρχεσαι","έρχεται","ερχόμαστε","έρχεστε","έρχονται"][i]]})}],
+    past:[{h:"Окончания и образец",cols:["","окончание","γράφω"],rows:PRS.map(function(p,i){return[p,["-α","-ες","-ε","-αμε","-ατε","-αν"][i],["έγραψα","έγραψες","έγραψε","γράψαμε","γράψατε","έγραψαν"][i]]})},
+          {h:"Как меняется основа",cols:["настоящее","аорист","пример"],rows:[["-ζω","-σα","αγοράζω → αγόρασα"],["-πω, -βω, -φω, -πτω, -εύω","-ψα","γράφω → έγραψα"],["-κω, -γω, -χω","-ξα","τρέχω → έτρεξα"],["-άω, -ώ","-ησα","ζητάω → ζήτησα"],["-ώνω","-ωσα","πληρώνω → πλήρωσα"]]},
+          {h:"Неправильные",cols:["глагол","аорист","перевод"],rows:[["είμαι","ήμουν","был"],["έχω","είχα","имел"],["κάνω","έκανα","сделал"],["πηγαίνω","πήγα","пошёл"],["έρχομαι","ήρθα","пришёл"],["φεύγω","έφυγα","ушёл"],["τρώω","έφαγα","поел"],["πίνω","ήπια","выпил"],["λέω","είπα","сказал"],["βλέπω","είδα","увидел"],["μαθαίνω","έμαθα","выучил"],["βγαίνω","βγήκα","вышел"],["μπαίνω","μπήκα","вошёл"],["ανεβαίνω","ανέβηκα","поднялся"]]}],
+    fut:[{h:"Два будущих",cols:["","длительное","простое"],rows:PRS.map(function(p,i){return[p,"θα "+["γράφω","γράφεις","γράφει","γράφουμε","γράφετε","γράφουν"][i],"θα "+["γράψω","γράψεις","γράψει","γράψουμε","γράψετε","γράψουν"][i]]})},
+         {h:"Неправильные",cols:["глагол","будущее","перевод"],rows:[["πηγαίνω","θα πάω","пойду"],["έρχομαι","θα έρθω","приду"],["τρώω","θα φάω","поем"],["πίνω","θα πιω","выпью"],["λέω","θα πω","скажу"],["βλέπω","θα δω","увижу"],["βγαίνω","θα βγω","выйду"],["μπαίνω","θα μπω","войду"],["είμαι","θα είμαι","буду"],["έχω","θα έχω","буду иметь"]]},
+         {h:"После θέλω, μπορώ, πρέπει",cols:["пример","перевод"],rows:[["θέλω να φάω","хочу поесть"],["μπορώ να έρθω","могу прийти"],["πρέπει να πληρώσω","нужно заплатить"]]}]
+  };
+  SETS.sort(function(a,b){var x=a.id.replace("5.21","5.2.1").split(".").map(Number),y=b.id.replace("5.21","5.2.1").split(".").map(Number);for(var i=0;i<3;i++){var d=(x[i]||0)-(y[i]||0);if(d)return d}return 0});
+  SETS.forEach(function(s){s.words=s.w.split("\n").map(function(l){var p=l.split("|");return{gr:p[0],ru:p[1]}})});
+
+  var $=function(s){return document.querySelector(s)};
+  var store={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+  var st={sel:new Set(["1.1"]),mode:"dict",gap:1.5,rate:0.85,ru:true,show:false,shuf:false,cshuf:false,qauto:true,gcase:false,gpres:false,gpast:false,gfut:false,gonly:false,view:"words",gsel:["art","nom","gen","acc","pres","past","fut"],ggap:1,gtr:true,grep:false,gloop:false};
+  try{var saved=JSON.parse(store.get("greek-words-v2")||"null");if(saved){Object.keys(st).forEach(function(k){if(k==="sel"){if(Array.isArray(saved.sel)&&saved.sel.length)st.sel=new Set(saved.sel.filter(function(id){return SETS.some(function(s){return s.id===id})}))}else if(saved[k]!==undefined&&typeof saved[k]===typeof st[k])st[k]=saved[k]});if(!st.sel.size)st.sel=new Set(["1.1"])}}catch(e){}
+  function persist(){var o={};Object.keys(st).forEach(function(k){o[k]=k==="sel"?Array.from(st.sel):st[k]});store.set("greek-words-v2",JSON.stringify(o))}
+
+  /* ---------- голоса ---------- */
+  var synth=window.speechSynthesis||null, voices=[];
+  function loadVoices(){if(!synth)return;voices=synth.getVoices()||[];renderVoice()}
+  if(synth){loadVoices();if(synth.addEventListener)synth.addEventListener("voiceschanged",loadVoices);setTimeout(loadVoices,600)}
+  function pick(lang){
+    var c=voices.filter(function(v){return(v.lang||"").toLowerCase().replace("_","-").indexOf(lang)===0});
+    if(!c.length)return null;
+    var pref=c.filter(function(v){return v.localService===false||/enhanced|premium|google/i.test(v.name)});
+    return(pref[0]||c[0]);
+  }
+  function renderVoice(){
+    var g=pick("el"),r=pick("ru"),n=$("#novoice");
+    $("#voice").textContent="Греческий голос: "+(g?g.name:"не найден")+" · русский: "+(r?r.name:"не найден");
+    if(!synth){n.hidden=false;n.textContent="Этот браузер не умеет озвучивать текст. Открой страницу в Safari или Chrome.";return}
+    if(!g&&voices.length){n.hidden=false;n.textContent="На устройстве нет греческого голоса. На iPhone: Настройки → Универсальный доступ → Устный контент → Голоса → Греческий. На Android: настройки синтеза речи Google → язык греческий. Пока слова будут читаться чужим голосом."}
+    else n.hidden=true;
+  }
+  function speak(text,lang,rate){
+    return new Promise(function(res){
+      if(!synth){res();return}
+      var u=new SpeechSynthesisUtterance(text);
+      u.lang=lang==="el"?"el-GR":"ru-RU";
+      var v=pick(lang);if(v)u.voice=v;
+      u.rate=rate||1;
+      var done=false,fin=function(){if(!done){done=true;clearTimeout(tm);res()}};
+      var tm=setTimeout(fin,6000+String(text).length*160);
+      u.onend=fin;u.onerror=fin;
+      try{synth.speak(u)}catch(e){fin()}
+    });
+  }
+  function stopSpeech(){if(synth)try{synth.cancel()}catch(e){}}
+
+  /* ---------- пул слов ---------- */
+  var pool=[];
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  function basePool(){
+    var seen={},out=[];
+    SETS.forEach(function(s){if(!st.sel.has(s.id))return;s.words.forEach(function(w){if(!seen[w.gr]){seen[w.gr]=1;out.push(w)}})});
+    return out;
+  }
+  var all=[];
+
+  /* ---------- наборы ---------- */
+  function renderSets(){
+    var box=$("#sets");box.textContent="";
+    SETS.forEach(function(s){
+      var b=document.createElement("button");b.type="button";b.className="set";b.setAttribute("aria-pressed",st.sel.has(s.id));
+      var n=document.createElement("span");n.className="n";n.textContent=s.id;
+      var t=document.createElement("span");t.className="t";t.textContent=s.t;
+      b.appendChild(n);b.appendChild(t);b.title=s.id+" · "+s.t+" · "+s.words.length+" сл.";
+      b.onclick=function(){
+        if(st.sel.has(s.id)){if(st.sel.size>1)st.sel.delete(s.id)}else st.sel.add(s.id);afterSel();
+      };
+      box.appendChild(b);
+    });
+    var ids=SETS.filter(function(s){return st.sel.has(s.id)}).map(function(s){return s.id});
+    $("#sel-sum").textContent=(ids.length<=5?ids.join(", "):ids.length+" наборов")+" · "+all.length+" слов";
+    $("#count").textContent="Выбрано: "+ids.length+" из "+SETS.length+" · слов: "+all.length;
+  }
+  function afterSel(){
+    stopDict();all=basePool();persist();renderSets();rebuildAll();
+  }
+  $("#all").onclick=function(){SETS.forEach(function(s){st.sel.add(s.id)});afterSel()};
+  $("#none").onclick=function(){st.sel=new Set([SETS[0].id]);afterSel()};
+
+  /* ---------- вкладки ---------- */
+  function updateDock(){var on=st.view==="gram"||st.mode==="dict";$("#dock").hidden=!on;document.body.classList.toggle("has-dock",on)}
+  function applyView(){
+    var g=st.view==="gram";
+    $("#setbox").hidden=g;$(".tabs").hidden=g;$("#listbox").hidden=g;$("#p-gram").hidden=!g;
+    ["dict","cards","quiz"].forEach(function(k){$("#p-"+k).hidden=g||k!==st.mode});
+    $("#v-words").setAttribute("aria-selected",!g);$("#v-gram").setAttribute("aria-selected",g);
+    updateDock();
+    if(g)renderG();else{renderDict(false);if(st.mode==="quiz")newQuestion()}
+  }
+  function setView(v){stopDict();st.view=v;persist();applyView()}
+  document.querySelectorAll(".view").forEach(function(b){b.onclick=function(){setView(b.dataset.view)}});
+  function setMode(m){
+    stopDict();st.mode=m;persist();updateDock();
+    ["dict","cards","quiz"].forEach(function(k){
+      $("#p-"+k).hidden=(k!==m);
+      $("#t-"+k).setAttribute("aria-selected",k===m);
+    });
+    if(m==="quiz")newQuestion();
+  }
+  document.querySelectorAll(".tab").forEach(function(t){t.onclick=function(){setMode(t.dataset.mode)}});
+
+  /* ---------- диктовка ---------- */
+  var dpool=[],di=0,playing=false,token=0;
+  var ICON_PLAY='<svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg>';
+  var ICON_PAUSE='<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+  function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+  var PERS=["я","ты","он, она","мы","вы","они"];
+  function anyG(){return st.gcase||st.gpres||st.gpast||st.gfut}
+  function groupsFor(gr){
+    var f=FORMS[gr],g=[];if(!f)return g;
+    function rows(arr,labs){return arr.map(function(x,i){return{l:labs[i]||"",f:x}})}
+    function plabs(a){return a.length===6?PERS:(a.length===2?["ед.","мн."]:[""])}
+    if(st.gcase&&f.t==="n"){
+      if(f.sg)g.push({h:"Падежи · единственное",r:rows(f.sg,["им.","род.","вин."])});
+      if(f.pl)g.push({h:"Падежи · множественное",r:rows(f.pl,["им.","род.","вин."])});
+    }
+    if(st.gcase&&f.t==="a"){
+      g.push({h:"Род · единственное",r:rows(f.g,["м.","ж.","ср."])});
+      g.push({h:"Род · множественное",r:rows(f.gp,["м.","ж.","ср."])});
+    }
+    if(f.t==="v"){
+      if(st.gpres&&f.pr)g.push({h:"Настоящее время",r:rows(f.pr,plabs(f.pr))});
+      if(st.gpast&&f.pa)g.push({h:"Прошедшее время",r:rows(f.pa,plabs(f.pa))});
+      if(st.gfut&&f.fu)g.push({h:"Будущее время",r:rows(f.fu,plabs(f.fu))});
+    }
+    return g;
+  }
+  function fillForms(el,groups,cg,cr){
+    el.textContent="";
+    groups.forEach(function(g,gi){
+      if(cg!=null&&gi!==cg)return;
+      var h=document.createElement("div");h.className="gh";h.textContent=g.h;el.appendChild(h);
+      g.r.forEach(function(r,ri){
+        var l=document.createElement("div");l.className="l";l.textContent=r.l;
+        var f=document.createElement("div");f.className="f";f.textContent=r.f;
+        if(cg!=null&&ri===cr){l.classList.add("cur");f.classList.add("cur")}
+        el.appendChild(l);el.appendChild(f);
+      });
+    });
+    el.hidden=!el.childNodes.length;
+  }
+  function dictBase(){
+    if(st.gonly&&anyG()){var b=all.filter(function(w){return groupsFor(w.gr).length});if(b.length)return b}
+    return all;
+  }
+  function updGCount(){
+    var n=all.filter(function(w){return groupsFor(w.gr).length}).length;
+    $("#g-count").textContent=anyG()?("Слов с выбранными формами: "+n+" из "+all.length):"Включи нужные формы, и после перевода прозвучат все формы слова.";
+  }
+  function buildDict(){var b=dictBase();dpool=st.shuf?shuffle(b):b.slice();di=0}
+  function showForm(g,gs,gi,ri){
+    var r=gs[gi].r[ri];
+    $("#d-lab").textContent=gs[gi].h+(r.l?" · "+r.l:"");
+    $("#d-gr").textContent=r.f;
+    fillForms($("#d-forms"),gs,gi,ri);
+  }
+  function renderDict(showRu){
+    var w=dpool[di];if(!w)return;
+    $("#d-lab").textContent="";$("#d-forms").hidden=true;
+    $("#d-gr").textContent=w.gr;
+    var r=$("#d-ru");r.textContent=w.ru;r.className="ru"+((showRu||st.show)?"":" hide");
+    $("#d-meta").textContent=(di+1)+" / "+dpool.length;
+    $("#d-bar").style.width=((di+1)/dpool.length*100)+"%";
+  }
+  function setPlayIcon(){var b=$("#d-play");b.innerHTML=playing?ICON_PAUSE:ICON_PLAY;b.setAttribute("aria-label",playing?"Пауза":"Начать диктовку")}
+  async function dictLoop(t){
+    while(t===token&&playing){
+      var w=dpool[di];renderDict(false);
+      await speak(w.gr,"el",st.rate);if(t!==token)return;
+      await sleep(st.gap*1000);if(t!==token)return;
+      renderDict(true);
+      if(st.ru){await speak(w.ru,"ru",1);if(t!==token)return}
+      await sleep(st.gap*1000);if(t!==token)return;
+      var gs=groupsFor(w.gr);
+      for(var gi=0;gi<gs.length;gi++){
+        for(var ri=0;ri<gs[gi].r.length;ri++){
+          showForm(w,gs,gi,ri);
+          await speak(gs[gi].r[ri].f,"el",st.rate);if(t!==token)return;
+          await sleep(Math.max(350,st.gap*500));if(t!==token)return;
+        }
+        await sleep(st.gap*500);if(t!==token)return;
+      }
+      di=(di+1)%dpool.length;
+    }
+  }
+  function startDict(){
+    if(!dpool.length)return;
+    stopSpeech();token++;playing=true;setPlayIcon();keepAwake(true);dictLoop(token);
+  }
+  function stopDict(){token++;playing=false;stopSpeech();setPlayIcon();keepAwake(false)}
+  $("#d-play").onclick=function(){if(playing)stopDict();else if(st.view==="gram")startGram();else startDict()};
+  function step(d){
+    if(!dpool.length)return;
+    var was=playing;token++;stopSpeech();
+    di=(di+d+dpool.length)%dpool.length;renderDict(false);
+    if(was){playing=true;dictLoop(token)}
+    else{var t=token;speak(dpool[di].gr,"el",st.rate)}
+  }
+  $("#d-next").onclick=function(){st.view==="gram"?gstep(1):step(1)};
+  $("#d-prev").onclick=function(){st.view==="gram"?gstep(-1):step(-1)};
+
+  /* ---------- грамматика ---------- */
+  var gq=[],gpos=0,gdone=false,curSheet=null;
+  function selTis(){return GRAM.map(function(t,i){return i}).filter(function(i){return st.gsel.indexOf(GRAM[i].id)>=0})}
+  function buildGQ(tis){gq=[];tis.forEach(function(ti){GRAM[ti].lines.forEach(function(l,li){gq.push({ti:ti,li:li})})});gpos=0;gdone=false}
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function renderSheet(ti){
+    if(curSheet===ti)return;curSheet=ti;
+    var box=$("#sheet");box.textContent="";
+    var T=GRAM[ti];if(!T){box.hidden=true;return}box.hidden=false;
+    var spec=typeof T.sheet==="string"?SHEETS[T.sheet]:T.sheet;
+    box.appendChild(el("h2",null,"Шпаргалка · "+T.title));
+    spec.forEach(function(t){
+      var w=el("div");w.appendChild(el("h3",null,t.h));
+      var wrap=el("div","tbl"),tb=el("table"),hr=el("tr");
+      t.cols.forEach(function(c){hr.appendChild(el("th",null,c))});
+      var th=el("thead");th.appendChild(hr);tb.appendChild(th);
+      var bd=el("tbody");
+      t.rows.forEach(function(r){var tr=el("tr");r.forEach(function(c,i){var td=el("td",(i===0&&(t.cols[0]===""||t.cols[0]==="тип"))?"lab":null,c);td.lang="el";tr.appendChild(td)});bd.appendChild(tr)});
+      tb.appendChild(bd);wrap.appendChild(tb);w.appendChild(wrap);box.appendChild(w);
+    });
+  }
+  function renderTopics(){
+    var box=$("#topics");box.textContent="";
+    var cur=gq[gpos]?gq[gpos].ti:-1;
+    GRAM.forEach(function(T,ti){
+      var row=el("div","topic"+(ti===cur&&st.view==="gram"?" now":""));
+      var cb=el("input");cb.type="checkbox";cb.id="tp-"+T.id;cb.checked=st.gsel.indexOf(T.id)>=0;
+      cb.onchange=function(){
+        if(cb.checked){if(st.gsel.indexOf(T.id)<0)st.gsel.push(T.id)}else st.gsel=st.gsel.filter(function(x){return x!==T.id});
+        persist();stopDict();buildGQ(selTis());renderG();
+      };
+      var lb=el("label");lb.htmlFor=cb.id;lb.appendChild(el("span","tt",T.title));lb.appendChild(el("span","ts",T.sub));
+      var pb=el("button","ib");pb.type="button";pb.setAttribute("aria-label","Слушать тему «"+T.title+"»");
+      pb.innerHTML='<svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg>';
+      pb.onclick=function(){stopDict();buildGQ([ti]);renderG();startGram()};
+      row.appendChild(cb);row.appendChild(lb);row.appendChild(pb);box.appendChild(row);
+    });
+  }
+  function renderG(){
+    var it=gq[gpos],main=$("#g-main");main.textContent="";
+    if(!it){
+      $("#g-lab").textContent="";$("#g-tr").textContent="";
+      main.appendChild(el("div","say","Отметь темы ниже и нажми «Пуск». Или нажми треугольник у темы, чтобы послушать только её."));
+      $("#d-meta").textContent="";$("#d-bar").style.width="0";renderTopics();renderSheet(selTis()[0]);return;
+    }
+    var T=GRAM[it.ti],L=T.lines[it.li];
+    $("#g-lab").textContent=T.title;
+    if(L.g){var g=el("div","gr gsm",L.g);g.lang="el";main.appendChild(g);$("#g-tr").textContent=L.t||""}
+    else{main.appendChild(el("div","say",L.r));if(L.d){var k=el("div","key",L.d);k.lang="el";main.appendChild(k)}$("#g-tr").textContent=""}
+    var tis=[];gq.forEach(function(q){if(tis.indexOf(q.ti)<0)tis.push(q.ti)});
+    $("#d-meta").textContent=(tis.length>1?"Тема "+(tis.indexOf(it.ti)+1)+" из "+tis.length+" · ":"")+(it.li+1)+" / "+T.lines.length;
+    $("#d-bar").style.width=((gpos+1)/gq.length*100)+"%";
+    renderTopics();renderSheet(it.ti);
+  }
+  function sentences(t){return String(t).match(/[^.!?]+[.!?]*/g)||[t]}
+  function spokenG(g){return g.replace(/→/g,",").replace(/·/g,",")}
+  async function gramLoop(t){
+    while(t===token&&playing){
+      var it=gq[gpos];if(!it){stopDict();return}
+      renderG();var L=GRAM[it.ti].lines[it.li];
+      if(L.g){
+        await speak(spokenG(L.g),"el",st.rate);if(t!==token)return;
+        if(st.grep){await sleep(700);if(t!==token)return;await speak(spokenG(L.g),"el",st.rate);if(t!==token)return}
+        await sleep(st.ggap*1000);if(t!==token)return;
+        if(st.gtr&&L.t){await speak(L.t.replace(/→/g,","),"ru",1);if(t!==token)return;await sleep(st.ggap*1000);if(t!==token)return}
+      }else{
+        var ss=sentences(L.r);
+        for(var i=0;i<ss.length;i++){await speak(ss[i].trim(),"ru",1);if(t!==token)return}
+        await sleep(st.ggap*1000);if(t!==token)return;
+      }
+      if(gpos<gq.length-1)gpos++;
+      else if(st.gloop)gpos=0;
+      else{gdone=true;stopDict();return}
+    }
+  }
+  function startGram(){
+    if(!gq.length)buildGQ(selTis());
+    if(!gq.length){renderG();return}
+    if(gdone){gpos=0;gdone=false}
+    stopSpeech();token++;playing=true;setPlayIcon();keepAwake(true);gramLoop(token);
+  }
+  function gstep(d){
+    if(!gq.length)buildGQ(selTis());if(!gq.length)return;
+    var was=playing;token++;stopSpeech();gdone=false;
+    gpos=Math.min(gq.length-1,Math.max(0,gpos+d));renderG();
+    if(was){playing=true;gramLoop(token)}
+  }
+  $("#gt-all").onclick=function(){st.gsel=GRAM.map(function(t){return t.id});persist();stopDict();buildGQ(selTis());renderG()};
+  $("#gt-none").onclick=function(){st.gsel=[];persist();stopDict();buildGQ([]);renderG()};
+
+  var lock=null;
+  function keepAwake(on){
+    try{
+      if(on&&navigator.wakeLock&&!lock){navigator.wakeLock.request("screen").then(function(l){lock=l;l.addEventListener("release",function(){lock=null})}).catch(function(){})}
+      else if(!on&&lock){lock.release();lock=null}
+    }catch(e){}
+  }
+
+  /* настройки диктовки */
+  function bindRange(id,key,fmt){
+    var el=$("#"+id),out=$("#"+id+"-v");el.value=st[key];
+    function upd(){out.textContent=fmt(+el.value)}upd();
+    el.oninput=function(){st[key]=+el.value;upd();persist()};
+  }
+  bindRange("o-gap","gap",function(v){return v.toString().replace(".",",")+" с"});
+  bindRange("o-rate","rate",function(v){return "×"+v.toFixed(2).replace(".",",")});
+  function bindChk(id,key,cb){var el=$("#"+id);el.checked=!!st[key];el.onchange=function(){st[key]=el.checked;persist();if(cb)cb()}}
+  bindChk("o-ru","ru");
+  bindChk("o-show","show",function(){renderDict(false)});
+  bindChk("o-shuf","shuf",function(){stopDict();buildDict();renderDict(false)});
+  bindRange("o-ggap","ggap",function(v){return v.toString().replace(".",",")+" с"});
+  bindRange("o-rate2","rate",function(v){return "×"+v.toFixed(2).replace(".",",")});
+  $("#o-rate2").addEventListener("input",function(){$("#o-rate").value=st.rate;$("#o-rate-v").textContent="×"+st.rate.toFixed(2).replace(".",",")});
+  $("#o-rate").addEventListener("input",function(){$("#o-rate2").value=st.rate;$("#o-rate2-v").textContent="×"+st.rate.toFixed(2).replace(".",",")});
+  bindChk("o-gtr","gtr");bindChk("o-grep","grep");bindChk("o-gloop","gloop");
+  function onGram(){updGCount();if(st.gonly){stopDict();buildDict();renderDict(false)}renderCard()}
+  bindChk("g-case","gcase",onGram);bindChk("g-pres","gpres",onGram);bindChk("g-past","gpast",onGram);bindChk("g-fut","gfut",onGram);
+  bindChk("g-only","gonly",function(){updGCount();stopDict();buildDict();renderDict(false)});
+
+  /* ---------- карточки ---------- */
+  var cpool=[],ci=0,flipped=false;
+  function buildCards(){cpool=st.cshuf?shuffle(all):all.slice();ci=0;flipped=false}
+  function renderCard(){
+    var w=cpool[ci];if(!w)return;
+    $("#c-gr").textContent=w.gr;
+    var r=$("#c-ru");r.textContent=w.ru;r.className="ru"+(flipped?"":" hide");
+    $("#c-hint").hidden=flipped;
+    if(flipped)fillForms($("#c-forms"),groupsFor(w.gr));else $("#c-forms").hidden=true;
+    $("#c-meta").textContent=(ci+1)+" / "+cpool.length;
+  }
+  $("#c-card").onclick=function(){flipped=!flipped;renderCard();if(flipped===false)return};
+  function cstep(d){stopSpeech();ci=(ci+d+cpool.length)%cpool.length;flipped=false;renderCard();speak(cpool[ci].gr,"el",st.rate)}
+  $("#c-next").onclick=function(){cstep(1)};
+  $("#c-prev").onclick=function(){cstep(-1)};
+  $("#c-say").onclick=function(){stopSpeech();speak(cpool[ci].gr,"el",st.rate)};
+  bindChk("c-shuf","cshuf",function(){buildCards();renderCard()});
+
+  /* ---------- тест ---------- */
+  var qcur=null,qright=0,qtotal=0,qanswered=false;
+  function newQuestion(){
+    if(all.length<2){return}
+    qanswered=false;$("#q-next").hidden=true;
+    var w=all[Math.floor(Math.random()*all.length)];
+    var wrong=shuffle(all.filter(function(x){return x.ru!==w.ru})).slice(0,3);
+    var opts=shuffle(wrong.concat([w]));
+    qcur=w;
+    $("#q-gr").textContent=w.gr;
+    var box=$("#q-ans");box.textContent="";
+    opts.forEach(function(o){
+      var b=document.createElement("button");b.type="button";b.className="ans";b.textContent=o.ru;
+      b.onclick=function(){
+        if(qanswered)return;qanswered=true;qtotal++;
+        var ok=o.ru===w.ru;if(ok)qright++;
+        Array.prototype.forEach.call(box.children,function(c){
+          if(c.textContent===w.ru)c.classList.add("ok");
+          else if(c===b)c.classList.add("no");
+        });
+        $("#q-score").textContent=qright+" / "+qtotal;
+        $("#q-next").hidden=false;$("#q-next").focus();
+      };
+      box.appendChild(b);
+    });
+    if(st.qauto){stopSpeech();speak(w.gr,"el",st.rate)}
+  }
+  $("#q-next").onclick=newQuestion;
+  $("#q-reset").onclick=function(){qright=0;qtotal=0;$("#q-score").textContent="0 / 0";newQuestion()};
+  $("#q-say").onclick=function(){if(qcur){stopSpeech();speak(qcur.gr,"el",st.rate)}};
+  bindChk("q-auto","qauto");
+
+  /* ---------- список ---------- */
+  function renderList(){
+    var box=$("#list");box.textContent="";
+    all.forEach(function(w){
+      var b=document.createElement("button");b.type="button";b.className="li";
+      var g=document.createElement("span");g.className="g";g.lang="el";g.textContent=w.gr;
+      var r=document.createElement("span");r.className="r";r.textContent=w.ru;
+      b.appendChild(g);b.appendChild(r);
+      b.onclick=function(){
+        document.querySelectorAll(".li.on").forEach(function(x){x.classList.remove("on")});
+        b.classList.add("on");stopDict();speak(w.gr,"el",st.rate);
+      };
+      box.appendChild(b);
+    });
+  }
+
+  function rebuildAll(){
+    buildDict();renderDict(false);buildCards();renderCard();renderList();updGCount();
+    if(st.mode==="quiz")newQuestion();
+  }
+
+  document.addEventListener("visibilitychange",function(){if(document.hidden&&playing)stopDict()});
+
+  all=basePool();
+  setPlayIcon();renderSets();renderVoice();rebuildAll();buildGQ(selTis());
+  if(st.mode!=="dict")setMode(st.mode);
+  applyView();
+})();
+</script>
+
+</body></html>
